@@ -54,6 +54,23 @@
             android:layout_marginTop="30dp"
             android:text="Servise"
             android:textSize="@dimen/ButtonTextSize"/>
+        <Button
+            android:id="@+id/RedskapKnapp"
+            android:layout_width="@dimen/ButtonWidth"
+            android:layout_height="@dimen/ButtonHeight"
+            android:layout_below="@+id/EmballasjeKnapp"
+            android:layout_marginTop="30dp"
+            android:text="Redskap"
+            android:textSize="@dimen/ButtonTextSize"/>
+        <Button
+            android:id="@+id/DiverseKnapp"
+            android:layout_width="@dimen/ButtonWidth"
+            android:layout_height="@dimen/ButtonHeight"
+            android:layout_below="@+id/EmballasjeKnapp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:text="Diverse"
+            android:textSize="@dimen/ButtonTextSize"/>
 
 
     </RelativeLayout>
