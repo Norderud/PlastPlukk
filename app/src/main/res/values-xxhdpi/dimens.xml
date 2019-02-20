@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ButtonTextSize">18sp</dimen>
+    <dimen name="VelgPlastTekst">28sp</dimen>
+    <dimen name="VelgPlastMargin">5dp</dimen>
+</resources>
