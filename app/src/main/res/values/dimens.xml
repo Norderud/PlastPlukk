@@ -2,5 +2,5 @@
 <resources>
     <dimen name="ButtonWidth">170dp</dimen>
     <dimen name="ButtonHeight">90dp</dimen>
-    <dimen name="ButtonTextSize">20dp</dimen>
+    <dimen name="ButtonTextSize">20sp</dimen>
 </resources>
