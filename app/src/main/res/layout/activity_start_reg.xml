@@ -5,74 +5,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".StartReg">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
         android:gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textSize="40dp"
         android:text="Velg plasttype" />
 
-    <RelativeLayout
-        android:id="@+id/ButtonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".8"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp">
 
-        <Button
-            android:id="@+id/PoserKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:text="Poser"
-            android:textSize="@dimen/ButtonTextSize"/>
-        <Button
-            android:id="@+id/FlaskerKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:layout_alignParentRight="true"
-            android:text="Flasker og Beholdere"
-            android:textSize="@dimen/ButtonTextSize"/>
-        <Button
-            android:id="@+id/EmballasjeKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:layout_below="@+id/PoserKnapp"
-            android:layout_marginTop="30dp"
-            android:text="Emballasje"
-            android:textSize="@dimen/ButtonTextSize"/>
-        <Button
-            android:id="@+id/ServiseKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:layout_below="@+id/PoserKnapp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
-            android:text="Servise"
-            android:textSize="@dimen/ButtonTextSize"/>
-        <Button
-            android:id="@+id/RedskapKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:layout_below="@+id/EmballasjeKnapp"
-            android:layout_marginTop="30dp"
-            android:text="Redskap"
-            android:textSize="@dimen/ButtonTextSize"/>
-        <Button
-            android:id="@+id/DiverseKnapp"
-            android:layout_width="@dimen/ButtonWidth"
-            android:layout_height="@dimen/ButtonHeight"
-            android:layout_below="@+id/EmballasjeKnapp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
-            android:text="Diverse"
-            android:textSize="@dimen/ButtonTextSize"/>
+        <LinearLayout
+            android:layout_weight=".2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:orientation="vertical">
 
+            <Button
+                android:id="@+id/PoserKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Poser"
+                android:textSize="@dimen/ButtonTextSize"/>
+            <Button
+                android:id="@+id/FlaskerKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Flasker og Beholdere"
+                android:textSize="@dimen/ButtonTextSize"/>
+            <Button
+                android:id="@+id/RedskapKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:layout_below="@+id/EmballasjeKnapp"
+                android:text="Redskap"
+                android:textSize="@dimen/ButtonTextSize"/>
 
-    </RelativeLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_weight=".2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <Button
+                android:id="@+id/EmballasjeKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Emballasje"
+                android:textSize="@dimen/ButtonTextSize"/>
+            <Button
+                android:id="@+id/ServiseKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Servise"
+                android:textSize="@dimen/ButtonTextSize"/>
+            <Button
+                android:id="@+id/DiverseKnapp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".33"
+                android:text="Diverse"
+                android:textSize="@dimen/ButtonTextSize"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
