@@ -1,5 +1,6 @@
 package no.usn.plastplukk.plastplukk;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,10 @@ public class StartReg extends AppCompatActivity {
         setContentView(R.layout.activity_start_reg);
     }
 
-    public void test(View view){
-        Log.e("Test", "Test");
+    public void velgEgenskaper(View view) {
+        String valg = view.getTag().toString();
+        Intent nyIntent = new Intent(this.getBaseContext(), Egenskaper.class);
+        nyIntent.putExtra("valg", valg);
+        this.startActivity(nyIntent);
     }
 }
