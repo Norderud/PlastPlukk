@@ -11,20 +11,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".1"
-        android:gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:textSize="40dp"
-        android:text="Velg plasttype" />
+        android:layout_weight=".1"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center_horizontal"
+        android:text="Velg plasttype"
+        android:textSize="@dimen/VelgPlastTekst" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".8"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginLeft="@dimen/VelgPlastMargin"
+        android:layout_marginTop="@dimen/VelgPlastMargin"
+        android:layout_marginRight="@dimen/VelgPlastMargin">
 
         <LinearLayout
             android:layout_weight=".2"
@@ -35,26 +36,42 @@
 
             <Button
                 android:id="@+id/PoserKnapp"
+                android:tag="Pose"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
+                android:background="@drawable/buttons"
+                android:drawableTop="@drawable/bagicon"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
                 android:text="Poser"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:textSize="@dimen/ButtonTextSize" />
+
             <Button
                 android:id="@+id/FlaskerKnapp"
+                android:tag="Flaske"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
-                android:text="Flasker og Beholdere"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:background="@drawable/buttons"
+                android:drawableTop="@drawable/bottleicon"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
+                android:text="Flasker \u0026 Beholdere"
+                android:textSize="@dimen/ButtonTextSize" />
+
             <Button
                 android:id="@+id/RedskapKnapp"
+                android:tag="Redskap"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
-                android:layout_below="@+id/EmballasjeKnapp"
+                android:background="@drawable/buttons"
+                android:drawableTop="@drawable/toolsicon"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
                 android:text="Redskap"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:textSize="@dimen/ButtonTextSize" />
 
         </LinearLayout>
 
@@ -64,27 +81,44 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="1">
+
             <Button
                 android:id="@+id/EmballasjeKnapp"
+                android:tag="Emballasje"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
+                android:background="@drawable/buttons"
+                android:drawableTop="@drawable/emballasjeicon"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
                 android:text="Emballasje"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:textSize="@dimen/ButtonTextSize" />
+
             <Button
                 android:id="@+id/ServiseKnapp"
+                android:tag="Servise"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
+                android:background="@drawable/buttons"
+                android:drawableTop="@drawable/forkandknifeicon"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
                 android:text="Servise"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:textSize="@dimen/ButtonTextSize" />
+
             <Button
                 android:id="@+id/DiverseKnapp"
+                android:tag="Diverse"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".33"
+                android:background="@drawable/buttons"
+                android:fontFamily="@font/quicksand_light"
+                android:onClick="velgEgenskaper"
                 android:text="Diverse"
-                android:textSize="@dimen/ButtonTextSize"/>
+                android:textSize="@dimen/ButtonTextSize" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
