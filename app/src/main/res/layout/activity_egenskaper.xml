@@ -8,7 +8,8 @@
     android:weightSum="1"
     tools:context=".Egenskaper"
     android:paddingLeft="10dp"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:paddingRight="10dp">
 
     <TextView
         android:id="@+id/tekst"
@@ -41,13 +42,18 @@
             android:gravity="center_horizontal"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".05"/>
+
     <LinearLayout
         android:id="@+id/str"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:visibility="gone">
+        android:visibility="invisible">
         <TextView
             android:layout_width="0dp"
             android:layout_weight=".4"
@@ -63,5 +69,25 @@
             android:spinnerMode="dropdown"
             android:gravity="center_horizontal"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"/>
+    <TextView
+        android:id="@+id/Feilmelding"
+        android:textColor="#ff00"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".06"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".17"
+        android:text="Gå Videre"
+        android:textSize="@dimen/ButtonTextSize"
+        android:onClick="openKamera"/>
 
 </LinearLayout>
