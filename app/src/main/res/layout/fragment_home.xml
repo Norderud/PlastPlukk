@@ -11,49 +11,48 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="top"
-        android:layout_weight="0.36"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/forside_bilde" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.64"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@color/colorPrimary">
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.06"
+            android:layout_weight="0.08"
+            android:background="@color/colorPrimaryDark"
             android:paddingStart="10dp"
             android:text="Plast Plukk"
-            android:textSize="20sp"
-            android:background="@color/colorPrimaryDark"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"
-            android:text="@string/forside_text"
-            />
+            android:padding="10dp"
+            android:text="@string/forside_text" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Åpne kamera"
             android:layout_marginTop="30dp"
-            android:textSize="20dp"
             android:onClick="openKamera"
-            />
+            android:text="Åpne kamera"
+            android:textSize="20dp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
             android:layout_gravity="end"
+            android:layout_weight="0.1"
             android:drawableEnd="@drawable/ic_add_circle"
             android:onClick="registrerPlast"
             android:text="Ny registrering"
