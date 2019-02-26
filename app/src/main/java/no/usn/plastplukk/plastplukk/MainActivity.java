@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent messageIntent = new Intent(this, StartReg.class);
         startActivity(messageIntent);
     }
-    public void openKamera(View view){
+    public void openCamera(View view){
         Intent messageIntent = new Intent(this, KameraAktivitet.class);
         startActivity(messageIntent);
     }
