@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +51,8 @@ public class KameraAktivitet extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                System.out.println(ex.getMessage() + "oggggg?? \n" + ex.toString());
+                System.out.println(ex.getMessage() + "oggggg?? \n");
+                ex.printStackTrace();
 
                 // Error occurred while creating the File
             }
@@ -67,37 +69,46 @@ public class KameraAktivitet extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
 
-            try {
-                createImageFile();
-            } catch (Exception e) {
-                //TODO Håndter this exception
-            }
-
-            Bitmap image = BitmapFactory.decodeFile(currentPhotoPath);
-            imageView.setImageBitmap(image);
-
+            loadImageFromFile();
         }
-        if (resultCode == Activity.RESULT_CANCELED) {
-            //TODO hva skjer om man kansellerer
-        }
+    }
+    public void loadImageFromFile(){
+
+        ImageView view = (ImageView)this.findViewById(R.id.photoDisplay);
+        view.setVisibility(View.VISIBLE);
+
+
+        int targetW = view.getWidth();
+        int targetH = view.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        view.setImageBitmap(bitmap);
     }
 
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = String.format("JPEG_%s_", timeStamp);
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
+        String imageFileName = String.format("JPEG_%s_.jpg", timeStamp);
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = new File(storageDir, imageFileName);
+        Toast toast = new Toast(this);
+        toast.makeText(this,"hei!", Toast.LENGTH_LONG).show();
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
