@@ -1,6 +1,5 @@
 package no.usn.plastplukk.plastplukk;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,27 +12,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.os.Environment.getExternalStoragePublicDirectory;
-
 public class KameraAktivitet extends AppCompatActivity {
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
     static String currentPhotoPath;
+    Button taBildeKnapp, videreFraKameraKnapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kamera_aktivitet);
-        Button kameraKnapp = (Button) findViewById(R.id.kameraKnapp);
+        taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
+        videreFraKameraKnapp = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
-        kameraKnapp.setOnClickListener(new View.OnClickListener() {
+        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -72,16 +70,15 @@ public class KameraAktivitet extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             loadImageFromFile();
+            taBildeKnapp.setText("Ta nytt bilde?");
+            videreFraKameraKnapp.setVisibility(View.VISIBLE);
         }
     }
     public void loadImageFromFile(){
 
-        ImageView view = (ImageView)this.findViewById(R.id.photoDisplay);
-        view.setVisibility(View.VISIBLE);
-
-
-        int targetW = view.getWidth();
-        int targetH = view.getHeight();
+        imageView.setVisibility(View.VISIBLE);
+        int targetW = imageView.getWidth();
+        int targetH = imageView.getHeight();
 
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -98,7 +95,7 @@ public class KameraAktivitet extends AppCompatActivity {
         bmOptions.inSampleSize = scaleFactor;
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-        view.setImageBitmap(bitmap);
+        imageView.setImageBitmap(bitmap);
     }
 
     private File createImageFile() throws IOException {
@@ -107,8 +104,6 @@ public class KameraAktivitet extends AppCompatActivity {
         String imageFileName = String.format("JPEG_%s_.jpg", timeStamp);
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = new File(storageDir, imageFileName);
-        Toast toast = new Toast(this);
-        toast.makeText(this,"hei!", Toast.LENGTH_LONG).show();
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
