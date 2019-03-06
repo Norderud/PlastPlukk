@@ -8,7 +8,7 @@
             android:icon="@drawable/ic_home"
             android:title="Forside" />
         <item
-            android:id="@+id/nav_myProfile"
+            android:id="@+id/nav_my_profile"
             android:icon="@drawable/ic_my_profile"
             android:title="Min profil" />
         <item

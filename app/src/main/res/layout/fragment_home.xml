@@ -4,62 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="top"
-        android:layout_weight="0.36"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/forside_bilde" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:background="@color/colorDark"
+        android:paddingStart="10dp"
+        android:text="Plast Plukk"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.64"
+        android:layout_weight="0.92"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@color/colorPrimary">
+        android:padding="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.06"
-            android:paddingStart="10dp"
-            android:text="Plast Plukk"
-            android:textSize="30sp"
-            android:background="@color/colorPrimaryDark"
-            />
+            android:layout_weight="0.6"
+            android:text="@string/forside_text" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"
-            android:text="@string/forside_text"
-            />
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Åpne kamera"
-            android:layout_marginTop="30dp"
-            android:textSize="20dp"
-            android:onClick="openKamera"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:layout_gravity="end"
-            android:drawableEnd="@drawable/ic_add_circle"
-            android:onClick="registrerPlast"
-            android:text="Ny registrering"
-            android:textSize="20sp" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:onClick="openCamera"
+                android:text="Åpne kamera"
+                android:textSize="20dp" />
 
+            <Button
+                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="0.2"
+                android:background="@color/colorDark"
+                android:drawableTop="@drawable/ic_add_circle"
+                android:onClick="registrerPlast"
+                android:padding="10dp"
+                android:text="Ny plast"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                />
 
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
