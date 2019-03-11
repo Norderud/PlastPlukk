@@ -7,16 +7,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Egenskaper extends AppCompatActivity {
 
-    String[] typer, str;
-    String valg, underKategori, størrelse;
+    String[] typer, str;    // Valgene til dropdown menyene
+    String kategori, underKategori, størrelse;
     TextView feilMelding, overTekst;
     boolean visible = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,47 +26,52 @@ public class Egenskaper extends AppCompatActivity {
         setContentView(R.layout.activity_egenskaper);
         Intent intent = getIntent();
 
-        valg = intent.getStringExtra("valg");
+        kategori = intent.getStringExtra("kategori");
 
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);
-        overTekst.setText(valg);
+        overTekst.setText(kategori);
 
         lagDropDown();
     }
 
 
-    public void openKamera(View view){
-        if (underKategori.equals("Velg Type..") || (størrelse.equals("Velg størrelse..") && visible)){
+    // Åpner neste aktivitet - kamera
+    public void openArea(View view){
+
+        if (underKategori.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
             feilMelding.setText("Vennligst fyll ut alle feltene.");
             return;
         } else
             størrelse = "";
-        Intent messageIntent = new Intent(this, KameraAktivitet.class);
-        messageIntent.putExtra("Kategori", valg);
+        Intent messageIntent = new Intent(this, Area.class);
+        messageIntent.putExtra("Kategori", kategori);
         messageIntent.putExtra("Underkategori", underKategori);
+
         if (størrelse.length() != 0)
             messageIntent.putExtra("Størrelse", størrelse);
         startActivity(messageIntent);
     }
 
+    // Oppretter dropdown menyene og deres funksjoner
     private void lagDropDown(){
 
         final LinearLayout layout = findViewById(R.id.str); //
 
-        if (valg.equals("Pose"))
-            typer = new String[]{"Velg Type..", "Stor plastpose", "Middels plastpose",
+        // Alle valgene legges til
+        if (kategori.equals("Pose"))
+            typer = new String[]{"Velg type..", "Stor plastpose", "Middels plastpose",
                     "Liten plastpose"};
-        else if (valg.equals("Emballasje"))
-            typer = new String[]{"Velg Type..", "Godteriemballasje", "Diverse matemballasje",
+        else if (kategori.equals("Emballasje"))
+            typer = new String[]{"Velg type..", "Godteriemballasje", "Diverse matemballasje",
                     "Nettstrømpe (til f.eks. grønnsaker)", "Plastfilm"};
-        else if (valg.equals("Flaske"))
+        else if (kategori.equals("Flaske"))
             typer = new String[]{"Velg type..", "Plastflaske", "Kanne", "Tønne", "Bøtte/Boks", "Snusboks", "Kork/lokk", "Annet"};
-        else if (valg.equals("Servise"))
+        else if (kategori.equals("Servise"))
             typer = new String[]{"Velg type..", "Kopper/Plastglass", "Tallerken", "Bestikk", "Annet"};
-        else if (valg.equals("Redskap"))
+        else if (kategori.equals("Redskap"))
             typer = new String[]{"Velg type..", "Fiskegarn", "Fiskesnøre", "Lighter", "Tau/Tråd", "Annet"};
-        else if (valg.equals("Diverse"))
+        else if (kategori.equals("Diverse"))
             typer = new String[]{"Velg type..", "Bekledning", "Riflehylser", "Ballonger", "Bildeler", "Diverse kroppspleie",
                     "Blander, dumpet avfall", "Annet"};
 
@@ -123,5 +130,4 @@ public class Egenskaper extends AppCompatActivity {
             }
         });
     }
-
 }
