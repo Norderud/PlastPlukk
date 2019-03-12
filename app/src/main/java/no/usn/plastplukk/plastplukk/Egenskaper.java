@@ -116,6 +116,7 @@ public class Egenskaper extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownStr.getSelectedItem().toString();
+
             }
 
             @Override
