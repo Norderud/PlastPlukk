@@ -15,9 +15,9 @@ public class StartReg extends AppCompatActivity {
     }
 
     public void velgEgenskaper(View view) {
-        String valg = view.getTag().toString();
+        String kategori = view.getTag().toString();
         Intent nyIntent = new Intent(this.getBaseContext(), Egenskaper.class);
-        nyIntent.putExtra("valg", valg);
+        nyIntent.putExtra("kategori", kategori);
         this.startActivity(nyIntent);
     }
 }
