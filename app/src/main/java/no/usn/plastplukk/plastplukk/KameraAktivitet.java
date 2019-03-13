@@ -51,7 +51,7 @@ public class KameraAktivitet extends AppCompatActivity {
     String imageFileName = "";
     private Bitmap bitmap;
     private Uri photoURI;
-    private String upload_URL = "http://192.168.10.121/plast/uploadVolley.php";
+    private String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
     JSONObject jsonObject;
     RequestQueue rQueue;
 
@@ -187,7 +187,8 @@ public class KameraAktivitet extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("aaaaaaa", volleyError.toString());
-
+                volleyError.printStackTrace();
+                System.out.println(volleyError.getMessage());
             }
         });
 
