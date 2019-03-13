@@ -35,6 +35,7 @@ public class Egenskaper extends AppCompatActivity {
 
         // Shared preferences
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         kategori = prefs.getString("Kategori", "Ingen");
 
         feilMelding = findViewById(R.id.Feilmelding);
@@ -44,12 +45,6 @@ public class Egenskaper extends AppCompatActivity {
         lagDropDown();
         selectOnReturn();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
 
     // Åpner neste aktivitet - area
     public void openArea(View view){
@@ -61,12 +56,12 @@ public class Egenskaper extends AppCompatActivity {
         Intent messageIntent = new Intent(this, Area.class);
 
         // Shared preferences
-        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putString("Underkategori", underKategori);
+
+        /*editor.putString("Underkategori", underKategori);
         if (!størrelse.equals("Velg størrelse..")) {
             editor.putString("Størrelse", størrelse);
         }
-        editor.apply();
+        editor.apply();*/
 
         startActivity(messageIntent);
     }
@@ -133,8 +128,11 @@ public class Egenskaper extends AppCompatActivity {
                 else{
                     visible = false;
                     layout.setVisibility(View.INVISIBLE);
+                    editor.remove("Størrelse");
                 }
                 underKategori = dropdownTyper.getSelectedItem().toString();
+                editor.putString("Underkategori", underKategori);
+                editor.apply();
             }
 
             @Override
@@ -145,6 +143,8 @@ public class Egenskaper extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownStr.getSelectedItem().toString();
+                editor.putString("Størrelse", størrelse);
+                editor.apply();
             }
 
             @Override
