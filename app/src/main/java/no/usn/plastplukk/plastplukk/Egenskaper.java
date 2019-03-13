@@ -16,14 +16,14 @@ import android.widget.TextView;
 
 public class Egenskaper extends AppCompatActivity {
 
-    String[] typer, str;    // Valgene til dropdown menyene
-    String kategori, underKategori, størrelse;
-    TextView feilMelding, overTekst;
-    boolean visible = false;
+    private String[] typer, str;    // Valgene til dropdown menyene
+    private String kategori, underKategori, størrelse;
+    private TextView feilMelding, overTekst;
+    private boolean visible = false;
 
-    Spinner dropdownTyper, dropdownStr;
-    SharedPreferences.Editor editor;
-    SharedPreferences prefs;
+    private Spinner dropdownTyper, dropdownStr;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences prefs;
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
@@ -48,21 +48,11 @@ public class Egenskaper extends AppCompatActivity {
 
     // Åpner neste aktivitet - area
     public void openArea(View view){
-
         if (underKategori.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
             feilMelding.setText("Vennligst fyll ut alle feltene.");
             return;
         }
         Intent messageIntent = new Intent(this, Area.class);
-
-        // Shared preferences
-
-        /*editor.putString("Underkategori", underKategori);
-        if (!størrelse.equals("Velg størrelse..")) {
-            editor.putString("Størrelse", størrelse);
-        }
-        editor.apply();*/
-
         startActivity(messageIntent);
     }
 
@@ -146,13 +136,13 @@ public class Egenskaper extends AppCompatActivity {
                 editor.putString("Størrelse", størrelse);
                 editor.apply();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
 
+    // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
         String typeTemp = prefs.getString("Underkategori", "Tom");
 

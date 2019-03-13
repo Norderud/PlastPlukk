@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(loginIntent);
     }
 
+    // Resetter verdiene som lagres under registrering
     private void clearPreferences(){
-        // Resetter verdiene som lagres under registrering
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.remove("Kategori");
         editor.remove("Underkategori");
