@@ -15,7 +15,7 @@
         android:id="@+id/tekst"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".2"
+        android:layout_weight=".1"
         android:text="Velg egenskaper"
         android:textSize="@dimen/VelgPlastTekst"
         android:gravity="center_horizontal"
@@ -73,14 +73,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".5"/>
+        android:layout_weight=".6"/>
+
     <TextView
         android:id="@+id/Feilmelding"
         android:textColor="#ff00"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".06"/>
+        android:layout_weight=".05"/>
 
     <Button
         android:layout_width="match_parent"
@@ -88,6 +89,6 @@
         android:layout_weight=".17"
         android:text="Gå Videre"
         android:textSize="@dimen/ButtonTextSize"
-        android:onClick="openKamera"/>
+        android:onClick="openArea"/>
 
 </LinearLayout>

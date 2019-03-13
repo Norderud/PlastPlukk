@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.usn.plastplukk.plastplukk"
-    >
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    package="no.usn.plastplukk.plastplukk">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +17,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterUserActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -27,9 +33,10 @@
         </activity>
         <activity
             android:name=".StartReg"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="no.usn.plastplukk.plastplukk.MainActivity" >
+            android:theme="@style/AppTheme">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -42,21 +49,30 @@
 
         <activity
             android:name=".Egenskaper"
-            android:screenOrientation="portrait"
-            android:parentActivityName="no.usn.plastplukk.plastplukk.StartReg">
-
+            android:parentActivityName=".StartReg"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.StartReg" />
         </activity>
-        <activity android:name=".KameraAktivitet"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"
-            android:parentActivityName="no.usn.plastplukk.plastplukk.Egenskaper" >
+        <activity
+            android:name=".Area"
+            android:parentActivityName=".Egenskaper"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.Egenskaper" />
         </activity>
+        <activity
+            android:name=".KameraAktivitet"
+            android:parentActivityName=".Area"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="no.usn.plastplukk.plastplukk.Area" />
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="no.usn.plastplukk.plastplukk.fileprovider"
@@ -64,9 +80,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
