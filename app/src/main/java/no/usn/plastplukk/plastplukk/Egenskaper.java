@@ -35,7 +35,7 @@ public class Egenskaper extends AppCompatActivity {
 
         // Shared preferences
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori = prefs.getString("kategori", "Ingen");
+        kategori = prefs.getString("Kategori", "Ingen");
 
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);

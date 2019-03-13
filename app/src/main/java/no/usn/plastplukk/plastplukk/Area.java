@@ -18,6 +18,7 @@ public class Area extends AppCompatActivity {
     TextView feilMelding;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -26,7 +27,7 @@ public class Area extends AppCompatActivity {
         setContentView(R.layout.activity_area);
 
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori =  prefs.getString("kategori", "Ingen");
+        kategori =  prefs.getString("Kategori", "Ingen");
         underKategori = prefs.getString("Underkategori", "Ingen");
         størrelse = prefs.getString("Størrelse", størrelse);
 
@@ -159,7 +160,7 @@ public class Area extends AppCompatActivity {
     public boolean storeArray(boolean[] array, String arrayName, Context mContext) {
 
         SharedPreferences prefs = mContext.getSharedPreferences(MY_PREFS_NAME, 0);
-        SharedPreferences.Editor editor = prefs.edit();
+        editor = prefs.edit();
         editor.putInt(arrayName +"_size", array.length);
 
         for(int i=0;i<array.length;i++)
@@ -171,7 +172,13 @@ public class Area extends AppCompatActivity {
         int size = prefs.getInt(arrayName + "_size", 0);
         boolean array[] = new boolean[size];
         for(int i=0;i<size;i++)
-        array[i] = prefs.getBoolean(arrayName + "_" + i, false);
+            array[i] = prefs.getBoolean(arrayName + "_" + i, false);
         return array;
+    }
+
+    public void removeArray(String arrayName) {
+        int size = prefs.getInt(arrayName + "_size", 0);
+        for (int i=0; i<size; i++)
+            editor.remove(arrayName + "_" + i);
     }
 }
