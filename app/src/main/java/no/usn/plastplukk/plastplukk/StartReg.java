@@ -25,7 +25,7 @@ public class StartReg extends AppCompatActivity {
 
         // Shared preferences
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putString("kategori", kategori);
+        editor.putString("Kategori", kategori);
         editor.apply();
 
         this.startActivity(nyIntent);
