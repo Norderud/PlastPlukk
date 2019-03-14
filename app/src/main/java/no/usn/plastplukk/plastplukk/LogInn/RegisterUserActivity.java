@@ -16,6 +16,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
+
 import no.usn.plastplukk.plastplukk.R;
 
 public class RegisterUserActivity extends AppCompatActivity {
@@ -32,6 +34,7 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword1 = findViewById(R.id.etPassword1);
+        etPassword2 = findViewById(R.id.etPassword2);
 
         bRegister = findViewById(R.id.bRegister);
     }
@@ -49,8 +52,11 @@ public class RegisterUserActivity extends AppCompatActivity {
             alertDialog("Vennligst fyll ut alle feltene");
             return;
         }
-        if(isValidPassword(password1))
-        if(password1 != password2){
+        if(!isValidPassword(password1)){
+            alertDialog("Passordet må minst være 6 symboler, ha minst 1 tall og minst 1 bokstav");
+            return;
+        }
+        if(!password1.equals(password2)){
             alertDialog("Passordene matcher ikke");
             return;
         }
@@ -75,14 +81,17 @@ public class RegisterUserActivity extends AppCompatActivity {
             }
         };
         RegisterRequest registerRequest = new RegisterRequest(email, password1, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(RegisterUserActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(registerRequest);
     }
 
     private boolean isValidPassword(String password1) {
-        if(true){
-
+        String regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
+        Log.e("MAtch", Pattern.matches(regex, password1) + "");
+        if(Pattern.matches(regex, password1)){
+            return true;
         }
+        return false;
     }
 
     private void alertDialog(String message){

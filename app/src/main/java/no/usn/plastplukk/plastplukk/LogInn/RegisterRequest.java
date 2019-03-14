@@ -24,8 +24,7 @@ public class RegisterRequest extends StringRequest {
         params = new HashMap<>();
         params.put("email", email);
         params.put("password", password);
-        Log.e("email", email);
-        Log.e("password", password);
+
     }
 
     @Override
