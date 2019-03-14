@@ -130,7 +130,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
     // Checker de boksene som tidligere var checked
     public void checkOnReturn(){
-        boolean[] array = loadArray("Checksvar", this);
+        boolean[] array = loadArray("Checksvar", prefs);
         if (array.length == 0)
             return;
         checkSvar = array;
@@ -168,7 +168,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
     }
 
     // Returnerer lagret bool verdier som en array
-    public boolean[] loadArray(String arrayName, Context mContext) {
+    public static boolean[] loadArray(String arrayName, SharedPreferences prefs) {
         int size = prefs.getInt(arrayName + "_size", 0);
         boolean array[] = new boolean[size];
         for(int i=0;i<size;i++)
