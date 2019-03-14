@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.Manifest;
 import android.content.Intent;
@@ -42,7 +42,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class KameraAktivitet extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.R;
+
+public class PhotoUploadActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -51,7 +53,7 @@ public class KameraAktivitet extends AppCompatActivity {
     String imageFileName = "";
     private Bitmap bitmap;
     private Uri photoURI;
-    private String upload_URL = "http://192.168.10.121/plast/uploadVolley.php";
+    private String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
     JSONObject jsonObject;
     RequestQueue rQueue;
 
@@ -78,7 +80,7 @@ public class KameraAktivitet extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(KameraAktivitet.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhotoUploadActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -164,7 +166,7 @@ public class KameraAktivitet extends AppCompatActivity {
     private void uploadImage(Bitmap bitmap) {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
         try {
             jsonObject = new JSONObject();
@@ -187,7 +189,8 @@ public class KameraAktivitet extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("aaaaaaa", volleyError.toString());
-
+                volleyError.printStackTrace();
+                System.out.println(volleyError.getMessage());
             }
         });
 

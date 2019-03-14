@@ -1,13 +1,14 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class StartReg extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.R;
+
+public class ChooseCategoryActivity extends AppCompatActivity {
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
@@ -21,7 +22,7 @@ public class StartReg extends AppCompatActivity {
 
     public void velgEgenskaper(View view) {
         String kategori = view.getTag().toString();
-        Intent nyIntent = new Intent(this.getBaseContext(), Egenskaper.class);
+        Intent nyIntent = new Intent(this.getBaseContext(), SetAttributesActivity.class);
 
         // Shared preferences
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();

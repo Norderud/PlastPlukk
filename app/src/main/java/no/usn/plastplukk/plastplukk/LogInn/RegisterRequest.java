@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.LogInn;
 
 import android.support.annotation.Nullable;
 import android.util.Log;

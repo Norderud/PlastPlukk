@@ -19,8 +19,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterUserActivity" />
+        <activity android:name=".LogInn.LoginActivity"></activity>
+        <activity android:name=".LogInn.RegisterUserActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StartReg"
+            android:name=".PlasticRegistering.ChooseCategoryActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -48,29 +48,29 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".Egenskaper"
-            android:parentActivityName=".StartReg"
+            android:name=".PlasticRegistering.SetAttributesActivity"
+            android:parentActivityName=".PlasticRegistering.ChooseCategoryActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.StartReg" />
+                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseCategoryActivity" />
         </activity>
         <activity
-            android:name=".Area"
-            android:parentActivityName=".Egenskaper"
+            android:name=".PlasticRegistering.ChooseAreaActivity"
+            android:parentActivityName=".PlasticRegistering.SetAttributesActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.Egenskaper" />
+                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.SetAttributesActivity" />
         </activity>
         <activity
-            android:name=".KameraAktivitet"
-            android:parentActivityName=".Area"
+            android:name=".PlasticRegistering.PhotoUploadActivity"
+            android:parentActivityName=".PlasticRegistering.ChooseAreaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.Area" />
+                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseAreaActivity" />
         </activity>
 
         <provider
