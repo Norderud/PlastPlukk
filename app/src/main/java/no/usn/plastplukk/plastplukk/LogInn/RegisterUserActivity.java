@@ -68,6 +68,8 @@ public class RegisterUserActivity extends AppCompatActivity {
 
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
+                    String jResponse = jsonResponse.toString();
+                    Log.e("Response", jResponse);
                     if(success){
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
