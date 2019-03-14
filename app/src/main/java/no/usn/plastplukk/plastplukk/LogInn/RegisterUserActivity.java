@@ -68,13 +68,13 @@ public class RegisterUserActivity extends AppCompatActivity {
 
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-                    String jResponse = jsonResponse.toString();
-                    Log.e("Response", jResponse);
+                    String error = jsonResponse.getString("error");
                     if(success){
+
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else{
-                        alertDialog("Registrering feilet");
+                        alertDialog("Registrering feilet: \n" + error);
                     }
 
                 } catch (JSONException e) {
@@ -89,7 +89,7 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     private boolean isValidPassword(String password1) {
         String regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
-        Log.e("MAtch", Pattern.matches(regex, password1) + "");
+        Log.e("Match", Pattern.matches(regex, password1) + "");
         if(Pattern.matches(regex, password1)){
             return true;
         }
