@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
+
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
+
     public void registrerPlast(View view){
         Intent messageIntent = new Intent(this, ChooseCategoryActivity.class);
         startActivity(messageIntent);

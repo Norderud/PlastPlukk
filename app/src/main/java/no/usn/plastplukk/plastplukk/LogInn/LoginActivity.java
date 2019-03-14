@@ -1,5 +1,6 @@
 package no.usn.plastplukk.plastplukk.LogInn;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         final Button bLogin = findViewById(R.id.bLogin);
         final TextView registerLink = findViewById(R.id.registerLink);
     }
+
+   @Override
+   public void onBackPressed(){
+       moveTaskToBack(true);
+   }
 
     public void sendToRegister(View view) {
         Intent registerIntent = new Intent(this, RegisterUserActivity.class);

@@ -6,19 +6,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
+    android:weightSum="1"
     tools:context=".LogInn.LoginActivity">
 
-    <EditText
-        android:id="@+id/etEmailLogin"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etEmailLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Epost" />
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:layout_marginBottom="2dp">
 
-    <EditText
-        android:id="@+id/etPasswordLogin"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etPasswordLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Passord" />
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/bLogin"
@@ -36,3 +58,8 @@
         android:text="Registrer her" />
 
 </LinearLayout>
+
+<!--
+    Fant textinputlayout kode her:
+    https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password
+-->
