@@ -276,3 +276,6 @@ public class PhotoUploadActivity extends AppCompatActivity {
     }
 }
 // Benyttet https://demonuts.com/android-upload-image-using-volley/ for å lage opplastingskode
+
+// Kode for rotering av bilde funnet her:
+// https://stackoverflow.com/questions/21776802/taking-picture-with-camera-intent-rotate-picture-in-portrait-mode-android

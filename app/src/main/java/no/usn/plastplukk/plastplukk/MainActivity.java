@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -34,13 +35,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         if (prefs.getString("Email", null) == null){
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
         }
-
         clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
@@ -97,5 +98,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             editor.remove("Checksvar" + "_" + i);
         editor.remove("Checksvar_size");
         editor.apply();
+    }
+
+    public void Logout(View view) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("Email");
+        editor.apply();
+        Intent newIntent = new Intent(this, MainActivity.class);
+        startActivity(newIntent);
     }
 }
