@@ -184,6 +184,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
             jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
             jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
+            jsonObject.put("email", sharedPreferences.getString("Email", null));
 
             boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
             jsonObject.put("Mountain",(!areaCheckList[0]) ? 0 : 1);
