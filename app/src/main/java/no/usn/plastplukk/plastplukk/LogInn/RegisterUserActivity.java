@@ -16,6 +16,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
+
 import no.usn.plastplukk.plastplukk.R;
 
 public class RegisterUserActivity extends AppCompatActivity {
@@ -32,30 +34,47 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword1 = findViewById(R.id.etPassword1);
+        etPassword2 = findViewById(R.id.etPassword2);
 
         bRegister = findViewById(R.id.bRegister);
     }
 
     public void registerUser(View view) {
         final String email = etEmail.getText().toString();
-        final String password = etPassword1.getText().toString();
+        final String password1 = etPassword1.getText().toString();
+        final String password2 = etPassword2.getText().toString();
+
+
+        Log.e("Email", email);
+        Log.e("Password", password1);
+
+        if(email.isEmpty() || password1.isEmpty() || password2.isEmpty()){
+            alertDialog("Vennligst fyll ut alle feltene");
+            return;
+        }
+        if(!isValidPassword(password1)){
+            alertDialog("Passordet må minst være 6 symboler, ha minst 1 tall og minst 1 bokstav");
+            return;
+        }
+        if(!password1.equals(password2)){
+            alertDialog("Passordene matcher ikke");
+            return;
+        }
 
         Response.Listener<String> responseListener = new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.e("s",response);
+
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
+                    String jResponse = jsonResponse.toString();
+                    Log.e("Response", jResponse);
                     if(success){
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else{
-                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
-                        builder.setMessage("Registrering feilet")
-                                .setNegativeButton("Prøv igjen", null)
-                                .create()
-                                .show();
+                        alertDialog("Registrering feilet");
                     }
 
                 } catch (JSONException e) {
@@ -63,8 +82,27 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(email, password, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(RegisterUserActivity.this);
+        RegisterRequest registerRequest = new RegisterRequest(email, password1, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(registerRequest);
     }
+
+    private boolean isValidPassword(String password1) {
+        String regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
+        Log.e("MAtch", Pattern.matches(regex, password1) + "");
+        if(Pattern.matches(regex, password1)){
+            return true;
+        }
+        return false;
+    }
+
+    private void alertDialog(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
+        builder.setMessage(message)
+                .setNegativeButton("Prøv igjen", null)
+                .create()
+                .show();
+
+    }
+
 }
