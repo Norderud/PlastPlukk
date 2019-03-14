@@ -1,6 +1,7 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.LogInn;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +16,14 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
+
+import no.usn.plastplukk.plastplukk.MainActivity;
+import no.usn.plastplukk.plastplukk.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText etEmail;
-    EditText etPassword1;
+    EditText etEmail, etPassword1;
+    private final String MY_PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logIn(View view){
-        String email = etEmail.getText().toString();
+        final String email = etEmail.getText().toString();
         String password = etPassword1.getText().toString();
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -50,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
+                        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                        editor.putString("Email", email);
+                        editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         LoginActivity.this.startActivity(intent);
 

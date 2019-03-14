@@ -1,9 +1,12 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,11 +41,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class KameraAktivitet extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.R;
+
+public class PhotoUploadActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -51,7 +58,7 @@ public class KameraAktivitet extends AppCompatActivity {
     String imageFileName = "";
     private Bitmap bitmap;
     private Uri photoURI;
-    private String upload_URL = "http://192.168.10.121/plast/uploadVolley.php";
+    private String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
     JSONObject jsonObject;
     RequestQueue rQueue;
 
@@ -74,11 +81,11 @@ public class KameraAktivitet extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    uploadImage(bitmap);
+                    uploadRegistration(bitmap);
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(KameraAktivitet.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhotoUploadActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -139,6 +146,7 @@ public class KameraAktivitet extends AppCompatActivity {
         bmOptions.inSampleSize = scaleFactor;
 
         bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        bitmap = imageOreintationValidator(bitmap, currentPhotoPath);
         imageView.setImageBitmap(bitmap);
     }
 
@@ -158,20 +166,32 @@ public class KameraAktivitet extends AppCompatActivity {
         throw new IOException();
     }
 
-// Refferanse på bilde-koden er https://developer.android.com/training/camera/photobasics#java
 
     //TODO LASTE OPP BILDE PÅ SERVER
-    private void uploadImage(Bitmap bitmap) {
+    private void uploadRegistration(Bitmap bitmap) {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
         try {
             jsonObject = new JSONObject();
+            //Send inn bildet
             jsonObject.put("name", imageFileName);
-            //  Log.e("Image name", etxtUpload.getText().toString().trim());
             jsonObject.put("image", encodedImage);
-            // jsonObject.put("aa", "aa");
+            //Send inn kategori, underkategori, størrelse osv.
+            SharedPreferences sharedPreferences = getSharedPreferences(
+                    SetAttributesActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
+            jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
+            jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
+
+            boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
+            jsonObject.put("Mountain",(!areaCheckList[0]) ? 0 : 1);
+            jsonObject.put("Forest", (!areaCheckList[1]) ? 0 : 1);
+            jsonObject.put("River", (!areaCheckList[2]) ? 0 : 1);
+            jsonObject.put("Coast", (!areaCheckList[3])? 0 : 1);
+            jsonObject.put("Lake", (!areaCheckList[4])? 0 : 1);
+            jsonObject.put("City", (!areaCheckList[5])? 0 : 1);
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
@@ -187,7 +207,8 @@ public class KameraAktivitet extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("aaaaaaa", volleyError.toString());
-
+                volleyError.printStackTrace();
+                System.out.println(volleyError.getMessage());
             }
         });
 
@@ -230,5 +251,48 @@ public class KameraAktivitet extends AppCompatActivity {
                 .onSameThread()
                 .check();
     }
+    private Bitmap imageOreintationValidator(Bitmap bitmap, String path) {
+
+        ExifInterface ei;
+        try {
+            ei = new ExifInterface(path);
+            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    bitmap = rotateImage(bitmap, 90);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    bitmap = rotateImage(bitmap, 180);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    bitmap = rotateImage(bitmap, 270);
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
+    }
+
+    private Bitmap rotateImage(Bitmap source, float angle) {
+
+        Bitmap bitmap = null;
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        try {
+            bitmap = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                    matrix, true);
+        } catch (OutOfMemoryError err) {
+            err.printStackTrace();
+        }
+        return bitmap;
+    }
 }
 // Benyttet https://demonuts.com/android-upload-image-using-volley/ for å lage opplastingskode
+
+// Refferanse på bilde-koden er https://developer.android.com/training/camera/photobasics#java
+
+// Kode for rotering av bilde funnet her:
+// https://stackoverflow.com/questions/21776802/taking-picture-with-camera-intent-rotate-picture-in-portrait-mode-android

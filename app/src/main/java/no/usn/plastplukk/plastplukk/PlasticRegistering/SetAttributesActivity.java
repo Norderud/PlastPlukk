@@ -1,27 +1,26 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Egenskaper extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.R;
+
+public class SetAttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
     private String kategori, underKategori, størrelse;
     private TextView feilMelding, overTekst;
     private boolean visible = false;
 
-    private Spinner dropdownTyper, dropdownStr;
+    private Spinner dropdownSecondCategory, dropdownSize;
     private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
 
@@ -52,7 +51,7 @@ public class Egenskaper extends AppCompatActivity {
             feilMelding.setText("Vennligst fyll ut alle feltene.");
             return;
         }
-        Intent messageIntent = new Intent(this, Area.class);
+        Intent messageIntent = new Intent(this, ChooseAreaActivity.class);
         startActivity(messageIntent);
     }
 
@@ -82,20 +81,20 @@ public class Egenskaper extends AppCompatActivity {
         str = new String[4]; str[0] = "Velg størrelse..";
 
         // Dropdown meny, spinnerType
-        dropdownTyper = findViewById(R.id.spinnerType);
+        dropdownSecondCategory = findViewById(R.id.spinnerType);
         ArrayAdapter<String> adapterType = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typer);
-        dropdownTyper.setAdapter(adapterType);
+        dropdownSecondCategory.setAdapter(adapterType);
 
         //Dropdown meny for størrelsevalg
-        dropdownStr = findViewById(R.id.spinnerStr);
+        dropdownSize = findViewById(R.id.spinnerStr);
         ArrayAdapter<String> adapterStr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, str);
-        dropdownStr.setAdapter(adapterStr);
+        dropdownSize.setAdapter(adapterStr);
 
         // Legger til størrelsemeny dersom plastfilm/-flaske er valgt
-        dropdownTyper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdownSecondCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String valget = (String) dropdownTyper.getSelectedItem().toString();
+                String valget = (String) dropdownSecondCategory.getSelectedItem().toString();
                 String strTemp = prefs.getString("Størrelse", "Tom");
                 if (valget.equals("Plastfilm")) {
                     str[1] = "Mindre enn knyttneve";
@@ -104,7 +103,7 @@ public class Egenskaper extends AppCompatActivity {
                     layout.setVisibility(View.VISIBLE);
                     visible = true;
                     if (!strTemp.equals("Tom"))
-                        dropdownStr.setSelection(((ArrayAdapter)dropdownStr.getAdapter()).getPosition(strTemp));
+                        dropdownSize.setSelection(((ArrayAdapter) dropdownSize.getAdapter()).getPosition(strTemp));
                 }
                 else if (valget.equals("Plastflaske")) {
                     str[1] = "0,5 Liter";
@@ -113,14 +112,14 @@ public class Egenskaper extends AppCompatActivity {
                     layout.setVisibility(View.VISIBLE);
                     visible = true;
                     if (!strTemp.equals("Tom"))
-                        dropdownStr.setSelection(((ArrayAdapter)dropdownStr.getAdapter()).getPosition(strTemp));
+                        dropdownSize.setSelection(((ArrayAdapter) dropdownSize.getAdapter()).getPosition(strTemp));
                 }
                 else{
                     visible = false;
                     layout.setVisibility(View.INVISIBLE);
                     editor.remove("Størrelse");
                 }
-                underKategori = dropdownTyper.getSelectedItem().toString();
+                underKategori = dropdownSecondCategory.getSelectedItem().toString();
                 editor.putString("Underkategori", underKategori);
                 editor.apply();
             }
@@ -129,10 +128,10 @@ public class Egenskaper extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        dropdownStr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdownSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                størrelse = dropdownStr.getSelectedItem().toString();
+                størrelse = dropdownSize.getSelectedItem().toString();
                 editor.putString("Størrelse", størrelse);
                 editor.apply();
             }
@@ -149,6 +148,6 @@ public class Egenskaper extends AppCompatActivity {
         if (typeTemp.equals("Tom"))
             return;
 
-        dropdownTyper.setSelection(((ArrayAdapter)dropdownTyper.getAdapter()).getPosition(typeTemp));
+        dropdownSecondCategory.setSelection(((ArrayAdapter) dropdownSecondCategory.getAdapter()).getPosition(typeTemp));
     }
 }
