@@ -12,7 +12,6 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

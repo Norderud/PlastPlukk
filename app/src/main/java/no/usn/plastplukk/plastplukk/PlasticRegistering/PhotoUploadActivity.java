@@ -2,6 +2,7 @@ package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -40,6 +41,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +81,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    uploadImage(bitmap);
+                    uploadRegistration(bitmap);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -163,20 +166,32 @@ public class PhotoUploadActivity extends AppCompatActivity {
         throw new IOException();
     }
 
-// Refferanse på bilde-koden er https://developer.android.com/training/camera/photobasics#java
 
     //TODO LASTE OPP BILDE PÅ SERVER
-    private void uploadImage(Bitmap bitmap) {
+    private void uploadRegistration(Bitmap bitmap) {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
         try {
             jsonObject = new JSONObject();
+            //Send inn bildet
             jsonObject.put("name", imageFileName);
-            //  Log.e("Image name", etxtUpload.getText().toString().trim());
             jsonObject.put("image", encodedImage);
-            // jsonObject.put("aa", "aa");
+            //Send inn kategori, underkategori, størrelse osv.
+            SharedPreferences sharedPreferences = getSharedPreferences(
+                    SetAttributesActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
+            jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
+            jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
+
+            boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
+            jsonObject.put("Mountain",(!areaCheckList[0]) ? 0 : 1);
+            jsonObject.put("Forest", (!areaCheckList[1]) ? 0 : 1);
+            jsonObject.put("River", (!areaCheckList[2]) ? 0 : 1);
+            jsonObject.put("Coast", (!areaCheckList[3])? 0 : 1);
+            jsonObject.put("Lake", (!areaCheckList[4])? 0 : 1);
+            jsonObject.put("City", (!areaCheckList[5])? 0 : 1);
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
@@ -276,3 +291,8 @@ public class PhotoUploadActivity extends AppCompatActivity {
     }
 }
 // Benyttet https://demonuts.com/android-upload-image-using-volley/ for å lage opplastingskode
+
+// Refferanse på bilde-koden er https://developer.android.com/training/camera/photobasics#java
+
+// Kode for rotering av bilde funnet her:
+// https://stackoverflow.com/questions/21776802/taking-picture-with-camera-intent-rotate-picture-in-portrait-mode-android
