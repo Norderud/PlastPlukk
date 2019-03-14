@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Resetter verdiene som lagres under registrering
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.clear();
-        editor.apply();
-
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Resetter lagret verdier
+        prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
 
@@ -76,5 +76,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void login(View view) {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(loginIntent);
+    }
+
+    // Resetter verdiene som lagres under registrering
+    private void clearPreferences(){
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.remove("Kategori");
+        editor.remove("Underkategori");
+        editor.remove("Størrelse");
+
+        int size = prefs.getInt("Checksvar" + "_size", 0);
+        for (int i = 0; i < size; i++)
+            editor.remove("Checksvar" + "_" + i);
+        editor.remove("Checksvar_size");
+        editor.apply();
     }
 }

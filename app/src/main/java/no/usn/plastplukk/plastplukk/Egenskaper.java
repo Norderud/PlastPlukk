@@ -16,14 +16,14 @@ import android.widget.TextView;
 
 public class Egenskaper extends AppCompatActivity {
 
-    String[] typer, str;    // Valgene til dropdown menyene
-    String kategori, underKategori, størrelse;
-    TextView feilMelding, overTekst;
-    boolean visible = false;
+    private String[] typer, str;    // Valgene til dropdown menyene
+    private String kategori, underKategori, størrelse;
+    private TextView feilMelding, overTekst;
+    private boolean visible = false;
 
-    Spinner dropdownTyper, dropdownStr;
-    SharedPreferences.Editor editor;
-    SharedPreferences prefs;
+    private Spinner dropdownTyper, dropdownStr;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences prefs;
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
@@ -35,7 +35,8 @@ public class Egenskaper extends AppCompatActivity {
 
         // Shared preferences
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori = prefs.getString("kategori", "Ingen");
+        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        kategori = prefs.getString("Kategori", "Ingen");
 
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);
@@ -45,29 +46,13 @@ public class Egenskaper extends AppCompatActivity {
         selectOnReturn();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-
     // Åpner neste aktivitet - area
     public void openArea(View view){
-
         if (underKategori.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
             feilMelding.setText("Vennligst fyll ut alle feltene.");
             return;
         }
         Intent messageIntent = new Intent(this, Area.class);
-
-        // Shared preferences
-        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putString("Underkategori", underKategori);
-        if (!størrelse.equals("Velg størrelse..")) {
-            editor.putString("Størrelse", størrelse);
-        }
-        editor.apply();
-
         startActivity(messageIntent);
     }
 
@@ -133,8 +118,11 @@ public class Egenskaper extends AppCompatActivity {
                 else{
                     visible = false;
                     layout.setVisibility(View.INVISIBLE);
+                    editor.remove("Størrelse");
                 }
                 underKategori = dropdownTyper.getSelectedItem().toString();
+                editor.putString("Underkategori", underKategori);
+                editor.apply();
             }
 
             @Override
@@ -145,14 +133,16 @@ public class Egenskaper extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownStr.getSelectedItem().toString();
+                editor.putString("Størrelse", størrelse);
+                editor.apply();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
 
+    // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
         String typeTemp = prefs.getString("Underkategori", "Tom");
 

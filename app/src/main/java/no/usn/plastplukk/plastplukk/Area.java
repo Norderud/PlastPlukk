@@ -18,6 +18,7 @@ public class Area extends AppCompatActivity {
     TextView feilMelding;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -26,7 +27,7 @@ public class Area extends AppCompatActivity {
         setContentView(R.layout.activity_area);
 
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori =  prefs.getString("kategori", "Ingen");
+        kategori =  prefs.getString("Kategori", "Ingen");
         underKategori = prefs.getString("Underkategori", "Ingen");
         størrelse = prefs.getString("Størrelse", størrelse);
 
@@ -40,6 +41,7 @@ public class Area extends AppCompatActivity {
         super.onResume();
     }
 
+    // Åpner neste intent
     public void openKamera(View view){
         boolean check = false;
         for (int i=0; i<checkSvar.length; i++) {
@@ -57,12 +59,11 @@ public class Area extends AppCompatActivity {
     }
 
 
+    //Sjekker hvilke som er checked, lagrer disse i en array + sharedprefs
     public void checkBoxes(View view){
-
         boolean checked = ((CheckBox) view).isChecked();
 
         switch(view.getId()) {
-
             case R.id.fjellCheck:
                 if (checked) {
                     checkSvar[0] = true;
@@ -126,12 +127,11 @@ public class Area extends AppCompatActivity {
         }
     }
 
+    // Checker de boksene som tidligere var checked
     public void checkOnReturn(){
         boolean[] array = loadArray("Checksvar", this);
-
         if (array.length == 0)
             return;
-
         checkSvar = array;
 
         if (checkSvar[0]) {
@@ -153,13 +153,12 @@ public class Area extends AppCompatActivity {
             byCheck = findViewById(R.id.byCheck);
             byCheck.setChecked(true);
         }
-
     }
 
+    // Lagrer checksvar arrayen som unike boolverdier i sharedprefs
     public boolean storeArray(boolean[] array, String arrayName, Context mContext) {
-
         SharedPreferences prefs = mContext.getSharedPreferences(MY_PREFS_NAME, 0);
-        SharedPreferences.Editor editor = prefs.edit();
+        editor = prefs.edit();
         editor.putInt(arrayName +"_size", array.length);
 
         for(int i=0;i<array.length;i++)
@@ -167,11 +166,12 @@ public class Area extends AppCompatActivity {
         return editor.commit();
     }
 
+    // Returnerer lagret bool verdier som en array
     public boolean[] loadArray(String arrayName, Context mContext) {
         int size = prefs.getInt(arrayName + "_size", 0);
         boolean array[] = new boolean[size];
         for(int i=0;i<size;i++)
-        array[i] = prefs.getBoolean(arrayName + "_" + i, false);
+            array[i] = prefs.getBoolean(arrayName + "_" + i, false);
         return array;
     }
 }

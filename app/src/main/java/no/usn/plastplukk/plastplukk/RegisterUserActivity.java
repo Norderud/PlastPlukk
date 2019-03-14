@@ -30,23 +30,21 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword1 = findViewById(R.id.etPassword1);
-        etPassword2 = findViewById(R.id.etPassword2);
 
         bRegister = findViewById(R.id.bRegister);
     }
 
     public void registerUser(View view) {
         final String email = etEmail.getText().toString();
-        final String passord = etPassword1.getText().toString();
+        final String password = etPassword1.getText().toString();
 
         Response.Listener<String> responseListener = new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
                 try {
-
+                    Log.e("s",response);
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-                    Log.e("s",response);
                     if(success){
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
@@ -63,7 +61,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(email, passord, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(email, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(RegisterUserActivity.this);
         queue.add(registerRequest);
     }
