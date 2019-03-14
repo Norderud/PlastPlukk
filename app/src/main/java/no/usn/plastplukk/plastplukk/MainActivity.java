@@ -87,11 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void login(View view) {
-        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(loginIntent);
-    }
-
     // Resetter verdiene som lagres under registrering
     private void clearPreferences(){
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
