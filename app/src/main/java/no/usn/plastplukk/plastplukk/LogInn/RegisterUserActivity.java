@@ -38,24 +38,35 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     public void registerUser(View view) {
         final String email = etEmail.getText().toString();
-        final String password = etPassword1.getText().toString();
+        final String password1 = etPassword1.getText().toString();
+        final String password2 = etPassword2.getText().toString();
+
+
+        Log.e("Email", email);
+        Log.e("Password", password1);
+
+        if(email.isEmpty() || password1.isEmpty() || password2.isEmpty()){
+            alertDialog("Vennligst fyll ut alle feltene");
+            return;
+        }
+        if(isValidPassword(password1))
+        if(password1 != password2){
+            alertDialog("Passordene matcher ikke");
+            return;
+        }
 
         Response.Listener<String> responseListener = new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.e("s",response);
+
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else{
-                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
-                        builder.setMessage("Registrering feilet")
-                                .setNegativeButton("Prøv igjen", null)
-                                .create()
-                                .show();
+                        alertDialog("Registrering feilet");
                     }
 
                 } catch (JSONException e) {
@@ -63,8 +74,24 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(email, password, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(email, password1, responseListener);
         RequestQueue queue = Volley.newRequestQueue(RegisterUserActivity.this);
         queue.add(registerRequest);
     }
+
+    private boolean isValidPassword(String password1) {
+        if(true){
+
+        }
+    }
+
+    private void alertDialog(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
+        builder.setMessage(message)
+                .setNegativeButton("Prøv igjen", null)
+                .create()
+                .show();
+
+    }
+
 }
