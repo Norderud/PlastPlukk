@@ -1,20 +1,20 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Egenskaper extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseAreaActivity;
+import no.usn.plastplukk.plastplukk.R;
+
+public class SetAttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
     private String kategori, underKategori, størrelse;
@@ -52,7 +52,7 @@ public class Egenskaper extends AppCompatActivity {
             feilMelding.setText("Vennligst fyll ut alle feltene.");
             return;
         }
-        Intent messageIntent = new Intent(this, Area.class);
+        Intent messageIntent = new Intent(this, ChooseAreaActivity.class);
         startActivity(messageIntent);
     }
 

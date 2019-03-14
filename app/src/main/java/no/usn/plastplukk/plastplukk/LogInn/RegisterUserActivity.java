@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.LogInn;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +15,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import no.usn.plastplukk.plastplukk.R;
 
 public class RegisterUserActivity extends AppCompatActivity {
     EditText etEmail;

@@ -1,16 +1,17 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class Area extends AppCompatActivity {
+import no.usn.plastplukk.plastplukk.R;
+
+public class ChooseAreaActivity extends AppCompatActivity {
 
     String kategori, underKategori, størrelse;
     boolean[] checkSvar;
@@ -54,7 +55,7 @@ public class Area extends AppCompatActivity {
             return;
         }
 
-        Intent messageIntent = new Intent(this, KameraAktivitet.class);
+        Intent messageIntent = new Intent(this, PhotoUploadActivity.class);
         startActivity(messageIntent);
     }
 

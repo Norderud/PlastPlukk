@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk;
+package no.usn.plastplukk.plastplukk.LogInn;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -15,7 +15,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
+
+import no.usn.plastplukk.plastplukk.MainActivity;
+import no.usn.plastplukk.plastplukk.R;
 
 public class LoginActivity extends AppCompatActivity {
 
