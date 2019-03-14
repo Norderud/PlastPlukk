@@ -1,6 +1,7 @@
 package no.usn.plastplukk.plastplukk;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,9 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
 
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Resetter lagret verdier
+        prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
 
@@ -63,5 +71,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void login(View view) {
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+    }
+
+    // Resetter verdiene som lagres under registrering
+    private void clearPreferences(){
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.remove("Kategori");
+        editor.remove("Underkategori");
+        editor.remove("Størrelse");
+
+        int size = prefs.getInt("Checksvar" + "_size", 0);
+        for (int i = 0; i < size; i++)
+            editor.remove("Checksvar" + "_" + i);
+        editor.remove("Checksvar_size");
+        editor.apply();
     }
 }
