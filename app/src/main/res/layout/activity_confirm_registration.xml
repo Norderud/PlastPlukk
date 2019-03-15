@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlasticRegistering.PhotoUploadActivity"
+    android:weightSum="100">
+    <TextView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:text="Dette har du valgt til registrering:"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAlignment="center"
+         />
+    <ImageView
+        android:id="@+id/photoConfirmDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60"/>
+    <TextView
+        android:id="@+id/confirmCat"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:text="Kategori: "
+        android:textSize="14dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/confirmSecondCat"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:text="Under Kategori"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/confirmSize"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:text="Størrelse: "
+        android:textSize="14dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/confirmLocation"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:text="Lokasjon"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="Bekreft og send inn din registrering, takk!"
+        android:gravity="center"
+        android:textAlignment="center">
+    </Button>
+</LinearLayout>
