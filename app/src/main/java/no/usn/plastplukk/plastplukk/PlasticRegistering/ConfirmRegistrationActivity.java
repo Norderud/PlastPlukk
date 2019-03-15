@@ -137,6 +137,8 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
             jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
             jsonObject.put("email", sharedPreferences.getString("Email", null));
+            jsonObject.put("latitude", sharedPreferences.getString("Latitude", null));
+            jsonObject.put("longitude", sharedPreferences.getString("Longitude", null));
 
             boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
             jsonObject.put("Mountain", (!areaCheckList[0]) ? 0 : 1);
