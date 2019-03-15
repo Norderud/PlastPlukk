@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="no.usn.plastplukk.plastplukk">
 
     <uses-feature
@@ -17,9 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".LogInn.LoginActivity"></activity>
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".PlasticRegistering.RegistrationFinnished"></activity>
+        <activity android:name=".LogInn.LoginActivity" />
         <activity android:name=".LogInn.RegisterUserActivity" />
         <activity
             android:name=".MainActivity"
@@ -71,6 +74,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseAreaActivity" />
+        </activity>
+        <activity
+            android:name=".PlasticRegistering.ConfirmRegistrationActivity"
+            android:parentActivityName=".PlasticRegistering.PhotoUploadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.PhotoUploadActivity" />
         </activity>
 
         <provider

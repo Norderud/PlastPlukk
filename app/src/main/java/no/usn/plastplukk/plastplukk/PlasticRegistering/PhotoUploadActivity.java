@@ -4,28 +4,17 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -34,40 +23,32 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import no.usn.plastplukk.plastplukk.HelpFunctions.PhotoHelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
 public class PhotoUploadActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
+    String imageFileName;
     static String currentPhotoPath;
-    Button taBildeKnapp, lastOppKnapp;
-    String imageFileName = "";
-    private Bitmap bitmap;
-    private Uri photoURI;
-    private String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
-    JSONObject jsonObject;
-    RequestQueue rQueue;
+    Button taBildeKnapp, confirmPictureButton;
+    public static String PHOTOPATH = "photoPath", IMAGEFILENAME = "imageFileName",
+            IMAGE_WIDTH="imageWidth", IMAGE_HEIGHT = "imageHeigth";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kamera_aktivitet);
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
-        lastOppKnapp = (Button) findViewById(R.id.videreFraKamera);
+        confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
         requestMultiplePermissions();
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
@@ -77,16 +58,15 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
-        lastOppKnapp.setOnClickListener(new View.OnClickListener() {
+        confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    uploadRegistration(bitmap);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(PhotoUploadActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                }
+                Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
+                confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
+                confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
+                confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
+                confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+                startActivity(confirmPictureIntent);
             }
         });
     }
@@ -106,7 +86,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                photoURI = FileProvider.getUriForFile(this,
+                Uri photoURI = FileProvider.getUriForFile(this,
                         "no.usn.plastplukk.plastplukk.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -118,36 +98,15 @@ public class PhotoUploadActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
-            loadImageFromFile();
             taBildeKnapp.setText("Ta nytt bilde?");
-            lastOppKnapp.setVisibility(View.VISIBLE);
+            confirmPictureButton.setVisibility(View.VISIBLE);
+            Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
+            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageBitmap(bitmap);
+            SharedPreferences sharedPreferences = getSharedPreferences(ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("currentPhotoPath", currentPhotoPath);
         }
-    }
-
-    public void loadImageFromFile() {
-
-        imageView.setVisibility(View.VISIBLE);
-        int targetW = imageView.getWidth();
-        int targetH = imageView.getHeight();
-
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-
-        bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-        bitmap = imageOreintationValidator(bitmap, currentPhotoPath);
-        imageView.setImageBitmap(bitmap);
     }
 
     private File createImageFile() throws IOException {
@@ -166,57 +125,6 @@ public class PhotoUploadActivity extends AppCompatActivity {
         throw new IOException();
     }
 
-
-    //TODO LASTE OPP BILDE PÅ SERVER
-    private void uploadRegistration(Bitmap bitmap) {
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
-        String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-        try {
-            jsonObject = new JSONObject();
-            //Send inn bildet
-            jsonObject.put("name", imageFileName);
-            jsonObject.put("image", encodedImage);
-            //Send inn kategori, underkategori, størrelse osv.
-            SharedPreferences sharedPreferences = getSharedPreferences(
-                    SetAttributesActivity.MY_PREFS_NAME, MODE_PRIVATE);
-            jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
-            jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
-            jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
-            jsonObject.put("email", sharedPreferences.getString("Email", null));
-
-            boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
-            jsonObject.put("Mountain",(!areaCheckList[0]) ? 0 : 1);
-            jsonObject.put("Forest", (!areaCheckList[1]) ? 0 : 1);
-            jsonObject.put("River", (!areaCheckList[2]) ? 0 : 1);
-            jsonObject.put("Coast", (!areaCheckList[3])? 0 : 1);
-            jsonObject.put("Lake", (!areaCheckList[4])? 0 : 1);
-            jsonObject.put("City", (!areaCheckList[5])? 0 : 1);
-        } catch (JSONException e) {
-            Log.e("JSONObject Here", e.toString());
-        }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, upload_URL, jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        Log.e("aaaaaaa", jsonObject.toString());
-                        rQueue.getCache().clear();
-                        Toast.makeText(getApplication(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("aaaaaaa", volleyError.toString());
-                volleyError.printStackTrace();
-                System.out.println(volleyError.getMessage());
-            }
-        });
-
-        rQueue = Volley.newRequestQueue(this);
-        rQueue.add(jsonObjectRequest);
-
-    }
     private void  requestMultiplePermissions(){
         Dexter.withActivity(this)
                 .withPermissions(
@@ -252,44 +160,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 .onSameThread()
                 .check();
     }
-    private Bitmap imageOreintationValidator(Bitmap bitmap, String path) {
 
-        ExifInterface ei;
-        try {
-            ei = new ExifInterface(path);
-            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL);
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    bitmap = rotateImage(bitmap, 90);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    bitmap = rotateImage(bitmap, 180);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    bitmap = rotateImage(bitmap, 270);
-                    break;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return bitmap;
-    }
-
-    private Bitmap rotateImage(Bitmap source, float angle) {
-
-        Bitmap bitmap = null;
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        try {
-            bitmap = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
-                    matrix, true);
-        } catch (OutOfMemoryError err) {
-            err.printStackTrace();
-        }
-        return bitmap;
-    }
 }
 // Benyttet https://demonuts.com/android-upload-image-using-volley/ for å lage opplastingskode
 

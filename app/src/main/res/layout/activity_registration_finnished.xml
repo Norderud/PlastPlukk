@@ -6,38 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlasticRegistering.PhotoUploadActivity"
-    android:weightSum="10">
+    android:weightSum="4">
     <TextView
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:text="Ta bilde!"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:id="@+id/confirmCat"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="Takk for din registrering!"
         android:textSize="24dp"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center"
-        android:textStyle="bold"/>
-    <ImageView
-        android:id="@+id/photoDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"/>
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:weightSum="2">
         <Button
-            android:id="@+id/kameraKnapp"
+            android:id="@+id/doneHomeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Ta bilde"
+            android:text="Hjem"
             android:layout_weight="1"/>
         <Button
-            android:id="@+id/videreFraKamera"
+            android:id="@+id/doneNewRegister"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Last opp bildet"
-            android:layout_weight="1"
-            android:visibility="invisible"/>
+            android:text="Ny registrering"
+            android:layout_weight="1"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/confirmSize"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        />
 </LinearLayout>
