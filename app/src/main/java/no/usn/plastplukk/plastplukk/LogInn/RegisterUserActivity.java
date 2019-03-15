@@ -44,12 +44,12 @@ public class RegisterUserActivity extends AppCompatActivity {
         final String password1 = etPassword1.getText().toString();
         final String password2 = etPassword2.getText().toString();
 
+
+        Log.e("Email", email);
+        Log.e("Password", password1);
+
         if(email.isEmpty() || password1.isEmpty() || password2.isEmpty()){
             alertDialog("Vennligst fyll ut alle feltene");
-            return;
-        }
-        if(!isValidEmail(email)){
-            alertDialog("Ikke gyldig email");
             return;
         }
         if(!isValidPassword(password1)){
@@ -65,12 +65,12 @@ public class RegisterUserActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     String error = jsonResponse.getString("error");
-                    Log.e("Error", error);
-                    Log.e("success", ""+success);
                     if(success){
+
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else{
@@ -87,12 +87,9 @@ public class RegisterUserActivity extends AppCompatActivity {
         queue.add(registerRequest);
     }
 
-    private boolean isValidEmail(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
     private boolean isValidPassword(String password1) {
         String regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";
+        Log.e("Match", Pattern.matches(regex, password1) + "");
         if(Pattern.matches(regex, password1)){
             return true;
         }
@@ -100,7 +97,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void alertDialog(String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
         builder.setMessage(message)
                 .setNegativeButton("Prøv igjen", null)
                 .create()
