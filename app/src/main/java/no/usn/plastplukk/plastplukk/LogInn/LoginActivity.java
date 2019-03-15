@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,21 +57,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
-                    boolean success = jsonResponse.getBoolean("success");
-
-                    if (success) {
+                    int result = jsonResponse.getInt("result");
+                    if (result == 1) {
                         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                         editor.putString("Email", email);
                         editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         LoginActivity.this.startActivity(intent);
 
+                    } else if (result == 2){
+                        alertDialog("Feil passord");
                     } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        builder.setMessage("Logg inn feilet")
-                                .setNegativeButton("Prøv igjen", null)
-                                .create()
-                                .show();
+                        alertDialog("Feil ved innlogging");
                     }
 
                 } catch (JSONException e) {
@@ -81,5 +79,13 @@ public class LoginActivity extends AppCompatActivity {
         LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
+    }
+    private void alertDialog(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setNegativeButton("Prøv igjen", null)
+                .create()
+                .show();
+
     }
 }
