@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,6 +41,9 @@ public class SetAttributesActivity extends AppCompatActivity {
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);
         overTekst.setText(kategori);
+
+        Log.e("Longitude", ""+prefs.getString("Longitude", null));
+        Log.e("Latitude", ""+prefs.getString("Latitude", null));
 
         lagDropDown();
         selectOnReturn();
