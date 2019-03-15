@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.LogInn.LoginActivity;
 import no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseCategoryActivity;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
+        TextView userId = headerView.findViewById(R.id.user_id_tv);
+        userId.setText(prefs.getString("Email", null));
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
