@@ -20,7 +20,7 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail" />
+            android:hint="@string/email" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -35,7 +35,7 @@
             android:id="@+id/etPassword1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/passord"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +50,7 @@
             android:id="@+id/etPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/gjenta_passord"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -59,6 +59,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="registerUser"
-        android:text="Registrer" />
+        android:text="@string/registrer" />
 
 </LinearLayout>

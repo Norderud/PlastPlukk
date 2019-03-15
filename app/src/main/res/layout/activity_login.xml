@@ -20,7 +20,7 @@
             android:id="@+id/etEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail"
+            android:hint="@string/email"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -36,7 +36,7 @@
             android:id="@+id/etPasswordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/passord"
             android:inputType="textPassword"
             />
     </android.support.design.widget.TextInputLayout>
@@ -46,7 +46,7 @@
         android:id="@+id/bLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:onClick="logIn"/>
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="sendToRegister"
-        android:text="Registrer her" />
+        android:text="@string/registrer_her" />
 
 </LinearLayout>
 

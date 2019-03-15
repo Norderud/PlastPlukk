@@ -22,13 +22,13 @@
             android:id="@+id/kameraKnapp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Ta bilde"
+            android:text="@string/ta_bilde"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/videreFraKamera"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Last opp bildet"
+            android:text="@string/last_opp_bilde"
             android:layout_weight="1"
             android:visibility="invisible"/>
     </LinearLayout>

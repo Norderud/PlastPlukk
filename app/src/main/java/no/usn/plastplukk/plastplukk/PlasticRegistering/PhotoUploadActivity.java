@@ -86,7 +86,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(PhotoUploadActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhotoUploadActivity.this, getString(R.string.feilet), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -121,7 +121,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             loadImageFromFile();
-            taBildeKnapp.setText("Ta nytt bilde?");
+            taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
             lastOppKnapp.setVisibility(View.VISIBLE);
         }
     }
@@ -205,7 +205,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                     public void onResponse(JSONObject jsonObject) {
                         Log.e("aaaaaaa", jsonObject.toString());
                         rQueue.getCache().clear();
-                        Toast.makeText(getApplication(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(), getString(R.string.bilde_lastet_opp), Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -231,7 +231,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
                         }
 
                         // check for permanent denial of any permission
@@ -249,7 +249,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 withErrorListener(new PermissionRequestErrorListener() {
                     @Override
                     public void onError(DexterError error) {
-                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.feilet), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .onSameThread()

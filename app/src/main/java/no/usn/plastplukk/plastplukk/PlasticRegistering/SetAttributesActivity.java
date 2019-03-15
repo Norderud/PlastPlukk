@@ -52,7 +52,7 @@ public class SetAttributesActivity extends AppCompatActivity {
     // Åpner neste aktivitet - area
     public void openArea(View view){
         if (underKategori.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
-            feilMelding.setText("Vennligst fyll ut alle feltene.");
+            feilMelding.setText(getString(R.string.fyll_ut_alle_felt));
             return;
         }
         Intent messageIntent = new Intent(this, ChooseAreaActivity.class);

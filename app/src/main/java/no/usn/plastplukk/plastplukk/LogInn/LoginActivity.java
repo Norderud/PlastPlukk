@@ -66,9 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this.startActivity(intent);
 
                     } else if (result == 2){
-                        alertDialog("Feil passord");
+                        alertDialog(getString(R.string.feil_passord));
                     } else {
-                        alertDialog("Feil ved innlogging");
+                        alertDialog(getString(R.string.feil_ved_innlogging));
                     }
 
                 } catch (JSONException e) {
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     private void alertDialog(String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
-                .setNegativeButton("Prøv igjen", null)
+                .setNegativeButton(R.string.prov_igjen, null)
                 .create()
                 .show();
 

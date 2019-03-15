@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".1"
-            android:text="Velg type område:"
+            android:text="@string/velg_omrade"
             android:layout_marginTop="@dimen/VelgPlastMargin"
             android:textSize="@dimen/VelgPlastTekst"
             android:gravity="center_horizontal"/>
@@ -35,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="Fjell"
+                android:text="@string/fjell"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
             <CheckBox
@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="Skog"
+                android:text="@string/skog"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
         </LinearLayout>
@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="Elv"
+                android:text="@string/elv"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
             <CheckBox
@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="Kyst"
+                android:text="@string/kyst"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
         </LinearLayout>
@@ -83,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="Innsjø"
+                android:text="@string/innsjo"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
             <CheckBox
@@ -91,7 +91,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:text="By"
+                android:text="@string/by"
                 android:textSize="@dimen/ButtonTextSize"
                 android:onClick="checkBoxes"/>
         </LinearLayout>
@@ -108,7 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".17"
-        android:text="Gå Videre"
+        android:text="@string/ga_videre"
         android:textSize="@dimen/ButtonTextSize"
         android:onClick="openKamera"/>
 

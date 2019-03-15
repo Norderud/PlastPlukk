@@ -51,7 +51,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
         }
 
         if (!check) {
-            feilMelding.setText("Vennligst velg minst en type område.");
+            feilMelding.setText(getString(R.string.velg_minst_en_område));
             return;
         }
 

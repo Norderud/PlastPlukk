@@ -45,19 +45,19 @@ public class RegisterUserActivity extends AppCompatActivity {
         final String password2 = etPassword2.getText().toString();
 
         if(email.isEmpty() || password1.isEmpty() || password2.isEmpty()){
-            alertDialog("Vennligst fyll ut alle feltene");
+            alertDialog(getString(R.string.fyll_ut_alle_felt));
             return;
         }
         if(!isValidEmail(email)){
-            alertDialog("Ikke gyldig email");
+            alertDialog(getString(R.string.ikke_gyldig_mail));
             return;
         }
         if(!isValidPassword(password1)){
-            alertDialog("Passordet må minst være 6 symboler, ha minst 1 tall og minst 1 bokstav");
+            alertDialog(getString(R.string.passord_sjekk));
             return;
         }
         if(!password1.equals(password2)){
-            alertDialog("Passordene matcher ikke");
+            alertDialog(getString(R.string.passord_match));
             return;
         }
 
@@ -72,7 +72,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else{
-                        alertDialog("Registrering feilet: \n" + error);
+                        alertDialog(getString(R.string.registrering_feilet) + error);
                     }
 
                 } catch (JSONException e) {
@@ -100,7 +100,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     private void alertDialog(String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
-                .setNegativeButton("Prøv igjen", null)
+                .setNegativeButton(R.string.prov_igjen, null)
                 .create()
                 .show();
 

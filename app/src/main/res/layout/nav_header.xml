@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:textColor="@color/colorWhite"
-        android:text="Placeholder"
         />
 
 </LinearLayout>

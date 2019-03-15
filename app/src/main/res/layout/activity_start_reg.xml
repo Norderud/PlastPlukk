@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +14,7 @@
         android:layout_weight=".1"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center_horizontal"
-        android:text="Velg plasttype"
+        android:text="@string/velg_plasttype"
         android:textSize="@dimen/VelgPlastTekst" />
 
     <LinearLayout
@@ -44,7 +43,7 @@
                 android:drawableTop="@drawable/bagicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Poser"
+                android:text="@string/poser"
                 android:textSize="@dimen/ButtonTextSize" />
 
             <Button
@@ -57,7 +56,7 @@
                 android:drawableTop="@drawable/bottleicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Flasker \u0026 Beholdere"
+                android:text="@string/flasker_og_beholdere"
                 android:textSize="@dimen/ButtonTextSize" />
 
             <Button
@@ -70,7 +69,7 @@
                 android:drawableTop="@drawable/toolsicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Redskap"
+                android:text="@string/redskap"
                 android:textSize="@dimen/ButtonTextSize" />
 
         </LinearLayout>
@@ -92,7 +91,7 @@
                 android:drawableTop="@drawable/emballasjeicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Emballasje"
+                android:text="@string/emballasje"
                 android:textSize="@dimen/ButtonTextSize" />
 
             <Button
@@ -105,7 +104,7 @@
                 android:drawableTop="@drawable/forkandknifeicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Servise"
+                android:text="@string/servise"
                 android:textSize="@dimen/ButtonTextSize" />
 
             <Button
@@ -117,7 +116,7 @@
                 android:background="@drawable/buttons"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
-                android:text="Diverse"
+                android:text="@string/diverse"
                 android:textSize="@dimen/ButtonTextSize" />
         </LinearLayout>
     </LinearLayout>
