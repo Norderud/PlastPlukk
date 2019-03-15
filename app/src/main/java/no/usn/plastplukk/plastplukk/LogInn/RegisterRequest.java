@@ -20,7 +20,8 @@ public class RegisterRequest extends StringRequest {
                 Log.e("error:", error.toString());
             }
         });
-
+        Log.e("email: ", email);
+        Log.e("password: ", password);
         params = new HashMap<>();
         params.put("email", email);
         params.put("password", password);
