@@ -65,21 +65,21 @@ public class SetAttributesActivity extends AppCompatActivity {
         final LinearLayout layout = findViewById(R.id.str); //
 
         // Alle valgene legges til
-        if (kategori.equals("Pose"))
-            typer = new String[]{"Velg type..", "Stor plastpose", "Middels plastpose",
-                    "Liten plastpose"};
-        else if (kategori.equals("Emballasje"))
-            typer = new String[]{"Velg type..", "Godteriemballasje", "Diverse matemballasje",
-                    "Nettstrømpe (til f.eks. grønnsaker)", "Plastfilm"};
-        else if (kategori.equals("Flaske"))
-            typer = new String[]{"Velg type..", "Plastflaske", "Kanne", "Tønne", "Bøtte/Boks", "Snusboks", "Kork/lokk", "Annet"};
-        else if (kategori.equals("Servise"))
-            typer = new String[]{"Velg type..", "Kopper/Plastglass", "Tallerken", "Bestikk", "Annet"};
-        else if (kategori.equals("Redskap"))
-            typer = new String[]{"Velg type..", "Fiskegarn", "Fiskesnøre", "Lighter", "Tau/Tråd", "Annet"};
-        else if (kategori.equals("Diverse"))
-            typer = new String[]{"Velg type..", "Bekledning", "Riflehylser", "Ballonger", "Bildeler", "Diverse kroppspleie",
-                    "Blander, dumpet avfall", "Annet"};
+        if (kategori.equals(getString(R.string.pose)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.stor_plastpose), getString(R.string.middels_plastpose),
+                    getString(R.string.liten_plastpose)};
+        else if (kategori.equals(getString(R.string.emballasje)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.godteriemballasje), getString(R.string.diverse_matemballasje),
+                    getString(R.string.nettstrompe), getString(R.string.plastfilm)};
+        else if (kategori.equals(getString(R.string.flaske)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.plastflaske), getString(R.string.kanne), getString(R.string.tonne), getString(R.string.botte_boks), getString(R.string.snus), getString(R.string.kork_lokk), getString(R.string.annet)};
+        else if (kategori.equals(getString(R.string.servise)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.kopper_plastglass), getString(R.string.tallerken), getString(R.string.bestikk), getString(R.string.annet)};
+        else if (kategori.equals(getString(R.string.redskap)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.fiskegarn), getString(R.string.fiskesnore), getString(R.string.lighter), getString(R.string.tau_trad), getString(R.string.annet)};
+        else if (kategori.equals(getString(R.string.diverse)))
+            typer = new String[]{getString(R.string.velg_type_), getString(R.string.bekledning), getString(R.string.riflehylser), getString(R.string.ballonger), getString(R.string.bildeler), getString(R.string.div_kroppspleie),
+                    getString(R.string.dumpet_avfall), getString(R.string.annet)};
 
 
         str = new String[4]; str[0] = "Velg størrelse..";
