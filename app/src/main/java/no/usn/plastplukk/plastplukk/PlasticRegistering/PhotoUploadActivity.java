@@ -1,15 +1,23 @@
 package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,6 +50,11 @@ public class PhotoUploadActivity extends AppCompatActivity {
     Button taBildeKnapp, confirmPictureButton;
     public static String PHOTOPATH = "photoPath", IMAGEFILENAME = "imageFileName",
             IMAGE_WIDTH="imageWidth", IMAGE_HEIGHT = "imageHeigth";
+    LocationListener locationListener;
+    LocationManager locationManager;
+    SharedPreferences.Editor editor;
+    private boolean providerEnabled, newLocationRecieved;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,26 +63,68 @@ public class PhotoUploadActivity extends AppCompatActivity {
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationListener = createLocationListener();
+        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
         requestMultiplePermissions();
+        providerEnabled = true;
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                if (!providerEnabled){
+                    alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
+                    return;
+                }
                 dispatchTakePictureIntent();
             }
         });
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!newLocationRecieved){
+                    Toast.makeText(getApplicationContext(), "Venter på GPS. Vennligst vent noen sekunder.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
                 confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
                 confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+                editor.apply();
                 startActivity(confirmPictureIntent);
             }
         });
     }
+
+    // Oppretter en locationlistener
+    private LocationListener createLocationListener(){
+        LocationListener locationListenerTemp = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                editor.putString("Latitude", ""+location.getLatitude());
+                editor.putString("Longitude", ""+location.getLongitude());
+                Log.e("Latitude", ""+location.getLatitude());
+                Log.e("Longitude", ""+location.getLongitude());
+                newLocationRecieved = true;
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) { }
+            @Override
+            public void onProviderEnabled(String provider) {
+                providerEnabled = true;
+                Log.e("Provider Enabled", ""+providerEnabled);
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                providerEnabled = false;
+                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
+            }
+        };
+        return locationListenerTemp;
+    }
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -104,7 +159,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
             SharedPreferences sharedPreferences = getSharedPreferences(ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor = sharedPreferences.edit();
             editor.putString("currentPhotoPath", currentPhotoPath);
         }
     }
@@ -130,12 +185,15 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 .withPermissions(
 
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
+                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
                             Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
                         }
 
@@ -160,6 +218,22 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 .onSameThread()
                 .check();
     }
+    private void alertDialog(String message, String buttonName, final boolean changeSettings){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setNegativeButton(buttonName, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!changeSettings)
+                            return;
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
+                })
+                .create()
+                .show();
+    }
+
 
 }
 // Benyttet https://demonuts.com/android-upload-image-using-volley/ for å lage opplastingskode
