@@ -9,7 +9,7 @@ import android.widget.Button;
 import no.usn.plastplukk.plastplukk.MainActivity;
 import no.usn.plastplukk.plastplukk.R;
 
-public class RegistrationFinnished extends AppCompatActivity {
+public class RegistrationFinished extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +22,14 @@ public class RegistrationFinnished extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homeIntent = new Intent(RegistrationFinnished.this, MainActivity.class);
+                Intent homeIntent = new Intent(RegistrationFinished.this, MainActivity.class);
                 startActivity(homeIntent);
             }
         });
         newRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(RegistrationFinnished.this, ChooseCategoryActivity.class);
+                Intent registerIntent = new Intent(RegistrationFinished.this, ChooseCategoryActivity.class);
                 startActivity(registerIntent);
             }
         });

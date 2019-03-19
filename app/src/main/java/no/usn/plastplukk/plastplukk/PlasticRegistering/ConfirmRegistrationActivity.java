@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -76,7 +75,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                     uploadRegistration(bitmap);
                     Intent registrationConfirmed = new Intent(
                             ConfirmRegistrationActivity.this,
-                            RegistrationFinnished.class);
+                            RegistrationFinished.class);
                     startActivity(registrationConfirmed);
 
                 } catch (Exception e) {
@@ -97,22 +96,34 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             if (areaCheckList[i]) {
                 switch (i) {
                     case 0:
-                        result.append("Fjell, ");
+                        result.append(getString(R.string.fjell));
                         break;
                     case 1:
-                        result.append("Skog, ");
+                        result.append(getString(R.string.skog));
                         break;
                     case 2:
-                        result.append("Elv, ");
+                        result.append(getString(R.string.elv));
                         break;
                     case 3:
-                        result.append("Kyst, ");
+                        result.append(getString(R.string.kyst));
                         break;
                     case 4:
-                        result.append("Innsjø, ");
+                        result.append(getString(R.string.innsjo));
                         break;
                     case 5:
-                        result.append("By, ");
+                        result.append(getString(R.string.vei));
+                        break;
+                    case 6:
+                        result.append(getString(R.string.industri_handel));
+                        break;
+                    case 7:
+                        result.append(getString(R.string.skole_fritid));
+                        break;
+                    case 8:
+                        result.append(getString(R.string.dyrket_mark_landbruk));
+                        break;
+                    case 9:
+                        result.append(getString(R.string.boligområde));
                         break;
                 }
             }

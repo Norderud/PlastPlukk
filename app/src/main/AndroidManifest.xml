@@ -22,7 +22,7 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PlasticRegistering.RegistrationFinnished"></activity>
+        <activity android:name=".PlasticRegistering.RegistrationFinished"></activity>
         <activity android:name=".LogInn.LoginActivity" />
         <activity android:name=".LogInn.RegisterUserActivity" />
         <activity

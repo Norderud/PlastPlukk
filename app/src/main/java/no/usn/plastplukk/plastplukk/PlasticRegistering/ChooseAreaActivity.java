@@ -15,25 +15,23 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
     String kategori, underKategori, størrelse;
     boolean[] checkSvar;
-    CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, byCheck;
+    CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, veiCheck,
+    industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
     TextView feilMelding;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area);
-
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         kategori =  prefs.getString("Kategori", "Ingen");
         underKategori = prefs.getString("Underkategori", "Ingen");
         størrelse = prefs.getString("Størrelse", størrelse);
-
         feilMelding = findViewById(R.id.Feilmelding);
-        checkSvar = new boolean[]{false, false, false, false, false, false};
+        checkSvar = new boolean[10];
     }
 
     @Override
@@ -59,73 +57,51 @@ public class ChooseAreaActivity extends AppCompatActivity {
         startActivity(messageIntent);
     }
 
-
     //Sjekker hvilke som er checked, lagrer disse i en array + sharedprefs
     public void checkBoxes(View view){
-        boolean checked = ((CheckBox) view).isChecked();
-
         switch(view.getId()) {
             case R.id.fjellCheck:
-                if (checked) {
-                    checkSvar[0] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[0] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+                checkSvar[0] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
             case R.id.skogCheck:
-                if (checked) {
-                    checkSvar[1] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[1] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+                checkSvar[1] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
             case R.id.elvCheck:
-                if (checked) {
-                    checkSvar[2] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[2] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+                checkSvar[2] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
             case R.id.kystCheck:
-                if (checked) {
-                    checkSvar[3] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[3] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+                checkSvar[3] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
             case R.id.innsjøCheck:
-                if (checked) {
-                    checkSvar[4] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[4] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+                checkSvar[4] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
-            case R.id.byCheck:
-                if (checked) {
-                    checkSvar[5] = true;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
-                else {
-                    checkSvar[5] = false;
-                    storeArray(checkSvar, "Checksvar", this);
-                }
+            case R.id.veiCheck:
+                checkSvar[5] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
+                break;
+            case R.id.industriHandelCheck:
+                checkSvar[6] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
+                break;
+            case R.id.skoleFritidCheck:
+                checkSvar[7] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
+                break;
+            case R.id.dyrketMarkLandbrukCheck:
+                checkSvar[8] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
+                break;
+            case R.id.boligCheck:
+                checkSvar[9] = ((CheckBox) view).isChecked();
+                storeArray(checkSvar, "Checksvar", this);
                 break;
         }
+
     }
 
     // Checker de boksene som tidligere var checked
@@ -151,8 +127,20 @@ public class ChooseAreaActivity extends AppCompatActivity {
             innsjøCheck = findViewById(R.id.innsjøCheck);
             innsjøCheck.setChecked(true);
         } if (checkSvar[5]) {
-            byCheck = findViewById(R.id.byCheck);
-            byCheck.setChecked(true);
+            veiCheck = findViewById(R.id.veiCheck);
+            veiCheck.setChecked(true);
+        }if (checkSvar[6]) {
+            industriHandelCheck = findViewById(R.id.industriHandelCheck);
+            industriHandelCheck.setChecked(true);
+        }if (checkSvar[7]) {
+            skoleFritidCheck = findViewById(R.id.skoleFritidCheck);
+            skoleFritidCheck.setChecked(true);
+        }if (checkSvar[8]) {
+            dyrketMarkLandbrukCheck = findViewById(R.id.dyrketMarkLandbrukCheck);
+            dyrketMarkLandbrukCheck.setChecked(true);
+        }if (checkSvar[9]) {
+            boligCheck = findViewById(R.id.boligCheck);
+            boligCheck.setChecked(true);
         }
     }
 
