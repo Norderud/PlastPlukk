@@ -1,12 +1,10 @@
 package no.usn.plastplukk.plastplukk.LogInn;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +22,7 @@ import no.usn.plastplukk.plastplukk.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText etEmail, etPassword1;
+    EditText etUser, etPassword1;
     private final String MY_PREFS_NAME = "MyPrefsFile";
 
     @Override
@@ -32,10 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etEmail = findViewById(R.id.etEmailLogin);
+        etUser = findViewById(R.id.etUserLogin);
         etPassword1 = findViewById(R.id.etPasswordLogin);
-        final Button bLogin = findViewById(R.id.bLogin);
-        final TextView registerLink = findViewById(R.id.registerLink);
     }
 
    @Override
@@ -49,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logIn(View view){
-        final String email = etEmail.getText().toString();
+        final String username = etUser.getText().toString();
         String password = etPassword1.getText().toString();
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -60,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     int result = jsonResponse.getInt("result");
                     if (result == 1) {
                         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                        editor.putString("Email", email);
+                        editor.putString("Email", username);
                         editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         LoginActivity.this.startActivity(intent);
@@ -76,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
-        LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+        LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
     }

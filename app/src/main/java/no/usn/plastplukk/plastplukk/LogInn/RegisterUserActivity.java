@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +20,7 @@ import java.util.regex.Pattern;
 import no.usn.plastplukk.plastplukk.R;
 
 public class RegisterUserActivity extends AppCompatActivity {
-    EditText etEmail;
+    EditText etUser;
     EditText etPassword1;
     EditText etPassword2;
 
@@ -32,7 +31,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        etEmail = findViewById(R.id.etEmail);
+        etUser = findViewById(R.id.etUser);
         etPassword1 = findViewById(R.id.etPassword1);
         etPassword2 = findViewById(R.id.etPassword2);
 
@@ -40,16 +39,12 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
-        final String email = etEmail.getText().toString();
+        final String user = etUser.getText().toString();
         final String password1 = etPassword1.getText().toString();
         final String password2 = etPassword2.getText().toString();
 
-        if(email.isEmpty() || password1.isEmpty() || password2.isEmpty()){
+        if(user.isEmpty() || password1.isEmpty() || password2.isEmpty()){
             alertDialog(getString(R.string.fyll_ut_alle_felt));
-            return;
-        }
-        if(!isValidEmail(email)){
-            alertDialog(getString(R.string.ikke_gyldig_mail));
             return;
         }
         if(!isValidPassword(password1)){
@@ -80,13 +75,9 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(email, password1, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(user, password1, responseListener);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(registerRequest);
-    }
-
-    private boolean isValidEmail(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private boolean isValidPassword(String password1) {
