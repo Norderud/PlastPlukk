@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        if (prefs.getString("Email", null) == null){
+        /*if (prefs.getString("Email", null) == null){
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
-        }
+        }*/
         clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
