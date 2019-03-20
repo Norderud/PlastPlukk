@@ -87,4 +87,6 @@
     <string name="div_kroppspleie">Diverse kroppspleie</string>
     <string name="dumpet_avfall">Blandet, dumpet avfall</string>
     <string name="endreinnstillinger">Endre innstillinger</string>
+    <string name="mobilDataVarsel">Du bruker nå mobildata. Dette kan medføre ekstra kostnader ved bruk av denne appen.</string>
+    <string name="ok">OK</string>
 </resources>
