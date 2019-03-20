@@ -93,4 +93,5 @@
     <string name="venter_gps">Venter på GPS. Vennligst vent noen sekunder.</string>
     <string name="mobilDataVarsel">Du bruker nå mobildata. Dette kan medføre ekstra kostnader ved bruk av denne appen.</string>
     <string name="ok">OK</string>
+    <string name="gotowebpage">Gå til nettsted</string>
 </resources>
