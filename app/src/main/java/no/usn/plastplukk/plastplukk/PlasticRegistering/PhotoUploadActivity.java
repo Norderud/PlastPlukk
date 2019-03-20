@@ -82,10 +82,10 @@ public class PhotoUploadActivity extends AppCompatActivity {
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (!newLocationRecieved){
+                if (!newLocationRecieved){
                     Toast.makeText(getApplicationContext(), "Venter på GPS. Vennligst vent noen sekunder.", Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
