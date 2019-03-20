@@ -13,7 +13,7 @@ public class RegisterRequest extends StringRequest {
     private static final String REGISTER_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/register.php";
     private Map<String, String> params;
 
-    public RegisterRequest(String email, String password, Response.Listener<String> listener){
+    public RegisterRequest(String user, String password, Response.Listener<String> listener){
         super(Method.POST, REGISTER_URL, listener, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -21,7 +21,7 @@ public class RegisterRequest extends StringRequest {
             }
         });
         params = new HashMap<>();
-        params.put("email", email);
+        params.put("user", user);
         params.put("password", password);
 
     }
