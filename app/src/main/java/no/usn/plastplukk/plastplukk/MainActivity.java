@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        clearPreferences();
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -95,5 +96,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.apply();
         Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
+    }
+    private void clearPreferences(){
+        SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("Kategori");
+        editor.remove("Underkategori");
+        editor.remove("Størrelse");
+
+        int size = prefs.getInt("Checksvar" + "_size", 0);
+        for (int i = 0; i < size; i++)
+            editor.remove("Checksvar" + "_" + i);
+        editor.remove("Checksvar_size");
+        editor.apply();
     }
 }
