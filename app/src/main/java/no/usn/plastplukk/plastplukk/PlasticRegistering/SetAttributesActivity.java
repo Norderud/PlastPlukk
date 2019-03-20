@@ -136,6 +136,8 @@ public class SetAttributesActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownSize.getSelectedItem().toString();
+                if (størrelse.equals("Velg størrelse.."))
+                    return;
                 editor.putString("Størrelse", størrelse);
                 editor.apply();
             }

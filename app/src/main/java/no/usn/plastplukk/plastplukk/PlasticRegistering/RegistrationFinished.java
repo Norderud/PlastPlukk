@@ -1,6 +1,7 @@
 package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class RegistrationFinished extends AppCompatActivity {
 
         Button homeButton = findViewById(R.id.doneHomeButton);
         Button newRegisterButton = findViewById(R.id.doneNewRegister);
+        clearPreferences();
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,5 +35,26 @@ public class RegistrationFinished extends AppCompatActivity {
                 startActivity(registerIntent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent newIntent = new Intent(this, MainActivity.class);
+        startActivity(newIntent);
+    }
+
+    // Resetter verdiene som lagres under registrering
+    private void clearPreferences(){
+        SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("Kategori");
+        editor.remove("Underkategori");
+        editor.remove("Størrelse");
+
+        int size = prefs.getInt("Checksvar" + "_size", 0);
+        for (int i = 0; i < size; i++)
+            editor.remove("Checksvar" + "_" + i);
+        editor.remove("Checksvar_size");
+        editor.apply();
     }
 }

@@ -2,6 +2,7 @@ package no.usn.plastplukk.plastplukk;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        clearPreferences();
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
         }
-        clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
         TextView userId = headerView.findViewById(R.id.user_id_tv);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 break;
             case R.id.nav_my_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChangePasswordFragment()).commit();
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
@@ -90,9 +90,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    // Resetter verdiene som lagres under registrering
+    public void Logout(View view) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("User");
+        editor.apply();
+        Intent newIntent = new Intent(this, MainActivity.class);
+        startActivity(newIntent);
+    }
     private void clearPreferences(){
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
         editor.remove("Kategori");
         editor.remove("Underkategori");
         editor.remove("Størrelse");
@@ -104,11 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.apply();
     }
 
-    public void Logout(View view) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("User");
-        editor.apply();
-        Intent newIntent = new Intent(this, MainActivity.class);
-        startActivity(newIntent);
+    public void goToWeb(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://itfag.usn.no/grupper/v19gr2/plast/web/index"));
+        startActivity(browserIntent);
     }
 }

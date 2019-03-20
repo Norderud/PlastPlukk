@@ -42,15 +42,30 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu">
 
-        <TextView
-            android:id="@+id/logout"
-            android:layout_margin="16dp"
-            android:layout_gravity="bottom"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:drawableStart="@drawable/ic_logout"
-            android:text="@string/log_out"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/webpage"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:drawableStart="@drawable/ic_webpage"
+                android:text="@string/gotowebpage"
+                android:onClick="goToWeb"/>
+            <TextView
+                android:id="@+id/logout"
+                android:layout_margin="16dp"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:drawableStart="@drawable/ic_logout"
+                android:text="@string/log_out"
             android:onClick="Logout"/>
+        </LinearLayout>
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
