@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
         }
-        clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
         TextView userId = headerView.findViewById(R.id.user_id_tv);
@@ -88,20 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    // Resetter verdiene som lagres under registrering
-    private void clearPreferences(){
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.remove("Kategori");
-        editor.remove("Underkategori");
-        editor.remove("Størrelse");
-
-        int size = prefs.getInt("Checksvar" + "_size", 0);
-        for (int i = 0; i < size; i++)
-            editor.remove("Checksvar" + "_" + i);
-        editor.remove("Checksvar_size");
-        editor.apply();
     }
 
     public void Logout(View view) {
