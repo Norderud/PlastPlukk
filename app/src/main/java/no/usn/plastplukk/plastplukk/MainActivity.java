@@ -39,15 +39,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-       /* if (prefs.getString("Email", null) == null){
+       if (prefs.getString("User", null) == null){
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
-        }*/
+        }
         clearPreferences();
 
         View headerView = navigationView.getHeaderView(0);
         TextView userId = headerView.findViewById(R.id.user_id_tv);
-        userId.setText(prefs.getString("UserID", null));
+        userId.setText(prefs.getString("User", null));
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void Logout(View view) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("Email");
+        editor.remove("User");
         editor.apply();
         Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
