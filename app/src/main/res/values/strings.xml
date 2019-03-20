@@ -24,7 +24,7 @@
     <string name="velg_storrelse">Velg størrelse:</string>
     <string name="ta_bilde">Ta bilde</string>
     <string name="last_opp_bilde">Last opp bilde</string>
-    <string name="email">E-mail</string>
+    <string name="username">Brukernavn</string>
     <string name="passord">Passord</string>
     <string name="login">Login</string>
     <string name="registrer_her">Registrer her</string>
@@ -86,4 +86,5 @@
     <string name="bildeler">Bildeler</string>
     <string name="div_kroppspleie">Diverse kroppspleie</string>
     <string name="dumpet_avfall">Blandet, dumpet avfall</string>
+    <string name="endreinnstillinger">Endre innstillinger</string>
 </resources>

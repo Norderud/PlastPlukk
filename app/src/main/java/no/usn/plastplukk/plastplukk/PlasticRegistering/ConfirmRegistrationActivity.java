@@ -3,6 +3,8 @@ package no.usn.plastplukk.plastplukk.PlasticRegistering;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -147,7 +149,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
             jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
             jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
-            jsonObject.put("email", sharedPreferences.getString("Email", null));
+            jsonObject.put("user", sharedPreferences.getString("UserID", null));
             jsonObject.put("latitude", sharedPreferences.getString("Latitude", null));
             jsonObject.put("longitude", sharedPreferences.getString("Longitude", null));
 
