@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,23 +49,24 @@ public class LoginActivity extends AppCompatActivity {
         final String username = etUser.getText().toString();
         String password = etPassword1.getText().toString();
 
+        Log.e("username: ", username);
+        Log.e("password: ", password);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response){
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
-                    int result = jsonResponse.getInt("result");
-                    if (result == 1) {
+                    boolean success = jsonResponse.getBoolean("success");
+                    String error = jsonResponse.getString("error");
+                    if (success) {
                         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                        editor.putString("Email", username);
+                        editor.putString("User", username);
                         editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         LoginActivity.this.startActivity(intent);
 
-                    } else if (result == 2){
-                        alertDialog(getString(R.string.feil_passord));
                     } else {
-                        alertDialog(getString(R.string.feil_ved_innlogging));
+                        alertDialog(error);
                     }
 
                 } catch (JSONException e) {
