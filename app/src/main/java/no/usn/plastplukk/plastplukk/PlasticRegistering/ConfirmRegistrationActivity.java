@@ -1,10 +1,12 @@
 package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -75,6 +77,11 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    if(connectivityManager.getActiveNetwork() == null){
+                        Toast.makeText(getApplicationContext(), "Du er ikke koblet til internett.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     uploadRegistration(bitmap);
                     Intent registrationConfirmed = new Intent(
                             ConfirmRegistrationActivity.this,

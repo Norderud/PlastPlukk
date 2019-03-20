@@ -37,6 +37,12 @@ public class RegistrationFinnished extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent newIntent = new Intent(this, MainActivity.class);
+        startActivity(newIntent);
+    }
+
     // Resetter verdiene som lagres under registrering
     private void clearPreferences(){
         SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
