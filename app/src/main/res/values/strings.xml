@@ -10,7 +10,14 @@
     <string name="elv">Elv</string>
     <string name="kyst">Kyst</string>
     <string name="innsjo">Innsjø</string>
-    <string name="by">By</string>
+    <string name="boligområde">Boligområde</string>
+
+    <string name="industri_handel">Industri/Handel</string>
+    <string name="skole_fritid">Skole/Fritidsområde</string>
+    <string name="dyrket_mark_landbruk">Dyrket mark/Landbruk</string>
+    <string name="vei">Vei</string>
+
+
     <string name="ga_videre">Gå Videre</string>
     <string name="velg_egenskaper">Velg egenskaper</string>
     <string name="velg_plasttype">Velg plasttype:</string>
