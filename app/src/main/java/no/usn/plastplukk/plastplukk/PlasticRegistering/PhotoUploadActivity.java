@@ -73,7 +73,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!providerEnabled){
-                    alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
+                    alertDialog(getString(R.string.aktiver_gps), getString(R.string.endre_instillinger), true);
                     return;
                 }
                 dispatchTakePictureIntent();
@@ -82,10 +82,10 @@ public class PhotoUploadActivity extends AppCompatActivity {
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (!newLocationRecieved){
-                    Toast.makeText(getApplicationContext(), "Venter på GPS. Vennligst vent noen sekunder.", Toast.LENGTH_SHORT).show();
+                if (!newLocationRecieved){
+                    Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
@@ -119,7 +119,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             @Override
             public void onProviderDisabled(String provider) {
                 providerEnabled = false;
-                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
+                alertDialog(getString(R.string.aktiver_gps), getString(R.string.venter_gps), true);
             }
         };
         return locationListenerTemp;
@@ -153,7 +153,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            taBildeKnapp.setText("Ta nytt bilde?");
+            taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
             confirmPictureButton.setVisibility(View.VISIBLE);
             Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
@@ -195,7 +195,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
                             locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
-                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
                         }
 
                         // check for permanent denial of any permission
@@ -213,7 +213,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 withErrorListener(new PermissionRequestErrorListener() {
                     @Override
                     public void onError(DexterError error) {
-                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.feilet), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .onSameThread()
