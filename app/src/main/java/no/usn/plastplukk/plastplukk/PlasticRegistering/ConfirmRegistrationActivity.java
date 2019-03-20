@@ -159,7 +159,11 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             jsonObject.put("River", (!areaCheckList[2]) ? 0 : 1);
             jsonObject.put("Coast", (!areaCheckList[3]) ? 0 : 1);
             jsonObject.put("Lake", (!areaCheckList[4]) ? 0 : 1);
-            jsonObject.put("City", (!areaCheckList[5]) ? 0 : 1);
+            jsonObject.put("Road", (!areaCheckList[5]) ? 0 : 1);
+            jsonObject.put("Industry_Towns", (!areaCheckList[6]) ? 0 : 1);
+            jsonObject.put("School_Recreational_area", (!areaCheckList[7]) ? 0 : 1);
+            jsonObject.put("Acre_Agriculture", (!areaCheckList[8]) ? 0 : 1);
+            jsonObject.put("Residential_area", (!areaCheckList[9]) ? 0 : 1);
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
