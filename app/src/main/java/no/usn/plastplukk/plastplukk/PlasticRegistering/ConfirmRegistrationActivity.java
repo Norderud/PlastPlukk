@@ -78,7 +78,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                 try {
                     ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     if(connectivityManager.getActiveNetwork() == null){
-                        Toast.makeText(getApplicationContext(), "Du er ikke koblet til internett.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     uploadRegistration(bitmap);
@@ -89,7 +89,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(ConfirmRegistrationActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmRegistrationActivity.this, R.string.feilet, Toast.LENGTH_SHORT).show();
                 }
             }
         });
