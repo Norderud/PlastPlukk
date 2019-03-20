@@ -1,6 +1,7 @@
 package no.usn.plastplukk.plastplukk.PlasticRegistering;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
@@ -34,6 +36,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -66,26 +69,21 @@ public class PhotoUploadActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
         editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
-        requestMultiplePermissions();
         providerEnabled = true;
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (!providerEnabled){
-                    alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
-                    return;
-                }
-                dispatchTakePictureIntent();
+                requestMultiplePermissions();
             }
         });
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!newLocationRecieved){
+                /*if (!newLocationRecieved){
                     Toast.makeText(getApplicationContext(), "Venter på GPS. Vennligst vent noen sekunder.", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
@@ -119,7 +117,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             @Override
             public void onProviderDisabled(String provider) {
                 providerEnabled = false;
-                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
+                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
             }
         };
         return locationListenerTemp;
@@ -161,6 +159,8 @@ public class PhotoUploadActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("currentPhotoPath", currentPhotoPath);
+        }else{
+            recreate();
         }
     }
 
@@ -180,27 +180,33 @@ public class PhotoUploadActivity extends AppCompatActivity {
         throw new IOException();
     }
 
-    private void  requestMultiplePermissions(){
+    private void requestMultiplePermissions(){
         Dexter.withActivity(this)
                 .withPermissions(
 
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.INTERNET,
                         Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
                             Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                            if (!providerEnabled){
+                                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
+                                return;
+                            }
+                            dispatchTakePictureIntent();
+                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
                         }
 
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-
+                            alertDialog("Manglende Rettighet! Aktiver lokasjonstjenester og lagring",
+                                    "Instillinger", Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
                         }
                     }
 
@@ -218,16 +224,18 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 .onSameThread()
                 .check();
     }
-    private void alertDialog(String message, String buttonName, final boolean changeSettings){
+    private void alertDialog(String message, String buttonName, final String settings, final Uri uri){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setNegativeButton(buttonName, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (!changeSettings)
+                        if (settings == null)
                             return;
-                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(intent);
+                        Intent intent = new Intent(settings);
+                        if (uri != null)
+                            intent.setData(uri);
+                        startActivityForResult(intent, 233);
                     }
                 })
                 .create()
