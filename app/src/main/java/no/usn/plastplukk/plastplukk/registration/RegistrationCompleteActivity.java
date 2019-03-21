@@ -10,6 +10,11 @@ import android.widget.Button;
 import no.usn.plastplukk.plastplukk.MainActivity;
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+
 public class RegistrationCompleteActivity extends AppCompatActivity {
 
     @Override
@@ -45,11 +50,11 @@ public class RegistrationCompleteActivity extends AppCompatActivity {
 
     // Resetter verdiene som lagres under registrering
     private void clearPreferences(){
-        SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("Kategori");
-        editor.remove("Underkategori");
-        editor.remove("Størrelse");
+        editor.remove(MAIN_CATEGORY);
+        editor.remove(SECOND_CATEGORY);
+        editor.remove(SIZE);
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)

@@ -41,6 +41,10 @@ import java.util.List;
 import no.usn.plastplukk.plastplukk.functions.PhotoHelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+
 public class PhotoGPSActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
@@ -65,7 +69,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
+        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         providerEnabled = true;
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
@@ -97,8 +101,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
         LocationListener locationListenerTemp = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                editor.putString("Latitude", ""+location.getLatitude());
-                editor.putString("Longitude", ""+location.getLongitude());
+                editor.putString(LATITUDE, ""+location.getLatitude());
+                editor.putString(LONGITUDE, ""+location.getLongitude());
                 Log.e("Latitude", ""+location.getLatitude());
                 Log.e("Longitude", ""+location.getLongitude());
                 newLocationRecieved = true;
@@ -153,7 +157,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
             Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
-            SharedPreferences sharedPreferences = getSharedPreferences(AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("currentPhotoPath", currentPhotoPath);
         }
