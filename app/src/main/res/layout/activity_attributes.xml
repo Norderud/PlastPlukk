@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".PlasticRegistering.SetAttributesActivity"
+    tools:context=".registration.AttributesActivity"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:paddingRight="10dp">

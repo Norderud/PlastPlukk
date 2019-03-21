@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.R;
 
-public class ChooseAreaActivity extends AppCompatActivity {
+public class AreaActivity extends AppCompatActivity {
 
     String kategori, underKategori, størrelse;
     boolean[] checkSvar;
@@ -53,7 +53,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
             return;
         }
 
-        Intent messageIntent = new Intent(this, PhotoUploadActivity.class);
+        Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
         startActivity(messageIntent);
     }
 

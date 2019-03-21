@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,12 +10,12 @@ import android.widget.Button;
 import no.usn.plastplukk.plastplukk.MainActivity;
 import no.usn.plastplukk.plastplukk.R;
 
-public class RegistrationFinished extends AppCompatActivity {
+public class RegistrationCompleteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_finnished);
+        setContentView(R.layout.activity_registration_complete);
 
         Button homeButton = findViewById(R.id.doneHomeButton);
         Button newRegisterButton = findViewById(R.id.doneNewRegister);
@@ -24,14 +24,14 @@ public class RegistrationFinished extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent homeIntent = new Intent(RegistrationFinished.this, MainActivity.class);
+                Intent homeIntent = new Intent(RegistrationCompleteActivity.this, MainActivity.class);
                 startActivity(homeIntent);
             }
         });
         newRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(RegistrationFinished.this, ChooseCategoryActivity.class);
+                Intent registerIntent = new Intent(RegistrationCompleteActivity.this, CategoryActivity.class);
                 startActivity(registerIntent);
             }
         });

@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.LogInn;
+package no.usn.plastplukk.plastplukk.login;
 
 import android.util.Log;
 

@@ -1,11 +1,9 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +27,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
-import no.usn.plastplukk.plastplukk.HelpFunctions.PhotoHelpFunctions;
+import no.usn.plastplukk.plastplukk.functions.PhotoHelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
 public class ConfirmRegistrationActivity extends AppCompatActivity {
@@ -51,7 +49,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
         //Set the values that the user has selected.
         SharedPreferences sharedPreferences = getSharedPreferences(
-                ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
         TextView confirmCat = findViewById(R.id.confirmCat);
         confirmCat.append(sharedPreferences.getString("Kategori", null));
         TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
@@ -63,12 +61,12 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
         //Find picture and place in imageview
 
-        imageFileName = bundle.getString(PhotoUploadActivity.IMAGEFILENAME);
+        imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
-        photoPath = bundle.getString(PhotoUploadActivity.PHOTOPATH);
+        photoPath = bundle.getString(PhotoGPSActivity.PHOTOPATH);
         bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, photoPath,
-                bundle.getInt(PhotoUploadActivity.IMAGE_WIDTH),
-                bundle.getInt(PhotoUploadActivity.IMAGE_HEIGHT));
+                bundle.getInt(PhotoGPSActivity.IMAGE_WIDTH),
+                bundle.getInt(PhotoGPSActivity.IMAGE_HEIGHT));
         imageView.setImageBitmap(bitmap);
         //Upload the data to server with onlick on button.
         Button uploadButton = (Button) findViewById(R.id.confirmButton);
@@ -84,7 +82,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                     uploadRegistration(bitmap);
                     Intent registrationConfirmed = new Intent(
                             ConfirmRegistrationActivity.this,
-                            RegistrationFinished.class);
+                            RegistrationCompleteActivity.class);
                     startActivity(registrationConfirmed);
 
                 } catch (Exception e) {
@@ -98,9 +96,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
     private String getLocations() {
         SharedPreferences sharedPreferences = getSharedPreferences(
-                ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
         StringBuilder result = new StringBuilder();
-        boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
+        boolean[] areaCheckList = AreaActivity.loadArray("Checksvar", sharedPreferences);
         for (int i = 0; i < areaCheckList.length; i++) {
             if (areaCheckList[i]) {
                 switch (i) {
@@ -143,7 +141,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     //Do the upload of the complete registration. Put in jsonRequest and send to PHP API.
     private void uploadRegistration(Bitmap bitmap) {
         SharedPreferences sharedPreferences = getSharedPreferences(
-                ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
@@ -160,7 +158,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             jsonObject.put("latitude", sharedPreferences.getString("Latitude", null));
             jsonObject.put("longitude", sharedPreferences.getString("Longitude", null));
 
-            boolean[] areaCheckList = ChooseAreaActivity.loadArray("Checksvar", sharedPreferences);
+            boolean[] areaCheckList = AreaActivity.loadArray("Checksvar", sharedPreferences);
             jsonObject.put("Mountain", (!areaCheckList[0]) ? 0 : 1);
             jsonObject.put("Forest", (!areaCheckList[1]) ? 0 : 1);
             jsonObject.put("River", (!areaCheckList[2]) ? 0 : 1);

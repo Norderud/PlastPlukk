@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.HelpFunctions;
+package no.usn.plastplukk.plastplukk.functions;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
