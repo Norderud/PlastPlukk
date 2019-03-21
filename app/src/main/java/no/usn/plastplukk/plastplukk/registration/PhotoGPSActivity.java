@@ -69,7 +69,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
+        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -100,8 +100,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
         LocationListener locationListenerTemp = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                editor.putString("Latitude", ""+location.getLatitude());
-                editor.putString("Longitude", ""+location.getLongitude());
+                editor.putString(LATITUDE, ""+location.getLatitude());
+                editor.putString(LONGITUDE, ""+location.getLongitude());
                 newLocationRecieved = true;
             }
             @Override
@@ -150,7 +150,6 @@ public class PhotoGPSActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString(CURRENT_PHOTO_PATH, currentPhotoPath);
-            editor.putString("currentPhotoPath", currentPhotoPath);
         } else {
             recreate();
         }
