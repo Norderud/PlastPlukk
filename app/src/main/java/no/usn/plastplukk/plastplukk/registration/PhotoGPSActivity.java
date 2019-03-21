@@ -103,8 +103,6 @@ public class PhotoGPSActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 editor.putString(LATITUDE, ""+location.getLatitude());
                 editor.putString(LONGITUDE, ""+location.getLongitude());
-                Log.e("Latitude", ""+location.getLatitude());
-                Log.e("Longitude", ""+location.getLongitude());
                 newLocationRecieved = true;
             }
             @Override
