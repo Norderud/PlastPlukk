@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.R;
 
-public class SetAttributesActivity extends AppCompatActivity {
+public class AttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
     private String kategori, underKategori, størrelse;
@@ -30,7 +30,7 @@ public class SetAttributesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_egenskaper);
+        setContentView(R.layout.activity_attributes);
         Intent intent = getIntent();
 
         // Shared preferences
@@ -55,7 +55,7 @@ public class SetAttributesActivity extends AppCompatActivity {
             feilMelding.setText(getString(R.string.fyll_ut_alle_felt));
             return;
         }
-        Intent messageIntent = new Intent(this, ChooseAreaActivity.class);
+        Intent messageIntent = new Intent(this, AreaActivity.class);
         startActivity(messageIntent);
     }
 

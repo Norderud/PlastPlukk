@@ -15,9 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import no.usn.plastplukk.plastplukk.LogInn.LoginActivity;
-import no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseCategoryActivity;
-import no.usn.plastplukk.plastplukk.PlasticRegistering.PhotoUploadActivity;
+import no.usn.plastplukk.plastplukk.login.LoginActivity;
+import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
+import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
@@ -65,11 +65,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void registrerPlast(View view){
-        Intent messageIntent = new Intent(this, ChooseCategoryActivity.class);
+        Intent messageIntent = new Intent(this, CategoryActivity.class);
         startActivity(messageIntent);
     }
     public void openCamera(View view){
-        Intent messageIntent = new Intent(this, PhotoUploadActivity.class);
+        Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
         startActivity(messageIntent);
     }
 

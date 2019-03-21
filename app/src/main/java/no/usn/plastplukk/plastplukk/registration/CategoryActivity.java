@@ -1,26 +1,18 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import no.usn.plastplukk.plastplukk.R;
 
-public class ChooseCategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity {
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences.Editor editor;
@@ -28,7 +20,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_reg);
+        setContentView(R.layout.activity_category);
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -53,7 +45,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
     public void velgEgenskaper(View view) {
         String kategori = view.getTag().toString();
-        Intent nyIntent = new Intent(this.getBaseContext(), SetAttributesActivity.class);
+        Intent nyIntent = new Intent(this.getBaseContext(), AttributesActivity.class);
 
         // Shared preferences
         editor.putString("Kategori", kategori);

@@ -1,7 +1,6 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +27,6 @@ import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
@@ -36,15 +34,14 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import no.usn.plastplukk.plastplukk.HelpFunctions.PhotoHelpFunctions;
+import no.usn.plastplukk.plastplukk.functions.PhotoHelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
-public class PhotoUploadActivity extends AppCompatActivity {
+public class PhotoGPSActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -62,7 +59,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kamera_aktivitet);
+        setContentView(R.layout.activity_photo_gps);
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
@@ -80,10 +77,10 @@ public class PhotoUploadActivity extends AppCompatActivity {
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!newLocationRecieved){
+                /*if (!newLocationRecieved){
                     Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
@@ -156,7 +153,7 @@ public class PhotoUploadActivity extends AppCompatActivity {
             Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
-            SharedPreferences sharedPreferences = getSharedPreferences(ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("currentPhotoPath", currentPhotoPath);
         }
