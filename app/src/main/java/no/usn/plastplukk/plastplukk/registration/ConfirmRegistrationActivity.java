@@ -85,7 +85,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                    if(connectivityManager.getActiveNetwork() == null){
+                    if (connectivityManager.getActiveNetwork() == null) {
                         Toast.makeText(getApplicationContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -163,7 +163,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             //Send inn kategori, underkategori, størrelse osv.
             jsonObject.put("maincategory", sharedPreferences.getString(MAIN_CATEGORY, null));
             jsonObject.put("secondcategory", sharedPreferences.getString(SECOND_CATEGORY, null));
-            jsonObject.put("size", sharedPreferences.getString(SIZE, null));
+            jsonObject.put("size", sharedPreferences.getString(SIZE, ""));
             jsonObject.put("userID", sharedPreferences.getInt(USERID, 0));
             jsonObject.put("latitude", sharedPreferences.getString(LATITUDE, null));
             jsonObject.put("longitude", sharedPreferences.getString(LONGITUDE, null));
@@ -187,9 +187,14 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
+                        try {
                         Log.e("aaaaaaa", jsonObject.toString());
-                        rQueue.getCache().clear();
-                        Toast.makeText(getApplication(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            String response = jsonObject.getString("message");
+                            rQueue.getCache().clear();
+                            Toast.makeText(getApplication(), response, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
