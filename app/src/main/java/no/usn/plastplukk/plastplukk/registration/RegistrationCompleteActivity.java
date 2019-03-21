@@ -13,6 +13,7 @@ import no.usn.plastplukk.plastplukk.R;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_WIDTH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
@@ -61,6 +62,7 @@ public class RegistrationCompleteActivity extends AppCompatActivity {
         editor.remove(IMAGEVIEW_HEIGHT);
         editor.remove(IMAGEVIEW_WIDTH);
         editor.remove(CURRENT_PHOTO_PATH);
+        editor.remove(IMAGE_FILE_NAME);
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)

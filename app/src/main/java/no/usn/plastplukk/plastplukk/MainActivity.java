@@ -19,8 +19,10 @@ import no.usn.plastplukk.plastplukk.login.LoginActivity;
 import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
 import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_WIDTH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.remove(SIZE);
         editor.remove(IMAGEVIEW_HEIGHT);
         editor.remove(IMAGEVIEW_WIDTH);
-        editor.remove("currentPhotoPath");
+        editor.remove(IMAGE_FILE_NAME);
+        editor.remove(CURRENT_PHOTO_PATH);
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)
