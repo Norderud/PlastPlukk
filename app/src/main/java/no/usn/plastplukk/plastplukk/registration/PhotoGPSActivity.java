@@ -38,7 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import no.usn.plastplukk.plastplukk.functions.PhotoHelpFunctions;
+import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
@@ -58,8 +58,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
     LocationListener locationListener;
     LocationManager locationManager;
     SharedPreferences.Editor editor;
-    private boolean providerEnabled, newLocationRecieved;
-
+    private boolean newLocationRecieved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +69,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        providerEnabled = true;
+        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,10 +80,10 @@ public class PhotoGPSActivity extends AppCompatActivity {
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (!newLocationRecieved){
+                if (!newLocationRecieved){
                     Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
@@ -102,25 +100,16 @@ public class PhotoGPSActivity extends AppCompatActivity {
         LocationListener locationListenerTemp = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                editor.putString(LATITUDE, ""+location.getLatitude());
-                editor.putString(LONGITUDE, ""+location.getLongitude());
-                //Log.e("Latitude", ""+location.getLatitude());
-                //Log.e("Longitude", ""+location.getLongitude());
+                editor.putString("Latitude", ""+location.getLatitude());
+                editor.putString("Longitude", ""+location.getLongitude());
                 newLocationRecieved = true;
             }
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) { }
             @Override
-            public void onProviderEnabled(String provider) {
-                providerEnabled = true;
-                Log.e("Provider Enabled", ""+providerEnabled);
-            }
-
+            public void onProviderEnabled(String provider) { }
             @Override
-            public void onProviderDisabled(String provider) {
-                providerEnabled = false;
-                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
-            }
+            public void onProviderDisabled(String provider) { }
         };
         return locationListenerTemp;
     }
@@ -155,12 +144,15 @@ public class PhotoGPSActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
             confirmPictureButton.setVisibility(View.VISIBLE);
-            Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
+            Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
             SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString(CURRENT_PHOTO_PATH, currentPhotoPath);
+            editor.putString("currentPhotoPath", currentPhotoPath);
+        } else {
+            recreate();
         }
     }
 
@@ -195,13 +187,13 @@ public class PhotoGPSActivity extends AppCompatActivity {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
                             Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
-                            if (!providerEnabled){
+                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+                            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
                                 alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
                                 return;
                             }
-                            dispatchTakePictureIntent();
-                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
                             Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
+                            dispatchTakePictureIntent();
                         }
 
                         // check for permanent denial of any permission

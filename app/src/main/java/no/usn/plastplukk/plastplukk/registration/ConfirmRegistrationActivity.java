@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
-import no.usn.plastplukk.plastplukk.functions.PhotoHelpFunctions;
+import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
@@ -74,7 +74,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
         photoPath = bundle.getString(PhotoGPSActivity.PHOTOPATH);
-        bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, photoPath,
+        bitmap = HelpFunctions.loadImageFromFile(imageView, photoPath,
                 bundle.getInt(PhotoGPSActivity.IMAGE_WIDTH),
                 bundle.getInt(PhotoGPSActivity.IMAGE_HEIGHT));
         imageView.setImageBitmap(bitmap);
