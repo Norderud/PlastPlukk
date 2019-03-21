@@ -163,7 +163,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             //Send inn kategori, underkategori, størrelse osv.
             jsonObject.put("maincategory", sharedPreferences.getString(MAIN_CATEGORY, null));
             jsonObject.put("secondcategory", sharedPreferences.getString(SECOND_CATEGORY, null));
-            jsonObject.put("size", sharedPreferences.getString(SIZE, null));
+            jsonObject.put("size", sharedPreferences.getString(SIZE, ""));
             jsonObject.put("userID", sharedPreferences.getInt(USERID, 0));
             jsonObject.put("latitude", sharedPreferences.getString(LATITUDE, null));
             jsonObject.put("longitude", sharedPreferences.getString(LONGITUDE, null));

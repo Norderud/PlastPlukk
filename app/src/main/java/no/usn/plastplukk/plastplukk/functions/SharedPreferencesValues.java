@@ -15,4 +15,5 @@ public abstract class SharedPreferencesValues {
     public final static String IMAGE_WIDTH = "ImageWidth";
     public final static String IMAGE_HEIGHT = "ImageHeight";
 
+    public final static String CURRENT_PHOTO_PATH = "currentPhotoPath";
 }

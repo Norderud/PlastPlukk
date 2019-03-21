@@ -41,6 +41,7 @@ import java.util.List;
 import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
@@ -115,8 +116,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
         LocationListener locationListenerTemp = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                editor.putString("Latitude", ""+location.getLatitude());
-                editor.putString("Longitude", ""+location.getLongitude());
+                editor.putString(LATITUDE, ""+location.getLatitude());
+                editor.putString(LONGITUDE, ""+location.getLongitude());
                 newLocationRecieved = true;
             }
             @Override
@@ -164,7 +165,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
             imageView.setImageBitmap(bitmap);
             SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
-            editor.putString("currentPhotoPath", currentPhotoPath);
+            editor.putString(CURRENT_PHOTO_PATH, currentPhotoPath);
         } else {
             recreate();
         }
