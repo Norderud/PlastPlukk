@@ -19,6 +19,8 @@ import no.usn.plastplukk.plastplukk.login.LoginActivity;
 import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
 import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_HEIGHT;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_WIDTH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
@@ -101,12 +103,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
     }
+    // Resetter verdiene som lagres under registrering
     private void clearPreferences(){
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove(MAIN_CATEGORY);
         editor.remove(SECOND_CATEGORY);
         editor.remove(SIZE);
+        editor.remove(IMAGE_HEIGHT);
+        editor.remove(IMAGE_WIDTH);
+        editor.remove("currentPhotoPath");
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)

@@ -56,6 +56,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
             IMAGE_WIDTH="imageWidth", IMAGE_HEIGHT = "imageHeigth";
     LocationListener locationListener;
     LocationManager locationManager;
+    SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private boolean newLocationRecieved;
 
@@ -68,9 +69,13 @@ public class PhotoGPSActivity extends AppCompatActivity {
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
-        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
+        prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        editor = prefs.edit();
 
+        if (prefs.getString("currentPhotoPath", "").length() > 0)
+            pictureOnReturn();
+
+        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestMultiplePermissions();
@@ -88,10 +93,21 @@ public class PhotoGPSActivity extends AppCompatActivity {
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
                 confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
                 confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+                editor.putInt("ImageWidth", imageView.getWidth());
+                editor.putInt("ImageHeight", imageView.getHeight());
                 editor.apply();
                 startActivity(confirmPictureIntent);
             }
         });
+    }
+
+    private void pictureOnReturn(){
+        taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
+        confirmPictureButton.setVisibility(View.VISIBLE);
+        Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, prefs.getString("currentPhotoPath", ""),
+                prefs.getInt("ImageWidth", 0), prefs.getInt("ImageHeight", 0));
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(bitmap);
     }
 
     // Oppretter en locationlistener

@@ -12,4 +12,7 @@ public abstract class SharedPreferencesValues {
     public final static String LONGITUDE = "longitude";
     public final static String AREA_ARRAY = "areaarray";
     public final static String MOBILDATAVARSEL = "mobildatavarsel";
+    public final static String IMAGE_WIDTH = "ImageWidth";
+    public final static String IMAGE_HEIGHT = "ImageHeight";
+
 }
