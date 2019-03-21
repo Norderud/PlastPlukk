@@ -6,7 +6,6 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,9 +21,9 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PlasticRegistering.RegistrationFinnished"></activity>
-        <activity android:name=".LogInn.LoginActivity" />
-        <activity android:name=".LogInn.RegisterUserActivity" />
+        <activity android:name=".registration.RegistrationCompleteActivity"></activity>
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.RegisterUserActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -36,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlasticRegistering.ChooseCategoryActivity"
+            android:name=".registration.CategoryActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -52,38 +51,38 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".PlasticRegistering.SetAttributesActivity"
-            android:parentActivityName=".PlasticRegistering.ChooseCategoryActivity"
+            android:name=".registration.AttributesActivity"
+            android:parentActivityName=".registration.CategoryActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseCategoryActivity" />
+                android:value="no.usn.plastplukk.plastplukk.registration.CategoryActivity" />
         </activity>
         <activity
-            android:name=".PlasticRegistering.ChooseAreaActivity"
-            android:parentActivityName=".PlasticRegistering.SetAttributesActivity"
+            android:name=".registration.AreaActivity"
+            android:parentActivityName=".registration.AttributesActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.SetAttributesActivity" />
+                android:value="no.usn.plastplukk.plastplukk.registration.AttributesActivity" />
         </activity>
         <activity
-            android:name=".PlasticRegistering.PhotoUploadActivity"
-            android:parentActivityName=".PlasticRegistering.ChooseAreaActivity"
+            android:name=".registration.PhotoGPSActivity"
+            android:parentActivityName=".registration.AreaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.ChooseAreaActivity" />
+                android:value="no.usn.plastplukk.plastplukk.registration.AreaActivity" />
         </activity>
         <activity
-            android:name=".PlasticRegistering.ConfirmRegistrationActivity"
-            android:parentActivityName=".PlasticRegistering.PhotoUploadActivity"
+            android:name=".registration.ConfirmRegistrationActivity"
+            android:parentActivityName=".registration.PhotoGPSActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.PlasticRegistering.PhotoUploadActivity" />
+                android:value="no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity" />
         </activity>
 
         <provider

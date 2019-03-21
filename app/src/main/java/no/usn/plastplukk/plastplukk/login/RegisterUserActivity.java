@@ -1,12 +1,15 @@
-package no.usn.plastplukk.plastplukk.LogInn;
+package no.usn.plastplukk.plastplukk.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,6 +42,11 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getActiveNetwork() == null){
+            Toast.makeText(getApplicationContext(), "Du er ikke koblet til internett.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         final String user = etUser.getText().toString();
         final String password1 = etPassword1.getText().toString();
         final String password2 = etPassword2.getText().toString();

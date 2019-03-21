@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +14,14 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.R;
 
-public class SetAttributesActivity extends AppCompatActivity {
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+
+public class AttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
     private String kategori, underKategori, størrelse;
@@ -25,25 +32,23 @@ public class SetAttributesActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
 
-    public static final String MY_PREFS_NAME = "MyPrefsFile";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_egenskaper);
+        setContentView(R.layout.activity_attributes);
         Intent intent = getIntent();
 
         // Shared preferences
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        kategori = prefs.getString("Kategori", "Ingen");
+        kategori = prefs.getString(MAIN_CATEGORY, "Ingen");
 
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);
         overTekst.setText(kategori);
 
-        Log.e("Longitude", ""+prefs.getString("Longitude", null));
-        Log.e("Latitude", ""+prefs.getString("Latitude", null));
+        Log.e("Longitude", ""+prefs.getString(LONGITUDE, null));
+        Log.e("Latitude", ""+prefs.getString(LATITUDE, null));
 
         lagDropDown();
         selectOnReturn();
@@ -55,7 +60,7 @@ public class SetAttributesActivity extends AppCompatActivity {
             feilMelding.setText(getString(R.string.fyll_ut_alle_felt));
             return;
         }
-        Intent messageIntent = new Intent(this, ChooseAreaActivity.class);
+        Intent messageIntent = new Intent(this, AreaActivity.class);
         startActivity(messageIntent);
     }
 
@@ -99,7 +104,7 @@ public class SetAttributesActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String valget = (String) dropdownSecondCategory.getSelectedItem().toString();
-                String strTemp = prefs.getString("Størrelse", "Tom");
+                String strTemp = prefs.getString(SIZE, "Tom");
                 if (valget.equals("Plastfilm")) {
                     str[1] = "Mindre enn knyttneve";
                     str[2] = "Mindre enn avis";
@@ -121,10 +126,10 @@ public class SetAttributesActivity extends AppCompatActivity {
                 else{
                     visible = false;
                     layout.setVisibility(View.INVISIBLE);
-                    editor.remove("Størrelse");
+                    editor.remove(SIZE);
                 }
                 underKategori = dropdownSecondCategory.getSelectedItem().toString();
-                editor.putString("Underkategori", underKategori);
+                editor.putString(SECOND_CATEGORY, underKategori);
                 editor.apply();
             }
 
@@ -136,7 +141,9 @@ public class SetAttributesActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownSize.getSelectedItem().toString();
-                editor.putString("Størrelse", størrelse);
+                if (størrelse.equals("Velg størrelse.."))
+                    return;
+                editor.putString(SIZE, størrelse);
                 editor.apply();
             }
             @Override
@@ -147,7 +154,7 @@ public class SetAttributesActivity extends AppCompatActivity {
 
     // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
-        String typeTemp = prefs.getString("Underkategori", "Tom");
+        String typeTemp = prefs.getString(SECOND_CATEGORY, "Tom");
 
         if (typeTemp.equals("Tom"))
             return;

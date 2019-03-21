@@ -10,14 +10,21 @@
     <string name="elv">Elv</string>
     <string name="kyst">Kyst</string>
     <string name="innsjo">Innsjø</string>
-    <string name="by">By</string>
+    <string name="boligområde">Boligområde</string>
+
+    <string name="industri_handel">Industri/Handel</string>
+    <string name="skole_fritid">Skole/Fritidsområde</string>
+    <string name="dyrket_mark_landbruk">Dyrket mark/Landbruk</string>
+    <string name="vei">Vei</string>
+
+
     <string name="ga_videre">Gå Videre</string>
     <string name="velg_egenskaper">Velg egenskaper</string>
     <string name="velg_plasttype">Velg plasttype:</string>
     <string name="velg_storrelse">Velg størrelse:</string>
     <string name="ta_bilde">Ta bilde</string>
     <string name="last_opp_bilde">Last opp bilde</string>
-    <string name="username">Brukernavn</string>
+    <string name="brukernavn">Brukernavn</string>
     <string name="passord">Passord</string>
     <string name="login">Login</string>
     <string name="registrer_her">Registrer her</string>
@@ -80,4 +87,11 @@
     <string name="div_kroppspleie">Diverse kroppspleie</string>
     <string name="dumpet_avfall">Blandet, dumpet avfall</string>
     <string name="endreinnstillinger">Endre innstillinger</string>
+    <string name="no_internet">Du er ikke koblet til internett.</string>
+    <string name="aktiver_gps">Aktiver GPS for å fortsette.</string>
+    <string name="endre_instillinger">Endre innstillinger</string>
+    <string name="venter_gps">Venter på GPS. Vennligst vent noen sekunder.</string>
+    <string name="mobilDataVarsel">Du bruker nå mobildata. Dette kan medføre ekstra kostnader ved bruk av denne appen.</string>
+    <string name="ok">OK</string>
+    <string name="gotowebpage">Gå til nettsted</string>
 </resources>

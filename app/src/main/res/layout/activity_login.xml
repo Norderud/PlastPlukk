@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:weightSum="1"
-    tools:context=".LogInn.LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/etUserLayout"
@@ -20,7 +20,7 @@
             android:id="@+id/etUserLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username"
+            android:hint="@string/brukernavn"
             />
     </android.support.design.widget.TextInputLayout>
 

@@ -1,6 +1,5 @@
-package no.usn.plastplukk.plastplukk.LogInn;
+package no.usn.plastplukk.plastplukk.login;
 
-import android.support.annotation.Nullable;
 import android.util.Log;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;

@@ -1,4 +1,4 @@
-package no.usn.plastplukk.plastplukk.PlasticRegistering;
+package no.usn.plastplukk.plastplukk.registration;
 
 import android.Manifest;
 import android.content.Context;
@@ -38,10 +38,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import no.usn.plastplukk.plastplukk.HelpFunctions.PhotoHelpFunctions;
+import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
-public class PhotoUploadActivity extends AppCompatActivity {
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+
+public class PhotoGPSActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -52,38 +57,36 @@ public class PhotoUploadActivity extends AppCompatActivity {
             IMAGE_WIDTH="imageWidth", IMAGE_HEIGHT = "imageHeigth";
     LocationListener locationListener;
     LocationManager locationManager;
+    SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    private boolean providerEnabled, newLocationRecieved;
-
+    private boolean newLocationRecieved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kamera_aktivitet);
+        setContentView(R.layout.activity_photo_gps);
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences("MyPrefsFile", MODE_PRIVATE).edit();
-        requestMultiplePermissions();
-        providerEnabled = true;
-        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
+        prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        editor = prefs.edit();
 
+        if (prefs.getString("currentPhotoPath", "").length() > 0)
+            pictureOnReturn();
+
+        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!providerEnabled){
-                    alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
-                    return;
-                }
-                dispatchTakePictureIntent();
+                requestMultiplePermissions();
             }
         });
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!newLocationRecieved){
-                    Toast.makeText(getApplicationContext(), "Venter på GPS. Vennligst vent noen sekunder.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
@@ -91,10 +94,21 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
                 confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
                 confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+                editor.putInt("ImageWidth", imageView.getWidth());
+                editor.putInt("ImageHeight", imageView.getHeight());
                 editor.apply();
                 startActivity(confirmPictureIntent);
             }
         });
+    }
+
+    private void pictureOnReturn(){
+        taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
+        confirmPictureButton.setVisibility(View.VISIBLE);
+        Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, prefs.getString("currentPhotoPath", ""),
+                prefs.getInt("ImageWidth", 0), prefs.getInt("ImageHeight", 0));
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(bitmap);
     }
 
     // Oppretter en locationlistener
@@ -102,25 +116,16 @@ public class PhotoUploadActivity extends AppCompatActivity {
         LocationListener locationListenerTemp = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                editor.putString("Latitude", ""+location.getLatitude());
-                editor.putString("Longitude", ""+location.getLongitude());
-                Log.e("Latitude", ""+location.getLatitude());
-                Log.e("Longitude", ""+location.getLongitude());
+                editor.putString(LATITUDE, ""+location.getLatitude());
+                editor.putString(LONGITUDE, ""+location.getLongitude());
                 newLocationRecieved = true;
             }
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) { }
             @Override
-            public void onProviderEnabled(String provider) {
-                providerEnabled = true;
-                Log.e("Provider Enabled", ""+providerEnabled);
-            }
-
+            public void onProviderEnabled(String provider) { }
             @Override
-            public void onProviderDisabled(String provider) {
-                providerEnabled = false;
-                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", true);
-            }
+            public void onProviderDisabled(String provider) { }
         };
         return locationListenerTemp;
     }
@@ -153,14 +158,16 @@ public class PhotoUploadActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            taBildeKnapp.setText("Ta nytt bilde?");
+            taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
             confirmPictureButton.setVisibility(View.VISIBLE);
-            Bitmap bitmap = PhotoHelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
+            Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
-            SharedPreferences sharedPreferences = getSharedPreferences(ChooseAreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
-            editor.putString("currentPhotoPath", currentPhotoPath);
+            editor.putString(CURRENT_PHOTO_PATH, currentPhotoPath);
+        } else {
+            recreate();
         }
     }
 
@@ -180,27 +187,34 @@ public class PhotoUploadActivity extends AppCompatActivity {
         throw new IOException();
     }
 
-    private void  requestMultiplePermissions(){
+    private void requestMultiplePermissions(){
         Dexter.withActivity(this)
                 .withPermissions(
 
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.INTERNET,
                         Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
                             Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+                            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                                alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
+                                return;
+                            }
+                            Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
+                            dispatchTakePictureIntent();
                         }
 
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-
+                            alertDialog("Manglende Rettighet! Aktiver lokasjonstjenester og lagring",
+                                    "Instillinger", Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
                         }
                     }
 
@@ -212,22 +226,24 @@ public class PhotoUploadActivity extends AppCompatActivity {
                 withErrorListener(new PermissionRequestErrorListener() {
                     @Override
                     public void onError(DexterError error) {
-                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.feilet), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .onSameThread()
                 .check();
     }
-    private void alertDialog(String message, String buttonName, final boolean changeSettings){
+    private void alertDialog(String message, String buttonName, final String settings, final Uri uri){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setNegativeButton(buttonName, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (!changeSettings)
+                        if (settings == null)
                             return;
-                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(intent);
+                        Intent intent = new Intent(settings);
+                        if (uri != null)
+                            intent.setData(uri);
+                        startActivityForResult(intent, 233);
                     }
                 })
                 .create()
