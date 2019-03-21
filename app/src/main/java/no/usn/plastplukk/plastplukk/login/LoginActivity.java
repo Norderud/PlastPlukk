@@ -21,10 +21,13 @@ import org.json.JSONObject;
 import no.usn.plastplukk.plastplukk.MainActivity;
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText etUser, etPassword1;
-    private final String MY_PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +67,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (success) {
                         int userID = jsonResponse.getInt("userID");
                         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                        editor.putString("User", username);
-                        editor.putInt("userID", userID);
+                        editor.putString(USERNAME, username);
+                        editor.putInt(USERID, userID);
                         editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         LoginActivity.this.startActivity(intent);

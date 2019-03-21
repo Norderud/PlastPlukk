@@ -30,6 +30,16 @@ import java.io.ByteArrayOutputStream;
 import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+
+
 public class ConfirmRegistrationActivity extends AppCompatActivity {
 
     private JSONObject jsonObject;
@@ -49,13 +59,13 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
         //Set the values that the user has selected.
         SharedPreferences sharedPreferences = getSharedPreferences(
-                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                MY_PREFS_NAME, MODE_PRIVATE);
         TextView confirmCat = findViewById(R.id.confirmCat);
-        confirmCat.append(sharedPreferences.getString("Kategori", null));
+        confirmCat.append(sharedPreferences.getString(MAIN_CATEGORY, null));
         TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
-        confirmSecondCat.append(sharedPreferences.getString("Underkategori", null));
+        confirmSecondCat.append(sharedPreferences.getString(SECOND_CATEGORY, null));
         TextView confirmSize = findViewById(R.id.confirmSize);
-        confirmSize.append(sharedPreferences.getString("Størrelse", "Kan ikke settes for dette objektet"));
+        confirmSize.append(sharedPreferences.getString(SIZE, "Kan ikke settes for dette objektet"));
         TextView confirmLocation = findViewById(R.id.confirmLocation);
         confirmLocation.append(getLocations());
 
@@ -96,9 +106,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
     private String getLocations() {
         SharedPreferences sharedPreferences = getSharedPreferences(
-                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                MY_PREFS_NAME, MODE_PRIVATE);
         StringBuilder result = new StringBuilder();
-        boolean[] areaCheckList = AreaActivity.loadArray("Checksvar", sharedPreferences);
+        boolean[] areaCheckList = AreaActivity.loadArray(AREA_ARRAY, sharedPreferences);
         for (int i = 0; i < areaCheckList.length; i++) {
             if (areaCheckList[i]) {
                 switch (i) {
@@ -141,7 +151,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     //Do the upload of the complete registration. Put in jsonRequest and send to PHP API.
     private void uploadRegistration(Bitmap bitmap) {
         SharedPreferences sharedPreferences = getSharedPreferences(
-                AreaActivity.MY_PREFS_NAME, MODE_PRIVATE);
+                MY_PREFS_NAME, MODE_PRIVATE);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
@@ -151,12 +161,12 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             jsonObject.put("name", imageFileName);
             jsonObject.put("image", encodedImage);
             //Send inn kategori, underkategori, størrelse osv.
-            jsonObject.put("maincategory", sharedPreferences.getString("Kategori", null));
-            jsonObject.put("secondcategory", sharedPreferences.getString("Underkategori", null));
-            jsonObject.put("size", sharedPreferences.getString("Størrelse", null));
-            jsonObject.put("userID", sharedPreferences.getInt("userID", 0));
-            jsonObject.put("latitude", sharedPreferences.getString("Latitude", null));
-            jsonObject.put("longitude", sharedPreferences.getString("Longitude", null));
+            jsonObject.put("maincategory", sharedPreferences.getString(MAIN_CATEGORY, null));
+            jsonObject.put("secondcategory", sharedPreferences.getString(SECOND_CATEGORY, null));
+            jsonObject.put("size", sharedPreferences.getString(SIZE, null));
+            jsonObject.put("userID", sharedPreferences.getInt(USERID, 0));
+            jsonObject.put("latitude", sharedPreferences.getString(LATITUDE, null));
+            jsonObject.put("longitude", sharedPreferences.getString(LONGITUDE, null));
 
             boolean[] areaCheckList = AreaActivity.loadArray("Checksvar", sharedPreferences);
             jsonObject.put("Mountain", (!areaCheckList[0]) ? 0 : 1);

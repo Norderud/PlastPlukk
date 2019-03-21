@@ -19,10 +19,14 @@ import no.usn.plastplukk.plastplukk.login.LoginActivity;
 import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
 import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
-
-    public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences prefs;
 
     @Override
@@ -40,14 +44,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-       if (prefs.getString("User", null) == null){
+       if (prefs.getString(USERNAME, null) == null){
             Intent loggInnIntent = new Intent(this, LoginActivity.class);
             startActivity(loggInnIntent);
         }
 
         View headerView = navigationView.getHeaderView(0);
         TextView userId = headerView.findViewById(R.id.user_id_tv);
-        userId.setText(prefs.getString("User", null));
+        userId.setText(prefs.getString(USERNAME, null));
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -92,17 +96,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void Logout(View view) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("User");
+        editor.remove(USERNAME);
         editor.apply();
         Intent newIntent = new Intent(this, MainActivity.class);
         startActivity(newIntent);
     }
     private void clearPreferences(){
-        SharedPreferences prefs = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("Kategori");
-        editor.remove("Underkategori");
-        editor.remove("Størrelse");
+        editor.remove(MAIN_CATEGORY);
+        editor.remove(SECOND_CATEGORY);
+        editor.remove(SIZE);
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)

@@ -12,9 +12,12 @@ import android.view.View;
 
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MOBILDATAVARSEL;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+
 public class CategoryActivity extends AppCompatActivity {
 
-    public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences.Editor editor;
 
     @Override
@@ -26,14 +29,14 @@ public class CategoryActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager.getActiveNetworkInfo() != null) {
             if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_MOBILE
-                    && !prefs.getBoolean("mobilDataVarslet", false)) {
+                    && !prefs.getBoolean(MOBILDATAVARSEL, false)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.mobilDataVarsel)
                         .setPositiveButton(R.string.ok, null)
                         .setNegativeButton("Ikke vis dette igjen", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                editor.putBoolean("mobilDataVarslet", true);
+                                editor.putBoolean(MOBILDATAVARSEL, true);
                                 editor.apply();
                             }
                         })
@@ -48,7 +51,7 @@ public class CategoryActivity extends AppCompatActivity {
         Intent nyIntent = new Intent(this.getBaseContext(), AttributesActivity.class);
 
         // Shared preferences
-        editor.putString("Kategori", kategori);
+        editor.putString(MAIN_CATEGORY, kategori);
         editor.apply();
 
         this.startActivity(nyIntent);
