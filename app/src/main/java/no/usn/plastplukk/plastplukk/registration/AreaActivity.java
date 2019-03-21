@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.R;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+
 public class AreaActivity extends AppCompatActivity {
 
     String kategori, underKategori, størrelse;
@@ -18,7 +23,6 @@ public class AreaActivity extends AppCompatActivity {
     CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, veiCheck,
     industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
     TextView feilMelding;
-    public static final String MY_PREFS_NAME = "MyPrefsFile";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
@@ -27,9 +31,9 @@ public class AreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori =  prefs.getString("Kategori", "Ingen");
-        underKategori = prefs.getString("Underkategori", "Ingen");
-        størrelse = prefs.getString("Størrelse", størrelse);
+        kategori =  prefs.getString(MAIN_CATEGORY, "Ingen");
+        underKategori = prefs.getString(SECOND_CATEGORY, "Ingen");
+        størrelse = prefs.getString(SIZE, størrelse);
         feilMelding = findViewById(R.id.Feilmelding);
         checkSvar = new boolean[10];
     }
