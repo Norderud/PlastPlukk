@@ -45,14 +45,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.4"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:background="@color/colorAccent"
-                android:onClick="openCamera"
-                android:text="@string/apne_kamera"
-                android:textSize="20dp" />
 
             <Button
                 android:layout_marginLeft="10dp"
@@ -68,7 +60,6 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 />
-
         </LinearLayout>
     </LinearLayout>
 
