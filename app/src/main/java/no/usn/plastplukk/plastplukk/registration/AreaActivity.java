@@ -12,13 +12,13 @@ import android.widget.TextView;
 import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
 
 public class AreaActivity extends AppCompatActivity {
 
-    String kategori, underKategori, størrelse;
+    String kategori, type, størrelse;
     boolean[] checkSvar;
     CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, veiCheck,
     industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
@@ -32,7 +32,7 @@ public class AreaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_area);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         kategori =  prefs.getString(MAIN_CATEGORY, "Ingen");
-        underKategori = prefs.getString(SECOND_CATEGORY, "Ingen");
+        type = prefs.getString(TYPE, "Ingen");
         størrelse = prefs.getString(SIZE, størrelse);
         feilMelding = findViewById(R.id.Feilmelding);
         checkSvar = new boolean[10];

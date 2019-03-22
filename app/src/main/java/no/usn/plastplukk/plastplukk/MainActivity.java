@@ -25,7 +25,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMA
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove(MAIN_CATEGORY);
-        editor.remove(SECOND_CATEGORY);
+        editor.remove(TYPE);
         editor.remove(SIZE);
         editor.remove(IMAGEVIEW_HEIGHT);
         editor.remove(IMAGEVIEW_WIDTH);

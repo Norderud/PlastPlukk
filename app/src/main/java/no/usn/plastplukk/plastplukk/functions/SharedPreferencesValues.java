@@ -4,7 +4,7 @@ public abstract class SharedPreferencesValues {
     public final static String MY_PREFS_NAME = "MyPrefsFile";
 
     public final static String MAIN_CATEGORY = "kategori";
-    public final static String SECOND_CATEGORY = "underkategori";
+    public final static String TYPE = "type";
     public final static String SIZE = "storrelse";
     public final static String USERID = "userID";
     public final static String USERNAME = "username";
