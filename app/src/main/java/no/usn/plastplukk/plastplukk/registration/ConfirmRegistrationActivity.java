@@ -32,7 +32,7 @@ import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
@@ -63,7 +63,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         TextView confirmCat = findViewById(R.id.confirmCat);
         confirmCat.append(sharedPreferences.getString(MAIN_CATEGORY, null));
         TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
-        confirmSecondCat.append(sharedPreferences.getString(SECOND_CATEGORY, null));
+        confirmSecondCat.append(sharedPreferences.getString(TYPE, null));
         TextView confirmSize = findViewById(R.id.confirmSize);
         confirmSize.append(sharedPreferences.getString(SIZE, "Kan ikke settes for dette objektet"));
         TextView confirmLocation = findViewById(R.id.confirmLocation);
@@ -160,9 +160,8 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             //Send inn bildet
             jsonObject.put("name", imageFileName);
             jsonObject.put("image", encodedImage);
-            //Send inn kategori, underkategori, størrelse osv.
-            jsonObject.put("maincategory", sharedPreferences.getString(MAIN_CATEGORY, null));
-            jsonObject.put("secondcategory", sharedPreferences.getString(SECOND_CATEGORY, null));
+            //Send inn type, størrelse osv.
+            jsonObject.put("type", sharedPreferences.getString(TYPE, null));
             jsonObject.put("size", sharedPreferences.getString(SIZE, ""));
             jsonObject.put("userID", sharedPreferences.getInt(USERID, 0));
             jsonObject.put("latitude", sharedPreferences.getString(LATITUDE, null));

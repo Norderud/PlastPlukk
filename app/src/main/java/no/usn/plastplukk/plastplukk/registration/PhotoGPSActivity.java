@@ -42,6 +42,9 @@ import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_WIDTH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
@@ -57,6 +60,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
             IMAGE_WIDTH="imageWidth", IMAGE_HEIGHT = "imageHeigth";
     LocationListener locationListener;
     LocationManager locationManager;
+    SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private boolean newLocationRecieved;
 
@@ -69,9 +73,13 @@ public class PhotoGPSActivity extends AppCompatActivity {
         imageView = findViewById(R.id.photoDisplay);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = createLocationListener();
-        editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
+        prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        editor = prefs.edit();
 
+        if (prefs.getString(CURRENT_PHOTO_PATH, "").length() > 0)
+            showPictureOnReturn();
+
+        taBildeKnapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestMultiplePermissions();
@@ -89,10 +97,23 @@ public class PhotoGPSActivity extends AppCompatActivity {
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
                 confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
                 confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+                editor.putInt(IMAGEVIEW_WIDTH, imageView.getWidth());
+                editor.putInt(IMAGEVIEW_HEIGHT, imageView.getHeight());
                 editor.apply();
                 startActivity(confirmPictureIntent);
             }
         });
+    }
+
+    private void showPictureOnReturn(){
+        locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+        imageFileName = prefs.getString(IMAGE_FILE_NAME, imageFileName);
+        taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
+        confirmPictureButton.setVisibility(View.VISIBLE);
+        Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, prefs.getString(CURRENT_PHOTO_PATH, ""),
+                prefs.getInt(IMAGEVIEW_WIDTH, 0), prefs.getInt(IMAGEVIEW_HEIGHT, 0));
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(bitmap);
     }
 
     // Oppretter en locationlistener
@@ -150,6 +171,9 @@ public class PhotoGPSActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString(CURRENT_PHOTO_PATH, currentPhotoPath);
+            editor.putInt(IMAGEVIEW_HEIGHT, imageView.getHeight());
+            editor.putInt(IMAGEVIEW_WIDTH, imageView.getWidth());
+            editor.apply();
         } else {
             recreate();
         }
@@ -166,6 +190,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
             File image = new File(storageDir, imageFileName);
             // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = image.getAbsolutePath();
+            editor.putString(IMAGE_FILE_NAME, imageFileName);
+            editor.apply();
             return image;
         }
         throw new IOException();

@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +45,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     public void registerUser(View view) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getActiveNetwork() == null){
-            Toast.makeText(getApplicationContext(), "Du er ikke koblet til internett.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
             return;
         }
         final String user = etUser.getText().toString();
@@ -72,10 +73,11 @@ public class RegisterUserActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
                     String error = jsonResponse.getString("error");
                     if(success){
+                        Toast.makeText(RegisterUserActivity.this, getString(R.string.registrering_vellykket), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                        RegisterUserActivity.this.startActivity(intent);
                     } else{
-                        alertDialog(getString(R.string.registrering_feilet) + error);
+                        alertDialog(getString(R.string.registrering_feilet) + "\n"+ error);
                     }
 
                 } catch (JSONException e) {
@@ -84,7 +86,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             }
         };
         RegisterRequest registerRequest = new RegisterRequest(user, password1, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(RegisterUserActivity.this);
         queue.add(registerRequest);
     }
 
