@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".registration.CategoryActivity">
+    android:background="@drawable/category_background"
+    tools:context=".registration.CategoryActivity"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -14,6 +16,7 @@
         android:layout_weight=".1"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center_horizontal"
+        android:textColor="#FFF"
         android:text="@string/velg_plasttype"
         android:textSize="@dimen/VelgPlastTekst" />
 
@@ -43,6 +46,7 @@
                 android:drawableTop="@drawable/bagicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/poser"
                 android:textSize="@dimen/ButtonTextSize" />
 
@@ -56,6 +60,7 @@
                 android:drawableTop="@drawable/bottleicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/flasker_og_beholdere"
                 android:textSize="@dimen/ButtonTextSize" />
 
@@ -69,6 +74,7 @@
                 android:drawableTop="@drawable/toolsicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/redskap"
                 android:textSize="@dimen/ButtonTextSize" />
 
@@ -91,6 +97,7 @@
                 android:drawableTop="@drawable/emballasjeicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/emballasje"
                 android:textSize="@dimen/ButtonTextSize" />
 
@@ -104,6 +111,7 @@
                 android:drawableTop="@drawable/forkandknifeicon"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/servise"
                 android:textSize="@dimen/ButtonTextSize" />
 
@@ -116,6 +124,7 @@
                 android:background="@drawable/buttons"
                 android:fontFamily="@font/quicksand_light"
                 android:onClick="velgEgenskaper"
+                android:textColor="#FFF"
                 android:text="@string/diverse"
                 android:textSize="@dimen/ButtonTextSize" />
         </LinearLayout>
