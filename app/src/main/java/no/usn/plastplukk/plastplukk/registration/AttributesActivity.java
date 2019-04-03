@@ -15,7 +15,7 @@ import android.widget.TextView;
 import no.usn.plastplukk.plastplukk.R;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SECOND_CATEGORY;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
@@ -24,7 +24,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZ
 public class AttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
-    private String kategori, underKategori, størrelse;
+    private String kategori, type, størrelse;
     private TextView feilMelding, overTekst;
     private boolean visible = false;
 
@@ -56,7 +56,7 @@ public class AttributesActivity extends AppCompatActivity {
 
     // Åpner neste aktivitet - area
     public void openArea(View view){
-        if (underKategori.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
+        if (type.equals("Velg type..") || (størrelse.equals("Velg størrelse..") && visible)){
             feilMelding.setText(getString(R.string.fyll_ut_alle_felt));
             return;
         }
@@ -128,8 +128,8 @@ public class AttributesActivity extends AppCompatActivity {
                     layout.setVisibility(View.INVISIBLE);
                     editor.remove(SIZE);
                 }
-                underKategori = dropdownSecondCategory.getSelectedItem().toString();
-                editor.putString(SECOND_CATEGORY, underKategori);
+                type = dropdownSecondCategory.getSelectedItem().toString();
+                editor.putString(TYPE, type);
                 editor.apply();
             }
 
@@ -154,7 +154,7 @@ public class AttributesActivity extends AppCompatActivity {
 
     // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
-        String typeTemp = prefs.getString(SECOND_CATEGORY, "Tom");
+        String typeTemp = prefs.getString(TYPE, "Tom");
 
         if (typeTemp.equals("Tom"))
             return;

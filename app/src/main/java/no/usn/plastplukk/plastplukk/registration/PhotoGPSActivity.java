@@ -44,6 +44,7 @@ import no.usn.plastplukk.plastplukk.R;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_WIDTH;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
@@ -106,7 +107,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
 
     private void showPictureOnReturn(){
         locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
-        imageFileName = prefs.getString("ImageFileName", imageFileName);
+        imageFileName = prefs.getString(IMAGE_FILE_NAME, imageFileName);
         taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
         confirmPictureButton.setVisibility(View.VISIBLE);
         Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, prefs.getString(CURRENT_PHOTO_PATH, ""),
@@ -189,7 +190,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
             File image = new File(storageDir, imageFileName);
             // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = image.getAbsolutePath();
-            editor.putString("ImageFileName", imageFileName);
+            editor.putString(IMAGE_FILE_NAME, imageFileName);
             editor.apply();
             return image;
         }

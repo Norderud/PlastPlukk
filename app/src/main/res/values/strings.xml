@@ -94,4 +94,5 @@
     <string name="mobilDataVarsel">Du bruker nå mobildata. Dette kan medføre ekstra kostnader ved bruk av denne appen.</string>
     <string name="ok">OK</string>
     <string name="gotowebpage">Gå til nettsted</string>
+    <string name="registrering_vellykket">Registrering Vellykket!</string>
 </resources>
