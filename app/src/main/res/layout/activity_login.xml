@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/speilbilde"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".login.LoginActivity">
@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.9"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.80"
+            android:layout_weight="0.75"
             android:gravity="center"
             android:orientation="vertical"
             android:weightSum="1">
@@ -64,30 +64,30 @@
 
 
             <Button
-                android:layout_marginTop="10dp"
                 android:id="@+id/bLogin"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/login_buttons_selector"
+                android:fontFamily="@font/comfortaa_bold"
                 android:onClick="logIn"
                 android:text="@string/login"
-                android:textColor="@color/colorWhite"
-                android:fontFamily="@font/comfortaa_bold"
-                />
-
-            <TextView
-                android:id="@+id/registerLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="sendToRegister"
-                android:textColor="@color/colorWhite"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:text="@string/registrer_her" />
+                android:textColor="@color/colorWhite" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="bottom"
+        android:onClick="sendToRegister"
+        android:text="@string/registrer_her"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp" />
 </LinearLayout><!--
     Fant textinputlayout kode her:
     https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password

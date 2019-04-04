@@ -4,8 +4,8 @@
     <color name="colorDark">#303328</color>
     <color name="colorAccent">#a1e44d</color>
     <color name="colorPrimaryBlue">#19647e</color>
-    <color name="colorWhite">#eee5e9</color>
+    <color name="colorWhite">#FFF</color>
     <color name="colorWhiteOpacity">#B3eee5e9</color>
-    <color name="blackOpacity">#33000000</color>
+    <color name="blackOpacity">#80000000</color>
 
 </resources>

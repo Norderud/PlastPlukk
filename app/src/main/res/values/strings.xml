@@ -27,7 +27,7 @@
     <string name="brukernavn">Brukernavn</string>
     <string name="passord">Passord</string>
     <string name="login">Login</string>
-    <string name="registrer_her">Registrer her</string>
+    <string name="registrer_her">Ikke bruker? Registrer her!</string>
     <string name="log_out">Log out</string>
     <string name="gjenta_passord">Gjenta passord</string>
     <string name="registrer">Registrer</string>
