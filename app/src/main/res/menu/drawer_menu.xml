@@ -16,5 +16,4 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/innstillinger" />
     </group>
-
 </menu>
