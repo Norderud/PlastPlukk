@@ -88,10 +88,10 @@ public class PhotoGPSActivity extends AppCompatActivity {
         confirmPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!newLocationRecieved){
+                /*if (!newLocationRecieved){
                     Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
                 confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);

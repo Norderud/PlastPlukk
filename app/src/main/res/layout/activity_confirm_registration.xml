@@ -10,12 +10,13 @@
     <TextView
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_weight="10"
-        android:text="Dette har du valgt til registrering:"
-        android:textSize="24dp"
+        android:layout_weight="8"
+        android:text="@string/your_registration"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
          />
     <ImageView
         android:id="@+id/photoConfirmDisplay"
@@ -23,48 +24,66 @@
         android:layout_height="0dp"
         android:layout_weight="60"/>
     <TextView
+        android:layout_marginStart="60dp"
         android:id="@+id/confirmCat"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="5"
-        android:text="Kategori: "
-        android:textSize="14dp"
-        android:textStyle="bold"
+        android:text="@string/category"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
         />
     <TextView
+        android:layout_marginStart="60dp"
         android:id="@+id/confirmSecondCat"
         android:layout_height="0dp"
         android:layout_width="match_parent"
+        android:gravity="center_vertical"
         android:layout_weight="5"
-        android:text="Under Kategori"
-        android:textSize="14dp"
-        android:textStyle="bold"
+        android:text="@string/type"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <TextView
+        android:layout_marginStart="60dp"
+        android:id="@+id/confirmLocation"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_weight="5"
+        android:text="@string/location"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
         />
     <TextView
+        android:layout_marginStart="60dp"
         android:id="@+id/confirmSize"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="5"
-        android:text="Størrelse: "
-        android:textSize="14dp"
-        android:textStyle="bold"
+        android:text="@string/size"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
         />
-    <TextView
-        android:id="@+id/confirmLocation"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:text="Lokasjon"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        />
-    <Button
-        android:id="@+id/confirmButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:text="Bekreft og send inn din registrering, takk!"
-        android:gravity="center"
-        android:textAlignment="center">
-    </Button>
+        android:layout_weight="12"
+        android:weightSum="1"
+        android:gravity="center">
+        <Button
+            android:id="@+id/confirmButton"
+            android:text="@string/confirm_registration"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="@drawable/button_selector"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="0.5">
+        </Button>
+    </LinearLayout>
+
 </LinearLayout>

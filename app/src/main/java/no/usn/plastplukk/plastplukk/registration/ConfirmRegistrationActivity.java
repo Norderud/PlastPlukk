@@ -65,7 +65,11 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
         confirmSecondCat.append(sharedPreferences.getString(TYPE, null));
         TextView confirmSize = findViewById(R.id.confirmSize);
-        confirmSize.append(sharedPreferences.getString(SIZE, "Kan ikke settes for dette objektet"));
+        if (sharedPreferences.getString(SIZE, null) == null){
+            confirmSize.setVisibility(View.INVISIBLE);
+        }else{
+            confirmSize.append(sharedPreferences.getString(SIZE, "Ikke satt"));
+        }
         TextView confirmLocation = findViewById(R.id.confirmLocation);
         confirmLocation.append(getLocations());
 
