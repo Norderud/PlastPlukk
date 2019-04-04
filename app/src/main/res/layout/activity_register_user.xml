@@ -21,9 +21,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="0.80"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="1">
 
             <android.support.design.widget.TextInputLayout
@@ -31,8 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".10"
-                android:textColorHint="@color/colorWhiteOpacity"
-                >
+                android:textColorHint="@color/colorWhiteOpacity">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/etUser"
@@ -40,9 +39,8 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/brukernavn"
-                    android:textColor="@color/colorWhite"
                     android:paddingStart="10dp"
-                     />
+                    android:textColor="@color/colorWhite" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -62,6 +60,7 @@
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/passord"
                     android:inputType="textPassword"
+                    android:textColor="@color/colorWhite"
                     android:paddingStart="10dp" />
             </android.support.design.widget.TextInputLayout>
 
@@ -81,17 +80,20 @@
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/gjenta_passord"
                     android:inputType="textPassword"
+                    android:textColor="@color/colorWhite"
                     android:paddingStart="10dp" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:layout_marginTop="10dp"
                 android:id="@+id/bRegister"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/login_buttons_selector"
                 android:onClick="registerUser"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/buttons"
                 android:text="@string/registrer"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/comfortaa_bold"
                 />
         </LinearLayout>
     </LinearLayout>

@@ -40,6 +40,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         etPassword2 = findViewById(R.id.etPassword2);
 
         bRegister = findViewById(R.id.bRegister);
+
     }
 
     public void registerUser(View view) {
