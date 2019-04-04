@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"
+        android:layout_weight="0.8"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -30,17 +30,19 @@
                 android:id="@+id/etUserLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".15"
-                android:textColorHint="@color/colorWhiteOpacity">
+                android:layout_weight=".10"
+                android:textColorHint="@color/colorWhiteOpacity"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/etUser"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/brukernavn"
-                    android:inputType="textPassword"
-                    android:padding="10dp" />
+                    android:textColor="@color/colorWhite"
+                    android:paddingStart="10dp"
+                     />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -48,7 +50,7 @@
                 android:id="@+id/etPasswordLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".15"
+                android:layout_weight=".10"
                 android:textColorHint="@color/colorWhiteOpacity"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/colorWhite">
@@ -56,7 +58,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/etPassword1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/passord"
                     android:inputType="textPassword"
@@ -67,7 +69,7 @@
                 android:id="@+id/etPasswordLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".15"
+                android:layout_weight=".10"
                 android:textColorHint="@color/colorWhiteOpacity"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/colorWhite">
@@ -75,7 +77,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/etPassword2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/gjenta_passord"
                     android:inputType="textPassword"
@@ -87,7 +89,10 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:onClick="registerUser"
-                android:text="@string/registrer" />
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/buttons"
+                android:text="@string/registrer"
+                />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
