@@ -4,61 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     android:orientation="vertical"
     android:padding="15dp"
     android:weightSum="1"
     tools:context=".login.RegisterUserActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etUserLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
-        android:layout_weight=".1">
+        android:layout_weight="0.6"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/brukernavn" />
-    </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.80"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etUserLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".15"
+                android:textColorHint="@color/colorWhiteOpacity">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/brukernavn"
+                    android:inputType="textPassword"
+                    android:padding="10dp" />
+            </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etPasswordLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        app:passwordToggleEnabled="true">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etPasswordLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".15"
+                android:textColorHint="@color/colorWhiteOpacity"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorWhite">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etPassword1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/passord"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etPassword1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/passord"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp" />
+            </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etPasswordLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        app:passwordToggleEnabled="true">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etPasswordLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".15"
+                android:textColorHint="@color/colorWhiteOpacity"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorWhite">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etPassword2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/gjenta_passord"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etPassword2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/gjenta_passord"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp" />
+            </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/bRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="registerUser"
-        android:text="@string/registrer" />
-
+            <Button
+                android:id="@+id/bRegister"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:onClick="registerUser"
+                android:text="@string/registrer" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -5,5 +5,7 @@
     <color name="colorAccent">#a1e44d</color>
     <color name="colorPrimaryBlue">#19647e</color>
     <color name="colorWhite">#eee5e9</color>
+    <color name="colorWhiteOpacity">#B3eee5e9</color>
+    <color name="blackOpacity">#33000000</color>
 
 </resources>
