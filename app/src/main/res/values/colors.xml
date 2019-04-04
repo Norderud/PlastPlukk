@@ -7,5 +7,6 @@
     <color name="colorWhite">#FFF</color>
     <color name="colorWhiteOpacity">#B3eee5e9</color>
     <color name="blackOpacity">#80000000</color>
+    <color name="colorBlack">#000000</color>
 
 </resources>
