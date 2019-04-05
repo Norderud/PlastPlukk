@@ -90,17 +90,19 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         };
 
         //Set the values that the user has selected.
-        TextView confirmCat = findViewById(R.id.confirmCat);
+        TextView confirmCat = findViewById(R.id.confirmCatEdit);
         confirmCat.append(sharedPreferences.getString(MAIN_CATEGORY, null));
-        TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
+        TextView confirmSecondCat = findViewById(R.id.confirmSecondCatEdit);
         confirmSecondCat.append(sharedPreferences.getString(TYPE, null));
+        TextView confirmSizeEdit = findViewById(R.id.confirmSizeEdit);
         TextView confirmSize = findViewById(R.id.confirmSize);
         if (sharedPreferences.getString(SIZE, null) == null){
             confirmSize.setVisibility(View.INVISIBLE);
+            confirmSizeEdit.setVisibility(View.INVISIBLE);
         }else{
-            confirmSize.append(sharedPreferences.getString(SIZE, "Ikke satt"));
+            confirmSizeEdit.append(sharedPreferences.getString(SIZE, "Ikke satt"));
         }
-        TextView confirmLocation = findViewById(R.id.confirmLocation);
+        TextView confirmLocation = findViewById(R.id.confirmLocationEdit);
         confirmLocation.append(getLocations());
 
 
@@ -164,6 +166,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     }
 
     private String getLocations() {
+
         SharedPreferences sharedPreferences = getSharedPreferences(
                 MY_PREFS_NAME, MODE_PRIVATE);
         StringBuilder result = new StringBuilder();
