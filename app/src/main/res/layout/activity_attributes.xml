@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/velg_plasttype"
             android:textColor="#FFF"
+            android:gravity="center_vertical"
             android:textSize="18dp"/>
         <Spinner
             android:id="@+id/spinnerType"
@@ -42,7 +43,6 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"
-            android:layout_gravity="center"
             android:gravity="center_horizontal" />
     </LinearLayout>
 

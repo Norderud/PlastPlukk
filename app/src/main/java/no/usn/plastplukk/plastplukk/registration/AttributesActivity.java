@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -46,9 +47,6 @@ public class AttributesActivity extends AppCompatActivity {
         feilMelding = findViewById(R.id.Feilmelding);
         overTekst = findViewById(R.id.tekst);
         overTekst.setText(kategori);
-
-        Log.e("Longitude", ""+prefs.getString(LONGITUDE, null));
-        Log.e("Latitude", ""+prefs.getString(LATITUDE, null));
 
         lagDropDown();
         selectOnReturn();
