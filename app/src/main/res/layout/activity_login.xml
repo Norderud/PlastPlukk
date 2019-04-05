@@ -87,7 +87,9 @@
         android:text="@string/registrer_her"
         android:textColor="@color/colorWhite"
         android:textSize="15dp" />
-</LinearLayout><!--
+</LinearLayout>
+
+    <!--
     Fant textinputlayout kode her:
     https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password
 -->
