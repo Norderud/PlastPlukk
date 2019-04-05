@@ -1,132 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@drawable/login_background"
-    tools:context=".registration.CategoryActivity"
-    >
+    tools:context=".registration.CategoryActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight=".1"
-        android:fontFamily="@font/comfortaa_bold"
-        android:gravity="center_horizontal"
-        android:textColor="#FFF"
-        android:text="@string/velg_plasttype"
-        android:textSize="@dimen/VelgPlastTekst" />
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background2"/>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".8"
-        android:layout_marginLeft="@dimen/VelgPlastMargin"
-        android:layout_marginTop="@dimen/VelgPlastMargin"
-        android:layout_marginRight="@dimen/VelgPlastMargin">
+        android:layout_height="match_parent"
+        android:background="@drawable/background2"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context=".registration.CategoryActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight=".1"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/velg_plasttype"
+            android:textColor="#FFF"
+            android:textSize="@dimen/VelgPlastTekst" />
 
         <LinearLayout
-            android:layout_weight=".2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:weightSum="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/VelgPlastMargin"
+            android:layout_marginTop="@dimen/VelgPlastMargin"
+            android:layout_marginRight="@dimen/VelgPlastMargin"
+            android:layout_weight=".8"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/PoserKnapp"
-                android:tag="Pose"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:drawableTop="@drawable/bagicon"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/poser"
-                android:textSize="@dimen/ButtonTextSize" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <Button
-                android:id="@+id/FlaskerKnapp"
-                android:tag="Flaske"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:drawableTop="@drawable/bottleicon"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/flasker_og_beholdere"
-                android:textSize="@dimen/ButtonTextSize" />
+                <Button
+                    android:id="@+id/PoserKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/bagicon"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Pose"
+                    android:text="@string/poser"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
 
-            <Button
-                android:id="@+id/RedskapKnapp"
-                android:tag="Redskap"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:drawableTop="@drawable/toolsicon"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/redskap"
-                android:textSize="@dimen/ButtonTextSize" />
+                <Button
+                    android:id="@+id/FlaskerKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/bottleicon"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Flaske"
+                    android:text="@string/flasker_og_beholdere"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/RedskapKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/toolsicon"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Redskap"
+                    android:text="@string/redskap"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
 
-        <LinearLayout
-            android:layout_weight=".2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/EmballasjeKnapp"
-                android:tag="Emballasje"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:drawableTop="@drawable/emballasjeicon"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/emballasje"
-                android:textSize="@dimen/ButtonTextSize" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <Button
-                android:id="@+id/ServiseKnapp"
-                android:tag="Servise"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:drawableTop="@drawable/forkandknifeicon"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/servise"
-                android:textSize="@dimen/ButtonTextSize" />
+                <Button
+                    android:id="@+id/EmballasjeKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/emballasjeicon"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Emballasje"
+                    android:text="@string/emballasje"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
 
-            <Button
-                android:id="@+id/DiverseKnapp"
-                android:tag="Diverse"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".33"
-                android:background="@drawable/buttons"
-                android:fontFamily="@font/quicksand_light"
-                android:onClick="velgEgenskaper"
-                android:textColor="#FFF"
-                android:text="@string/diverse"
-                android:textSize="@dimen/ButtonTextSize" />
+                <Button
+                    android:id="@+id/ServiseKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/forkandknifeicon"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Servise"
+                    android:text="@string/servise"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
+
+                <Button
+                    android:id="@+id/DiverseKnapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/button_selector"
+                    android:fontFamily="@font/quicksand_light"
+                    android:onClick="velgEgenskaper"
+                    android:tag="Diverse"
+                    android:text="@string/diverse"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/ButtonTextSize" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>
