@@ -1,11 +1,20 @@
 package no.usn.plastplukk.plastplukk.registration;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -48,6 +57,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     private String imageFileName;
     String photoPath;
     Bitmap bitmap;
+    private LocationListener locationListener;
+    private LocationManager locationManager;
+    private boolean newLocationRecieved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +69,26 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        //Set the values that the user has selected.
         SharedPreferences sharedPreferences = getSharedPreferences(
                 MY_PREFS_NAME, MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                editor.putString(LATITUDE, ""+location.getLatitude());
+                editor.putString(LONGITUDE, ""+location.getLongitude());
+                newLocationRecieved = true;
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) { }
+            @Override
+            public void onProviderEnabled(String provider) { }
+            @Override
+            public void onProviderDisabled(String provider) { }
+        };
+
+        //Set the values that the user has selected.
         TextView confirmCat = findViewById(R.id.confirmCat);
         confirmCat.append(sharedPreferences.getString(MAIN_CATEGORY, null));
         TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
@@ -73,8 +102,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         TextView confirmLocation = findViewById(R.id.confirmLocation);
         confirmLocation.append(getLocations());
 
-        //Find picture and place in imageview
 
+
+        //Find picture and place in imageview
         imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
         photoPath = bundle.getString(PhotoGPSActivity.PHOTOPATH);
@@ -93,6 +123,15 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                        alertDialog("Aktiver GPS for å fortsette.", "Endre innstillinger", Settings.ACTION_LOCATION_SOURCE_SETTINGS, null);
+                        return;
+                    }
+                    if (!newLocationRecieved) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    editor.apply();
                     uploadRegistration(bitmap);
                     Intent registrationConfirmed = new Intent(
                             ConfirmRegistrationActivity.this,
@@ -106,6 +145,21 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStop(){
+        locationManager.removeUpdates(locationListener);
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+        }
+        super.onResume();
     }
 
     private String getLocations() {
@@ -211,5 +265,23 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         rQueue = Volley.newRequestQueue(this);
         rQueue.add(jsonObjectRequest);
 
+    }
+
+    private void alertDialog(String message, String buttonName, final String settings, final Uri uri){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setNegativeButton(buttonName, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (settings == null)
+                            return;
+                        Intent intent = new Intent(settings);
+                        if (uri != null)
+                            intent.setData(uri);
+                        startActivityForResult(intent, 233);
+                    }
+                })
+                .create()
+                .show();
     }
 }
