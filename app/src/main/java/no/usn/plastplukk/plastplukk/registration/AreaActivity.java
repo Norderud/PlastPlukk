@@ -29,6 +29,7 @@ public class AreaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("");
         setContentView(R.layout.activity_area);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         kategori =  prefs.getString(MAIN_CATEGORY, "Ingen");

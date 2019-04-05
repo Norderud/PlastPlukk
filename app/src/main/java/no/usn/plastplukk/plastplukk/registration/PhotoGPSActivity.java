@@ -67,6 +67,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gps);
+        getSupportActionBar().setTitle("");
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);

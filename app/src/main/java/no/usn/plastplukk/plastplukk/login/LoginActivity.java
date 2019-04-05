@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         etUser = findViewById(R.id.etUserLogin);
         etPassword1 = findViewById(R.id.etPasswordLogin);
     }
