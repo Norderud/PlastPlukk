@@ -185,7 +185,6 @@ public class PhotoGPSActivity extends AppCompatActivity {
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
                             Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
                             dispatchTakePictureIntent();
                         }
