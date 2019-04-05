@@ -1,66 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
     tools:context=".MainActivity">
 
     <ImageView
+        android:id="@+id/home_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/forside_bilde" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
-        android:background="@color/colorDark"
-        android:paddingStart="10dp"
-        android:text="@string/plast_plukk"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background2"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.92"
-        android:background="@color/colorPrimary"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
-            android:text="@string/forside_text" />
+            android:layout_weight="0.18"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="PlastPlukk"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/my_title_bg"
+            android:textSize="60sp"
+            android:backgroundTint="#30000000"/>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.4"
-            android:orientation="horizontal">
+            android:layout_weight="0.45" />
 
-            <Button
-                android:layout_marginLeft="10dp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="0.2"
-                android:background="@color/colorDark"
-                android:drawableTop="@drawable/ic_add_circle"
-                android:onClick="registrerPlast"
-                android:padding="10dp"
-                android:text="@string/ny_plast"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                />
-        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.18"
+            android:drawableTop="@drawable/ic_add_circle"
+            android:fontFamily="@font/comfortaa_bold"
+            android:onClick="registrerPlast"
+            android:text="@string/ny_plast"
+            android:textColor="@color/colorWhite"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="24sp"
+            android:background="@drawable/button_selector"/>
+
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

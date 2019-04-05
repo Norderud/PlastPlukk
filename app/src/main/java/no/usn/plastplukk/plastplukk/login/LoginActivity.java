@@ -94,6 +94,5 @@ public class LoginActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.prov_igjen, null)
                 .create()
                 .show();
-
     }
 }

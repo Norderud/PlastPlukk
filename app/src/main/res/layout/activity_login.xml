@@ -4,62 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     android:orientation="vertical"
-    android:padding="15dp"
     android:weightSum="1"
     tools:context=".login.LoginActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etUserLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".1"
-        android:layout_marginBottom="2dp">
+        android:layout_weight="0.9"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etUserLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/brukernavn"
-            />
-    </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etUserLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".10"
+                android:textColorHint="@color/colorWhiteOpacity">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etUserLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/brukernavn"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/colorWhite" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".10"
+                android:textColorHint="@color/colorWhiteOpacity"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorWhite">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etPasswordLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="@string/passord"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/colorWhite" />
+            </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etPasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        app:passwordToggleEnabled="true">
+            <Button
+                android:id="@+id/bLogin"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_buttons_selector"
+                android:fontFamily="@font/comfortaa_bold"
+                android:onClick="logIn"
+                android:text="@string/login"
+                android:textColor="@color/colorWhite" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etPasswordLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/passord"
-            android:inputType="textPassword"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-
-    <Button
-        android:id="@+id/bLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:onClick="logIn"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/registerLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="bottom"
         android:onClick="sendToRegister"
-        android:text="@string/registrer_her" />
-
-</LinearLayout>
-
-<!--
+        android:text="@string/registrer_her"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp" />
+</LinearLayout><!--
     Fant textinputlayout kode her:
     https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password
 -->

@@ -27,7 +27,7 @@
     <string name="brukernavn">Brukernavn</string>
     <string name="passord">Passord</string>
     <string name="login">Login</string>
-    <string name="registrer_her">Registrer her</string>
+    <string name="registrer_her">Ikke bruker? Registrer her!</string>
     <string name="log_out">Log out</string>
     <string name="gjenta_passord">Gjenta passord</string>
     <string name="registrer">Registrer</string>
@@ -38,7 +38,7 @@
     <string name="diverse">Diverse</string>
     <string name="plast_plukk">Plast Plukk</string>
     <string name="apne_kamera">Åpne kamera</string>
-    <string name="ny_plast">Ny plast</string>
+    <string name="ny_plast">Plukk</string>
     <string name="forside">Forside</string>
     <string name="min_profil">Min profil</string>
     <string name="innstillinger">Innstillinger</string>
@@ -95,4 +95,10 @@
     <string name="ok">OK</string>
     <string name="gotowebpage">Gå til nettsted</string>
     <string name="registrering_vellykket">Registrering Vellykket!</string>
+    <string name="your_registration">Dine valg: </string>
+    <string name="category">Kategori: </string>
+    <string name="type">Type: </string>
+    <string name="size">Størrelse: </string>
+    <string name="location">Lokasjon: </string>
+    <string name="confirm_registration">Send inn!</string>
 </resources>
