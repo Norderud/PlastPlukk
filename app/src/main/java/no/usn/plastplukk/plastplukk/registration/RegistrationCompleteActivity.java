@@ -18,6 +18,8 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAI
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 
 public class RegistrationCompleteActivity extends AppCompatActivity {
 
@@ -63,6 +65,9 @@ public class RegistrationCompleteActivity extends AppCompatActivity {
         editor.remove(IMAGEVIEW_WIDTH);
         editor.remove(CURRENT_PHOTO_PATH);
         editor.remove(IMAGE_FILE_NAME);
+        editor.remove(LATITUDE);
+        editor.remove(LONGITUDE);
+
 
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)
