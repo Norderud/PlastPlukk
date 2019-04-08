@@ -194,7 +194,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_language_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_photo_camera_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -204,7 +204,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_webpage" />
+                            <entry key="outputName" value="ic_photo_camera_black_24dp" />
                             <entry key="sourceFile" value="C:\Users\Danay" />
                           </map>
                         </option>

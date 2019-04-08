@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".registration.AreaActivity">
+    tools:context=".registration.AreaActivity"
+    android:gravity="center_horizontal">
 
     <LinearLayout
         android:id="@+id/checkBoxes"
@@ -155,10 +156,11 @@
         android:layout_weight=".1"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight=".17"
-        android:text="@string/ga_videre"
+        android:text="@string/ta_bilde"
+        android:drawableStart="@drawable/ic_photo_camera_black_24dp"
         android:textSize="@dimen/ButtonTextSize"
         android:onClick="openKamera"/>
 
