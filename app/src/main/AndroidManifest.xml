@@ -22,7 +22,10 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".registration.RegistrationCompleteActivity"></activity>
+        <activity android:name=".registration.RegistrationCompleteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"

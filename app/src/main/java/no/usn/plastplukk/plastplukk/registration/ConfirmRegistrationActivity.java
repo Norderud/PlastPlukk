@@ -174,6 +174,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         boolean[] areaCheckList = AreaActivity.loadArray(AREA_ARRAY, sharedPreferences);
         for (int i = 0; i < areaCheckList.length; i++) {
             if (areaCheckList[i]) {
+                if (result.toString().length() > 0){
+                    result.append(", ");
+                }
                 switch (i) {
                     case 0:
                         result.append(getString(R.string.fjell));
