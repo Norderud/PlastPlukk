@@ -61,7 +61,8 @@
         <activity
             android:name=".registration.AttributesActivity"
             android:parentActivityName=".registration.CategoryActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.registration.CategoryActivity" />
@@ -69,7 +70,8 @@
         <activity
             android:name=".registration.AreaActivity"
             android:parentActivityName=".registration.AttributesActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.registration.AttributesActivity" />
