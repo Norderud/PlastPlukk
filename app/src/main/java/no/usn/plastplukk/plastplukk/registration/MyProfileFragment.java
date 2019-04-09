@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,14 +23,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import no.usn.plastplukk.plastplukk.R;
-import no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues;
 
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
 
 public class MyProfileFragment extends Fragment {
     private RequestQueue rQueue;
@@ -43,10 +38,12 @@ public class MyProfileFragment extends Fragment {
         final TextView yearSum = v.findViewById(R.id.thisYearRegSum);
         final TextView monthSum = v.findViewById(R.id.thisMonthRegSum);
         final TextView daySum = v.findViewById(R.id.todayRegSum);
+        TextView brukernavnText = v.findViewById(R.id.profile_username);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        brukernavnText.setText(sharedPreferences.getString(USERNAME, ""));
         JSONObject jsonObject = new JSONObject();
 
         try {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
             if (sharedPreferences.getInt(USERID, -1) != -1) {
 
                 //Send inn bildet
