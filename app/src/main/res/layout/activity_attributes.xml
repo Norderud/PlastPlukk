@@ -135,9 +135,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".17"
+            android:layout_gravity="bottom"
+            android:layout_weight=".10"
+            android:background="@drawable/login_buttons_selector"
             android:onClick="openArea"
+            android:padding="10dp"
             android:text="@string/ga_videre"
+            android:drawableRight="@drawable/next_arrow"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/ButtonTextSize" />
 
     </LinearLayout>

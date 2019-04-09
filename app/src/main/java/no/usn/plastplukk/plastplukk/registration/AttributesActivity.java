@@ -103,7 +103,7 @@ public class AttributesActivity extends AppCompatActivity {
         dropdownSecondCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String valget = (String) dropdownSecondCategory.getSelectedItem().toString();
+                String valget = dropdownSecondCategory.getSelectedItem().toString();
                 String strTemp = prefs.getString(SIZE, "Tom");
                 if (valget.equals("Plastfilm")) {
                     str[1] = "Mindre enn knyttneve";
@@ -155,9 +155,16 @@ public class AttributesActivity extends AppCompatActivity {
     // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
         String typeTemp = prefs.getString(TYPE, "Tom");
+        boolean exists = false;
+        for (int i=1; i<typer.length; i++)
+            if (typeTemp.equals(typer[i]))
+                exists = true;
 
         if (typeTemp.equals("Tom"))
             return;
+        if (!exists)
+            return;
+
 
         dropdownSecondCategory.setSelection(((ArrayAdapter) dropdownSecondCategory.getAdapter()).getPosition(typeTemp));
     }
