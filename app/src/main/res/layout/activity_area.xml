@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@drawable/background4"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".registration.AreaActivity">
@@ -221,7 +221,7 @@
         android:drawableRight="@drawable/next_arrow"
         android:onClick="openKamera"
         android:padding="10dp"
-        android:text="@string/ta_bilde"
+        android:text="@string/ga_videre"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/ButtonTextSize" />
 </LinearLayout>
