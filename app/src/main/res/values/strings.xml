@@ -19,7 +19,7 @@
 
 
     <string name="ga_videre">Gå videre </string>
-    <string name="velg_egenskaper">Velg egenskaper</string>
+    <string name="velg_detaljer">Velg detaljer</string>
     <string name="velg_plasttype">Velg plasttype:</string>
     <string name="velg_storrelse">Velg størrelse:</string>
     <string name="ta_bilde">Ta bilde</string>
@@ -62,7 +62,7 @@
     <string name="liten_plastpose">Liten plastpose</string>
     <string name="godteriemballasje">Godteriemballasje</string>
     <string name="diverse_matemballasje">Diverse matemballasje</string>
-    <string name="nettstrompe">Nettstrømpe (til f.eks. grønnsaker)</string>
+    <string name="nettstrompe">Nettstrømpe</string>
     <string name="plastfilm">Plastfilm</string>
     <string name="flaske">Flaske</string>
     <string name="plastflaske">Plastflaske</string>

@@ -60,7 +60,6 @@ public class AreaActivity extends AppCompatActivity {
         }
         if (!anyAreaChosen)
             toastError(getString(R.string.velg_minst_en_område));
-        //feilMelding.setText(getString(R.string.velg_minst_en_område));
     }
 
     private void toastError(String message) {
@@ -150,6 +149,12 @@ public class AreaActivity extends AppCompatActivity {
         dyrketMarkLandbrukCheck.setChecked(checkSvar[8]);
         boligCheck = findViewById(R.id.boligCheck);
         boligCheck.setChecked(checkSvar[9]);
+
+        for(boolean b: checkSvar){
+            if(b){
+                antChecked++;
+            }
+        }
     }
 
     // Lagrer checksvar arrayen som unike boolverdier i sharedprefs

@@ -21,8 +21,12 @@
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorWhite</item>
     </style>
+    <style name="CustomSpinner" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@color/blackOpacity</item>
+    </style>
+
     <style name="MyCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:colorControlNormal">#ffd600</item>
+        <item name="android:colorControlNormal">@color/colorWhite</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
         <item name="android:colorControlHighlight">#c51162</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
