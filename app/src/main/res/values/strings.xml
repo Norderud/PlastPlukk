@@ -19,7 +19,7 @@
 
 
     <string name="ga_videre">Gå videre </string>
-    <string name="velg_egenskaper">Velg egenskaper</string>
+    <string name="velg_detaljer">Velg detaljer</string>
     <string name="velg_plasttype">Velg plasttype:</string>
     <string name="velg_storrelse">Velg størrelse:</string>
     <string name="ta_bilde">Ta bilde</string>

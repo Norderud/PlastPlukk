@@ -32,7 +32,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight=".1"
             android:gravity="center_horizontal"
-            android:text="@string/velg_egenskaper"
+            android:text="@string/velg_detaljer"
             android:textColor="#FFF"
             android:textSize="@dimen/VelgPlastTekst" />
 

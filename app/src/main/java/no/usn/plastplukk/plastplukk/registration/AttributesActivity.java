@@ -27,7 +27,7 @@ public class AttributesActivity extends AppCompatActivity {
 
     private String[] typer, str;    // Valgene til dropdown menyene
     private String kategori, type, størrelse;
-    private TextView feilMelding, overTekst;
+    private TextView feilMelding;
     private boolean visible = false;
 
     private AppCompatSpinner dropdownSecondCategory, dropdownSize;
@@ -47,8 +47,6 @@ public class AttributesActivity extends AppCompatActivity {
         kategori = prefs.getString(MAIN_CATEGORY, "Ingen");
 
         feilMelding = findViewById(R.id.Feilmelding);
-        overTekst = findViewById(R.id.tekst);
-        overTekst.setText(kategori);
 
         lagDropDown();
         selectOnReturn();
