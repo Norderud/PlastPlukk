@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import no.usn.plastplukk.plastplukk.R;
 
@@ -19,6 +21,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZ
 public class AreaActivity extends AppCompatActivity {
 
     String kategori, type, størrelse;
+    int antChecked;
     boolean[] checkSvar;
     CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, veiCheck,
             industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
@@ -37,6 +40,7 @@ public class AreaActivity extends AppCompatActivity {
         størrelse = prefs.getString(SIZE, størrelse);
         feilMelding = findViewById(R.id.Feilmelding);
         checkSvar = new boolean[10];
+        antChecked = 0;
     }
 
     @Override
@@ -55,11 +59,27 @@ public class AreaActivity extends AppCompatActivity {
                 startActivity(messageIntent);
         }
         if (!anyAreaChosen)
-        feilMelding.setText(getString(R.string.velg_minst_en_område));
+            toastError(getString(R.string.velg_minst_en_område));
+        //feilMelding.setText(getString(R.string.velg_minst_en_område));
+    }
+
+    private void toastError(String message) {
+        Toast.makeText(this, message,Toast.LENGTH_LONG).show();
     }
 
     //Sjekker hvilke som er checked, lagrer disse i en array + sharedprefs
     public void checkBoxes(View view) {
+        if(((CheckBox) view).isChecked()){
+            antChecked++;
+        } else {
+            antChecked--;
+        }
+        if(antChecked > 3){
+            toastError(getString(R.string.kun_velge_3));
+            ((CheckBox) view).setChecked(false);
+            antChecked--;
+            return;
+        }
         switch (view.getId()) {
             case R.id.fjellCheck:
                 checkSvar[0] = ((CheckBox) view).isChecked();

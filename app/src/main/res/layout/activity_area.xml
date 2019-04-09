@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".registration.AreaActivity"
-    android:gravity="center_horizontal">
+    tools:context=".registration.AreaActivity">
 
     <LinearLayout
         android:id="@+id/checkBoxes"
@@ -21,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".15"
+            android:gravity="center"
             android:text="@string/velg_omrade"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/VelgPlastTekst" />
@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".17"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -39,9 +40,11 @@
                 android:layout_margin="10dp"
                 android:layout_weight=".4"
                 android:background="@drawable/checkbox_selector"
+                android:onClick="checkBoxes"
                 android:text="@string/fjell"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
 
             <CheckBox
                 android:id="@+id/skogCheck"
@@ -50,9 +53,11 @@
                 android:layout_margin="10dp"
                 android:layout_weight=".4"
                 android:background="@drawable/checkbox_selector"
+                android:onClick="checkBoxes"
                 android:text="@string/skog"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,7 +79,8 @@
                 android:onClick="checkBoxes"
                 android:text="@string/elv"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
 
             <CheckBox
                 android:id="@+id/kystCheck"
@@ -83,9 +89,11 @@
                 android:layout_margin="10dp"
                 android:layout_weight=".4"
                 android:background="@drawable/checkbox_selector"
+                android:onClick="checkBoxes"
                 android:text="@string/kyst"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,7 +114,8 @@
                 android:onClick="checkBoxes"
                 android:text="@string/innsjo"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
 
             <CheckBox
                 android:id="@+id/veiCheck"
@@ -118,7 +127,8 @@
                 android:onClick="checkBoxes"
                 android:text="@string/vei"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,8 +150,7 @@
                 android:text="@string/industri_handel"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/ButtonTextSize"
-
-                />
+                android:theme="@style/MyCheckbox" />
 
             <CheckBox
                 android:id="@+id/skoleFritidCheck"
@@ -153,8 +162,10 @@
                 android:onClick="checkBoxes"
                 android:text="@string/skole_fritid"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -173,7 +184,8 @@
                 android:onClick="checkBoxes"
                 android:text="@string/dyrket_mark_landbruk"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
 
             <CheckBox
                 android:id="@+id/boligCheck"
@@ -185,7 +197,8 @@
                 android:onClick="checkBoxes"
                 android:text="@string/boligområde"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize" />
+                android:textSize="@dimen/ButtonTextSize"
+                android:theme="@style/MyCheckbox" />
 
         </LinearLayout>
     </LinearLayout>
@@ -194,18 +207,21 @@
         android:id="@+id/Feilmelding"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".1"
+        android:layout_weight=".10"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorAccent"
-        android:textSize="20dp" />
+        android:textColor="#D32F2F"
+        android:textSize="16sp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".17"
+        android:layout_gravity="bottom"
+        android:layout_weight=".10"
+        android:background="@drawable/login_buttons"
+        android:drawableBottom="@drawable/ic_photo_camera_black_24dp"
+        android:onClick="openKamera"
+        android:padding="10dp"
         android:text="@string/ta_bilde"
-        android:drawableStart="@drawable/ic_photo_camera_black_24dp"
-        android:textSize="@dimen/ButtonTextSize"
-        android:onClick="openKamera"/>
-
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/ButtonTextSize" />
 </LinearLayout>
