@@ -1,99 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    tools:context=".registration.AttributesActivity"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:background="@drawable/login_background">
+    tools:context=".registration.AttributesActivity">
 
-    <TextView
-        android:id="@+id/tekst"
+    <ImageView
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        android:text="@string/velg_egenskaper"
-        android:textSize="@dimen/VelgPlastTekst"
-        android:gravity="center_horizontal"
-        android:textColor="#FFF"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:weightSum="1">
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".4"
-            android:layout_height="wrap_content"
-            android:text="@string/velg_plasttype"
+            android:id="@+id/tekst"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight=".1"
+            android:gravity="center_horizontal"
+            android:text="@string/velg_egenskaper"
             android:textColor="#FFF"
-            android:gravity="center_vertical"
-            android:textSize="18dp"/>
-        <Spinner
-            android:id="@+id/spinnerType"
-            android:layout_width="0dp"
-            android:layout_weight=".6"
+            android:textSize="@dimen/VelgPlastTekst" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            android:gravity="center_horizontal" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".05"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:gravity="center_vertical"
+                android:text="@string/velg_plasttype"
+                android:textColor="#FFF"
+                android:textSize="18dp" />
 
-    <LinearLayout
-        android:id="@+id/str"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:visibility="invisible">
+            <Spinner
+                android:id="@+id/spinnerType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:background="@android:drawable/btn_dropdown"
+                android:gravity="center_horizontal"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight=".4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05" />
+
+        <LinearLayout
+            android:id="@+id/str"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/velg_storrelse"
-            android:textColor="#FFF"
-            android:textSize="18dp"/>
-        <Spinner
-            android:id="@+id/spinnerStr"
-            android:layout_width="0dp"
-            android:layout_weight=".6"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            android:gravity="center_horizontal"/>
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:text="@string/velg_storrelse"
+                android:textColor="#FFF"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/spinnerStr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:background="@android:drawable/btn_dropdown"
+                android:gravity="center_horizontal"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".6" />
+
+        <TextView
+            android:id="@+id/Feilmelding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05"
+            android:gravity="center_horizontal"
+            android:textColor="#ff00" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".17"
+            android:onClick="openArea"
+            android:text="@string/ga_videre"
+            android:textSize="@dimen/ButtonTextSize" />
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".6"/>
-    
-    <TextView
-        android:id="@+id/Feilmelding"
-        android:textColor="#ff00"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".05"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".17"
-        android:text="@string/ga_videre"
-        android:textSize="@dimen/ButtonTextSize"
-        android:onClick="openArea"/>
-
-</LinearLayout>
+</FrameLayout>

@@ -10,7 +10,7 @@ public abstract class SharedPreferencesValues {
     public final static String USERNAME = "username";
     public final static String LATITUDE = "latitude";
     public final static String LONGITUDE = "longitude";
-    public final static String AREA_ARRAY = "areaarray";
+    public final static String AREA_ARRAY = "Checksvar";
     public final static String MOBILDATAVARSEL = "mobildatavarsel";
     public final static String IMAGEVIEW_WIDTH = "ImageWidth";
     public final static String IMAGEVIEW_HEIGHT = "ImageHeight";

@@ -18,7 +18,7 @@
     <string name="vei">Vei</string>
 
 
-    <string name="ga_videre">Gå Videre</string>
+    <string name="ga_videre">Gå videre </string>
     <string name="velg_egenskaper">Velg egenskaper</string>
     <string name="velg_plasttype">Velg plasttype:</string>
     <string name="velg_storrelse">Velg størrelse:</string>
@@ -101,4 +101,7 @@
     <string name="size">Størrelse: </string>
     <string name="location">Lokasjon: </string>
     <string name="confirm_registration">Send inn!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

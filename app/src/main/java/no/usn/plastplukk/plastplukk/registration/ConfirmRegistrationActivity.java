@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 
 import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
+import no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
@@ -110,7 +111,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         //Find picture and place in imageview
         imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
-        photoPath = bundle.getString(PhotoGPSActivity.PHOTOPATH);
+        photoPath = sharedPreferences.getString(SharedPreferencesValues.CURRENT_PHOTO_PATH,"");
         bitmap = HelpFunctions.loadImageFromFile(imageView, photoPath,
                 bundle.getInt(PhotoGPSActivity.IMAGE_WIDTH),
                 bundle.getInt(PhotoGPSActivity.IMAGE_HEIGHT));
@@ -173,6 +174,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         boolean[] areaCheckList = AreaActivity.loadArray(AREA_ARRAY, sharedPreferences);
         for (int i = 0; i < areaCheckList.length; i++) {
             if (areaCheckList[i]) {
+                if (result.toString().length() > 0){
+                    result.append(", ");
+                }
                 switch (i) {
                     case 0:
                         result.append(getString(R.string.fjell));
