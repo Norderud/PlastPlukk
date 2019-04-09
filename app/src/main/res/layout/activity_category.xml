@@ -13,12 +13,11 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background2"/>
+        android:src="@drawable/background4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background2"
         android:orientation="vertical"
         android:weightSum="1"
         tools:context=".registration.CategoryActivity">

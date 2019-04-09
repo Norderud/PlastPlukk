@@ -21,7 +21,7 @@ public class AreaActivity extends AppCompatActivity {
     String kategori, type, størrelse;
     boolean[] checkSvar;
     CheckBox fjellCheck, skogCheck, elvCheck, kystCheck, innsjøCheck, veiCheck,
-    industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
+            industriHandelCheck, skoleFritidCheck, dyrketMarkLandbrukCheck, boligCheck;
     TextView feilMelding;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -29,9 +29,10 @@ public class AreaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("");
         setContentView(R.layout.activity_area);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        kategori =  prefs.getString(MAIN_CATEGORY, "Ingen");
+        kategori = prefs.getString(MAIN_CATEGORY, "Ingen");
         type = prefs.getString(TYPE, "Ingen");
         størrelse = prefs.getString(SIZE, størrelse);
         feilMelding = findViewById(R.id.Feilmelding);
@@ -40,30 +41,26 @@ public class AreaActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        checkOnReturn();
         super.onResume();
+        checkOnReturn();
     }
 
     // Åpner neste intent
-    public void openKamera(View view){
-        boolean check = false;
-        for (int i=0; i<checkSvar.length; i++) {
-            if (checkSvar[i])
-                check = true;
-        }
-
-        if (!check) {
-            feilMelding.setText(getString(R.string.velg_minst_en_område));
-            return;
-        }
-
+    public void openKamera(View view) {
+        boolean anyAreaChosen = false;
         Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
-        startActivity(messageIntent);
+        for (int i = 0; i < checkSvar.length; i++) {
+            if (checkSvar[i])
+                anyAreaChosen = true;
+                startActivity(messageIntent);
+        }
+        if (!anyAreaChosen)
+        feilMelding.setText(getString(R.string.velg_minst_en_område));
     }
 
     //Sjekker hvilke som er checked, lagrer disse i en array + sharedprefs
-    public void checkBoxes(View view){
-        switch(view.getId()) {
+    public void checkBoxes(View view) {
+        switch (view.getId()) {
             case R.id.fjellCheck:
                 checkSvar[0] = ((CheckBox) view).isChecked();
                 storeArray(checkSvar, "Checksvar", this);
@@ -105,56 +102,43 @@ public class AreaActivity extends AppCompatActivity {
                 storeArray(checkSvar, "Checksvar", this);
                 break;
         }
-
     }
 
     // Checker de boksene som tidligere var checked
-    public void checkOnReturn(){
+    public void checkOnReturn() {
         boolean[] array = loadArray("Checksvar", prefs);
         if (array.length == 0)
             return;
         checkSvar = array;
-
-        if (checkSvar[0]) {
-            fjellCheck = findViewById(R.id.fjellCheck);
-            fjellCheck.setChecked(true);
-        } if (checkSvar[1]) {
-            skogCheck = findViewById(R.id.skogCheck);
-            skogCheck.setChecked(true);
-        } if (checkSvar[2]) {
-            elvCheck = findViewById(R.id.elvCheck);
-            elvCheck.setChecked(true);
-        } if (checkSvar[3]) {
-            kystCheck = findViewById(R.id.kystCheck);
-            kystCheck.setChecked(true);
-        } if (checkSvar[4]) {
-            innsjøCheck = findViewById(R.id.innsjøCheck);
-            innsjøCheck.setChecked(true);
-        } if (checkSvar[5]) {
-            veiCheck = findViewById(R.id.veiCheck);
-            veiCheck.setChecked(true);
-        }if (checkSvar[6]) {
-            industriHandelCheck = findViewById(R.id.industriHandelCheck);
-            industriHandelCheck.setChecked(true);
-        }if (checkSvar[7]) {
-            skoleFritidCheck = findViewById(R.id.skoleFritidCheck);
-            skoleFritidCheck.setChecked(true);
-        }if (checkSvar[8]) {
-            dyrketMarkLandbrukCheck = findViewById(R.id.dyrketMarkLandbrukCheck);
-            dyrketMarkLandbrukCheck.setChecked(true);
-        }if (checkSvar[9]) {
-            boligCheck = findViewById(R.id.boligCheck);
-            boligCheck.setChecked(true);
-        }
+        fjellCheck = findViewById(R.id.fjellCheck);
+        fjellCheck.setChecked(checkSvar[0]);
+        skogCheck = findViewById(R.id.skogCheck);
+        skogCheck.setChecked(checkSvar[1]);
+        elvCheck = findViewById(R.id.elvCheck);
+        elvCheck.setChecked(checkSvar[2]);
+        kystCheck = findViewById(R.id.kystCheck);
+        kystCheck.setChecked(checkSvar[3]);
+        innsjøCheck = findViewById(R.id.innsjøCheck);
+        innsjøCheck.setChecked(checkSvar[4]);
+        veiCheck = findViewById(R.id.veiCheck);
+        veiCheck.setChecked(checkSvar[5]);
+        industriHandelCheck = findViewById(R.id.industriHandelCheck);
+        industriHandelCheck.setChecked(checkSvar[6]);
+        skoleFritidCheck = findViewById(R.id.skoleFritidCheck);
+        skoleFritidCheck.setChecked(checkSvar[7]);
+        dyrketMarkLandbrukCheck = findViewById(R.id.dyrketMarkLandbrukCheck);
+        dyrketMarkLandbrukCheck.setChecked(checkSvar[8]);
+        boligCheck = findViewById(R.id.boligCheck);
+        boligCheck.setChecked(checkSvar[9]);
     }
 
     // Lagrer checksvar arrayen som unike boolverdier i sharedprefs
     public boolean storeArray(boolean[] array, String arrayName, Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences(MY_PREFS_NAME, 0);
         editor = prefs.edit();
-        editor.putInt(arrayName +"_size", array.length);
+        editor.putInt(arrayName + "_size", array.length);
 
-        for(int i=0;i<array.length;i++)
+        for (int i = 0; i < array.length; i++)
             editor.putBoolean(arrayName + "_" + i, array[i]);
         return editor.commit();
     }
@@ -163,8 +147,10 @@ public class AreaActivity extends AppCompatActivity {
     public static boolean[] loadArray(String arrayName, SharedPreferences prefs) {
         int size = prefs.getInt(arrayName + "_size", 0);
         boolean array[] = new boolean[size];
-        for(int i=0;i<size;i++)
+        for (int i = 0; i < size; i++)
             array[i] = prefs.getBoolean(arrayName + "_" + i, false);
         return array;
     }
+
+
 }

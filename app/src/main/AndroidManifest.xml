@@ -22,7 +22,10 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".registration.RegistrationCompleteActivity"></activity>
+        <activity android:name=".registration.RegistrationCompleteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -61,7 +64,8 @@
         <activity
             android:name=".registration.AttributesActivity"
             android:parentActivityName=".registration.CategoryActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.registration.CategoryActivity" />
@@ -69,7 +73,8 @@
         <activity
             android:name=".registration.AreaActivity"
             android:parentActivityName=".registration.AttributesActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="no.usn.plastplukk.plastplukk.registration.AttributesActivity" />

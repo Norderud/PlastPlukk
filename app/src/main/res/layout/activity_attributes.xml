@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    tools:context=".registration.AttributesActivity"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:background="@drawable/login_background">
+    tools:context=".registration.AttributesActivity">
 
-    <TextView
-        android:id="@+id/tekst"
+    <ImageView
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        android:text="@string/velg_egenskaper"
-        android:textSize="@dimen/VelgPlastTekst"
-        android:gravity="center_horizontal"
-        android:textColor="#FFF"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tekst"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight=".1"
+            android:gravity="center_horizontal"
+            android:text="@string/velg_egenskaper"
+            android:textColor="#FFF"
+            android:textSize="@dimen/VelgPlastTekst" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,10 +62,10 @@
             android:gravity="center_horizontal" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".05"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05" />
 
     <LinearLayout
         android:id="@+id/str"
@@ -78,25 +92,26 @@
             android:gravity="center_horizontal"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".6"/>
-    
-    <TextView
-        android:id="@+id/Feilmelding"
-        android:textColor="#ff00"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".05"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".6" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".17"
-        android:text="@string/ga_videre"
-        android:textSize="@dimen/ButtonTextSize"
-        android:onClick="openArea"/>
+        <TextView
+            android:id="@+id/Feilmelding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05"
+            android:gravity="center_horizontal"
+            android:textColor="#ff00" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".17"
+            android:onClick="openArea"
+            android:text="@string/ga_videre"
+            android:textSize="@dimen/ButtonTextSize" />
+
+    </LinearLayout>
+</FrameLayout>

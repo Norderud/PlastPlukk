@@ -1,43 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.PhotoGPSActivity"
-    android:weightSum="10">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:text="Ta bilde!"
-        android:textSize="24dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textStyle="bold"/>
+    android:orientation="vertical"
+    tools:context=".registration.PhotoGPSActivity">
+
     <ImageView
-        android:id="@+id/photoDisplay"
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"/>
-    <LinearLayout
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4" />
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:weightSum="2">
-        <Button
-            android:id="@+id/kameraKnapp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/ta_bilde"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/placeholder_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"/>
-        <Button
-            android:id="@+id/videreFraKamera"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/last_opp_bilde"
+
+        <TextView
+            android:id="@+id/take_pic_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:visibility="invisible"/>
+            android:gravity="center"
+            android:text="Ta bilde nå"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
+
+        <ImageView
+            android:id="@+id/photoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/kameraKnapp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_photo_camera_black_24dp"
+                android:background="@drawable/button_selector"
+                android:text="@string/ta_bilde"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                />
+
+            <Button
+                android:id="@+id/videreFraKamera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/last_opp_bilde"
+                android:background="@drawable/button_selector"
+                android:visibility="gone"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

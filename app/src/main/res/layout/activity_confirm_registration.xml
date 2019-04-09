@@ -1,89 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.PhotoGPSActivity"
-    android:weightSum="100">
-    <TextView
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="8"
-        android:text="@string/your_registration"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-         />
+    android:orientation="vertical"
+    tools:context=".registration.ConfirmRegistrationActivity">
+
     <ImageView
-        android:id="@+id/photoConfirmDisplay"
+        android:id="@+id/home_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="60"/>
-    <TextView
-        android:layout_marginStart="60dp"
-        android:id="@+id/confirmCat"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:text="@string/category"
-        android:gravity="center_vertical"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
-        />
-    <TextView
-        android:layout_marginStart="60dp"
-        android:id="@+id/confirmSecondCat"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_weight="5"
-        android:text="@string/type"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
-        />
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4" />
 
-    <TextView
-        android:layout_marginStart="60dp"
-        android:id="@+id/confirmLocation"
-        android:layout_height="0dp"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_weight="5"
-        android:text="@string/location"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
-        />
-    <TextView
-        android:layout_marginStart="60dp"
-        android:id="@+id/confirmSize"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:text="@string/size"
-        android:gravity="center_vertical"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12"
-        android:weightSum="1"
-        android:gravity="center">
-        <Button
-            android:id="@+id/confirmButton"
-            android:text="@string/confirm_registration"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="100"
+        tools:context=".registration.PhotoGPSActivity"
+        android:background="@color/blackOpacity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
             android:gravity="center"
+            android:text="@string/your_registration"
             android:textAlignment="center"
-            android:background="@drawable/button_selector"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="0.5">
-        </Button>
-    </LinearLayout>
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/photoConfirmDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="45" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/confirmCat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.30"
+                android:gravity="center_vertical"
+                android:text="@string/category"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/confirmCatEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/confirmSecondCat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.30"
+                android:gravity="center_vertical"
+                android:text="@string/type"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/confirmSecondCatEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/confirmLocation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.30"
+                android:gravity="center_vertical"
+                android:text="@string/location"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/confirmLocationEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/confirmSize"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.30"
+                android:gravity="center_vertical"
+                android:text="@string/size"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/confirmSizeEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/confirmButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/button_selector"
+                android:gravity="center"
+                android:text="@string/confirm_registration"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
