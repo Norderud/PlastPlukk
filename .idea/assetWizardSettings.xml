@@ -24,6 +24,18 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="paddingPercent" value="-10" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_drop_down_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -44,10 +56,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="C:\Users\Danay\Bachelor\PlastPlukk\app\src\main\res\drawable\category_background.jpeg" />
-                                      <entry key="outputName" value="category_background" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="outputName" value="spinner_arrow" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>
@@ -194,7 +204,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_language_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_drop_down_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -204,7 +214,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_webpage" />
+                            <entry key="outputName" value="spinner_arrow" />
                             <entry key="sourceFile" value="C:\Users\Danay" />
                           </map>
                         </option>
