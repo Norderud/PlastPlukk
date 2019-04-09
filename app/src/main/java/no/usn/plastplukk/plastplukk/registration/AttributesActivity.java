@@ -91,19 +91,18 @@ public class AttributesActivity extends AppCompatActivity {
 
         // Dropdown meny, spinnerType
         dropdownSecondCategory = findViewById(R.id.spinnerType);
-        ArrayAdapter<String> adapterType = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typer);
+        ArrayAdapter<String> adapterType = new ArrayAdapter<>(this, R.layout.spinner_dropdown_item, typer);
         dropdownSecondCategory.setAdapter(adapterType);
 
         //Dropdown meny for størrelsevalg
         dropdownSize = findViewById(R.id.spinnerStr);
-        ArrayAdapter<String> adapterStr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, str);
+        ArrayAdapter<String> adapterStr = new ArrayAdapter<>(this, R.layout.spinner_dropdown_item, str);
         dropdownSize.setAdapter(adapterStr);
 
         // Legger til størrelsemeny dersom plastfilm/-flaske er valgt
         dropdownSecondCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView)parent.getChildAt(0)).setTextColor(Color.rgb(249, 249, 249));
                 String valget = (String) dropdownSecondCategory.getSelectedItem().toString();
                 String strTemp = prefs.getString(SIZE, "Tom");
                 if (valget.equals("Plastfilm")) {
