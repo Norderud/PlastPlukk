@@ -36,61 +36,88 @@
             android:textColor="#FFF"
             android:textSize="@dimen/VelgPlastTekst" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".4"
-                android:gravity="center_vertical"
-                android:text="@string/velg_plasttype"
-                android:textColor="#FFF"
-                android:textSize="18dp" />
-
-            <Spinner
+            android:text="@string/velg_plasttype"
+            android:textColor="#FFF"
+            android:gravity="center|bottom"
+            android:textSize="18dp"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6">
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinnerType"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".6"
-                android:background="@android:drawable/btn_dropdown"
-                android:gravity="center_horizontal"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+                style="@style/CustomSpinner"
+                android:spinnerMode="dropdown"
+                android:popupBackground="#80000000"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:overlapAnchor="false"
+                android:gravity="center" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/spinner_arrow" />
+        </RelativeLayout>
+    </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".05" />
+            android:layout_weight=".05"/>
 
-        <LinearLayout
-            android:id="@+id/str"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/str"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="invisible"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".4"
-                android:text="@string/velg_storrelse"
-                android:textColor="#FFF"
-                android:textSize="18dp" />
-
-            <Spinner
+            android:text="@string/velg_storrelse"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:gravity="center|bottom"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6">
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinnerStr"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".6"
-                android:background="@android:drawable/btn_dropdown"
-                android:gravity="center_horizontal"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+                style="@style/CustomSpinner"
+                android:spinnerMode="dropdown"
+                android:popupBackground="#80000000"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:overlapAnchor="false"
+                android:gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/spinner_arrow" />
+        </RelativeLayout>
+    </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -108,9 +135,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".17"
+            android:layout_gravity="bottom"
+            android:layout_weight=".10"
+            android:background="@drawable/login_buttons_selector"
             android:onClick="openArea"
+            android:padding="10dp"
             android:text="@string/ga_videre"
+            android:drawableRight="@drawable/next_arrow"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/ButtonTextSize" />
 
     </LinearLayout>
