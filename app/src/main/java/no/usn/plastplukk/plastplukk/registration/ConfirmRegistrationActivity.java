@@ -48,6 +48,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LON
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
 
 
 public class ConfirmRegistrationActivity extends AppCompatActivity {
@@ -247,7 +248,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
-        String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
+        String upload_URL = String.format("%s%s", WEBURL, "uploadcomplete");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, upload_URL, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override

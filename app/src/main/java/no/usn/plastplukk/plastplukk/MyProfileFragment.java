@@ -29,6 +29,7 @@ import no.usn.plastplukk.plastplukk.R;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
 
 public class MyProfileFragment extends Fragment implements View.OnClickListener {
     private RequestQueue rQueue;
@@ -55,7 +56,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
-        String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/sumreg.php";
+        String upload_URL = String.format("%s%s", WEBURL, "sumreg");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, upload_URL, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
