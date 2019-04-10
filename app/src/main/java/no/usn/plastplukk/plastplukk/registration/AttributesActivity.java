@@ -76,14 +76,14 @@ public class AttributesActivity extends AppCompatActivity {
             typer = new String[]{getString(R.string.godteriemballasje), getString(R.string.diverse_matemballasje),
                     getString(R.string.nettstrompe), getString(R.string.plastfilm), getString(R.string.velg_type_)};
         else if (kategori.equals(getString(R.string.flaske)))
-            typer = new String[]{getString(R.string.velg_type_), getString(R.string.plastflaske), getString(R.string.kanne), getString(R.string.tonne), getString(R.string.botte_boks), getString(R.string.snus), getString(R.string.kork_lokk), getString(R.string.annet)};
+            typer = new String[]{getString(R.string.plastflaske), getString(R.string.kanne), getString(R.string.tonne), getString(R.string.botte_boks), getString(R.string.snus), getString(R.string.kork_lokk), getString(R.string.annet), getString(R.string.velg_type_)};
         else if (kategori.equals(getString(R.string.servise)))
-            typer = new String[]{getString(R.string.velg_type_), getString(R.string.kopper_plastglass), getString(R.string.tallerken), getString(R.string.bestikk), getString(R.string.annet)};
+            typer = new String[]{getString(R.string.kopper_plastglass), getString(R.string.tallerken), getString(R.string.bestikk), getString(R.string.annet), getString(R.string.velg_type_)};
         else if (kategori.equals(getString(R.string.redskap)))
-            typer = new String[]{getString(R.string.velg_type_), getString(R.string.fiskegarn), getString(R.string.fiskesnore), getString(R.string.lighter), getString(R.string.tau_trad), getString(R.string.annet)};
+            typer = new String[]{getString(R.string.fiskegarn), getString(R.string.fiskesnore), getString(R.string.lighter), getString(R.string.tau_trad), getString(R.string.annet), getString(R.string.velg_type_)};
         else if (kategori.equals(getString(R.string.diverse)))
-            typer = new String[]{getString(R.string.velg_type_), getString(R.string.bekledning), getString(R.string.riflehylser), getString(R.string.ballonger), getString(R.string.bildeler), getString(R.string.div_kroppspleie),
-                    getString(R.string.dumpet_avfall), getString(R.string.annet)};
+            typer = new String[]{getString(R.string.bekledning), getString(R.string.riflehylser), getString(R.string.ballonger), getString(R.string.bildeler), getString(R.string.div_kroppspleie),
+                    getString(R.string.dumpet_avfall), getString(R.string.annet), getString(R.string.velg_type_)};
 
 
         str = new String[]{"", "", "", "Velg størrelse"};
