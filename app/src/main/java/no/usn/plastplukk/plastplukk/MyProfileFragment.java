@@ -1,6 +1,7 @@
-package no.usn.plastplukk.plastplukk.registration;
+package no.usn.plastplukk.plastplukk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,8 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,17 +25,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import no.usn.plastplukk.plastplukk.R;
-import no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues;
 
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
 
-public class MyProfileFragment extends Fragment {
+public class MyProfileFragment extends Fragment implements View.OnClickListener {
     private RequestQueue rQueue;
+    Button changePasswordButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,10 +42,12 @@ public class MyProfileFragment extends Fragment {
         final TextView yearSum = v.findViewById(R.id.thisYearRegSum);
         final TextView monthSum = v.findViewById(R.id.thisMonthRegSum);
         final TextView daySum = v.findViewById(R.id.todayRegSum);
+        TextView brukernavnText = v.findViewById(R.id.profile_username);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        brukernavnText.setText(sharedPreferences.getString(USERNAME, ""));
         JSONObject jsonObject = new JSONObject();
 
         try {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
             if (sharedPreferences.getInt(USERID, -1) != -1) {
 
                 //Send inn bildet
@@ -55,7 +56,7 @@ public class MyProfileFragment extends Fragment {
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
-        String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/sumreg.php";
+        String upload_URL = String.format("%s%s", WEBURL, "sumreg");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, upload_URL, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -87,7 +88,19 @@ public class MyProfileFragment extends Fragment {
         rQueue = Volley.newRequestQueue(getActivity());
         rQueue.add(jsonObjectRequest);
 
+        changePasswordButton = v.findViewById(R.id.change_password_button);
+        changePasswordButton.setOnClickListener(this);
 
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == changePasswordButton.getId()){
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new ChangePasswordFragment())
+                    .commit();
+        }
     }
 }

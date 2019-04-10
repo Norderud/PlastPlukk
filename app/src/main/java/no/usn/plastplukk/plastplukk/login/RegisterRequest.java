@@ -8,8 +8,10 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
+
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/register.php";
+    private static final String REGISTER_URL = String.format("%s%s", WEBURL, "register");
     private Map<String, String> params;
 
     public RegisterRequest(String user, String password, Response.Listener<String> listener){

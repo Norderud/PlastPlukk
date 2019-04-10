@@ -14,139 +14,193 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background4" />
+        android:src="@drawable/background5" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="100"
-        >
+        android:weightSum="100">
+
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:text="@string/username"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="45sp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:gravity="center" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
-            android:text="@string/username"
-            android:textColor="@color/colorWhite"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:text="@string/picked_plastic"
-            android:textColor="@color/colorWhite" />
+            android:layout_weight="10" />
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="0dp"
+            android:layout_weight="52"
             android:background="@drawable/my_button_bg"
-            android:layout_weight="32"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:gravity="bottom"
+                android:text="@string/picked_plastic"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="28sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:gravity="center">
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/totalRegText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.40"
+                    android:gravity="center_vertical"
                     android:text="Totalt: "
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
+
                 <TextView
                     android:id="@+id/totalRegSum"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.45"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:gravity="center">
+                android:weightSum="1">
+
                 <TextView
                     android:id="@+id/thisYearRegText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.40"
+                    android:gravity="center_vertical"
                     android:text="I år: "
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
+
                 <TextView
                     android:id="@+id/thisYearRegSum"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.45"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:gravity="center">
+                android:weightSum="1">
+
                 <TextView
                     android:id="@+id/thisMonthRegText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.40"
+                    android:gravity="center_vertical"
                     android:text="Siste 30 dager: "
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
+
                 <TextView
                     android:id="@+id/thisMonthRegSum"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.45"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:gravity="center">
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/todayRegText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.40"
+                    android:gravity="center_vertical"
                     android:text="I dag: "
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
+
                 <TextView
                     android:id="@+id/todayRegSum"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.45"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="14sp"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/startNewRegFromProfileFragment"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:background="@drawable/button_selector"
+                android:gravity="center"
+                android:onClick="registrerPlast"
+                android:text="@string/pick_more_button"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3" />
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
+
         <Button
-            android:id="@+id/confirmButton"
+            android:id="@+id/change_password_button"
             android:layout_width="200dp"
             android:layout_height="0dp"
             android:layout_weight="10"
@@ -154,7 +208,13 @@
             android:gravity="center"
             android:text="Endre passord"
             android:textAlignment="center"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            />
     </LinearLayout>
 
 </FrameLayout>
