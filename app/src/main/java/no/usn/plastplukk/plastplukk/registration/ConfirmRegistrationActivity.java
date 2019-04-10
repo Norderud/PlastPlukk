@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 
 import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
+import no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
@@ -47,6 +48,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LON
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
 
 
 public class ConfirmRegistrationActivity extends AppCompatActivity {
@@ -65,6 +67,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_registration);
+        getSupportActionBar().setTitle("");
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -89,17 +92,19 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         };
 
         //Set the values that the user has selected.
-        TextView confirmCat = findViewById(R.id.confirmCat);
+        TextView confirmCat = findViewById(R.id.confirmCatEdit);
         confirmCat.append(sharedPreferences.getString(MAIN_CATEGORY, null));
-        TextView confirmSecondCat = findViewById(R.id.confirmSecondCat);
+        TextView confirmSecondCat = findViewById(R.id.confirmSecondCatEdit);
         confirmSecondCat.append(sharedPreferences.getString(TYPE, null));
+        TextView confirmSizeEdit = findViewById(R.id.confirmSizeEdit);
         TextView confirmSize = findViewById(R.id.confirmSize);
         if (sharedPreferences.getString(SIZE, null) == null){
             confirmSize.setVisibility(View.INVISIBLE);
+            confirmSizeEdit.setVisibility(View.INVISIBLE);
         }else{
-            confirmSize.append(sharedPreferences.getString(SIZE, "Ikke satt"));
+            confirmSizeEdit.append(sharedPreferences.getString(SIZE, "Ikke satt"));
         }
-        TextView confirmLocation = findViewById(R.id.confirmLocation);
+        TextView confirmLocation = findViewById(R.id.confirmLocationEdit);
         confirmLocation.append(getLocations());
 
 
@@ -107,7 +112,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         //Find picture and place in imageview
         imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
-        photoPath = bundle.getString(PhotoGPSActivity.PHOTOPATH);
+        photoPath = sharedPreferences.getString(SharedPreferencesValues.CURRENT_PHOTO_PATH,"");
         bitmap = HelpFunctions.loadImageFromFile(imageView, photoPath,
                 bundle.getInt(PhotoGPSActivity.IMAGE_WIDTH),
                 bundle.getInt(PhotoGPSActivity.IMAGE_HEIGHT));
@@ -163,12 +168,16 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     }
 
     private String getLocations() {
+
         SharedPreferences sharedPreferences = getSharedPreferences(
                 MY_PREFS_NAME, MODE_PRIVATE);
         StringBuilder result = new StringBuilder();
         boolean[] areaCheckList = AreaActivity.loadArray(AREA_ARRAY, sharedPreferences);
         for (int i = 0; i < areaCheckList.length; i++) {
             if (areaCheckList[i]) {
+                if (result.toString().length() > 0){
+                    result.append(", ");
+                }
                 switch (i) {
                     case 0:
                         result.append(getString(R.string.fjell));
@@ -239,7 +248,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.e("JSONObject Here", e.toString());
         }
-        String upload_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/uploadVolley.php";
+        String upload_URL = String.format("%s%s", WEBURL, "uploadcomplete");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, upload_URL, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override

@@ -27,6 +27,7 @@ public class RegistrationCompleteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_complete);
+        getSupportActionBar().setTitle("");
 
         Button homeButton = findViewById(R.id.doneHomeButton);
         Button newRegisterButton = findViewById(R.id.doneNewRegister);

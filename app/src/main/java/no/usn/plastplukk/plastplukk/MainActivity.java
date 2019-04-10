@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        clearPreferences();
-
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
        if (prefs.getString(USERNAME, null) == null){
@@ -73,11 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void registrerPlast(View view){
+        clearPreferences();
         Intent messageIntent = new Intent(this, CategoryActivity.class);
-        startActivity(messageIntent);
-    }
-    public void openCamera(View view){
-        Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
         startActivity(messageIntent);
     }
 
@@ -88,7 +83,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 break;
             case R.id.nav_my_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChangePasswordFragment()).commit();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new MyProfileFragment())
+                        .commit();
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();

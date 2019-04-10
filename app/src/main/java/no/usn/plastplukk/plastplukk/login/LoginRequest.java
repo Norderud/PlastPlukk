@@ -10,8 +10,10 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.WEBURL;
+
 public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "https://itfag.usn.no/grupper/v19gr2/plast/itfag/login.php";
+    private static final String LOGIN_REQUEST_URL = String.format("%s%s", WEBURL, "login");
     private Map<String, String> params;
 
     public LoginRequest(String user, String password, Response.Listener<String> listener){

@@ -1,28 +1,22 @@
 package no.usn.plastplukk.plastplukk.registration;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -40,15 +34,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
+import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_WIDTH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LATITUDE;
-import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.LONGITUDE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 
 public class PhotoGPSActivity extends AppCompatActivity {
@@ -67,16 +59,12 @@ public class PhotoGPSActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gps);
+        getSupportActionBar().setTitle("");
         taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = prefs.edit();
-        Log.e("Create", "Yes");
-
-        if (prefs.getString(CURRENT_PHOTO_PATH, "").length() > 0) {
-            showPictureOnReturn();
-        }
 
         taBildeKnapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +76,6 @@ public class PhotoGPSActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
-                confirmPictureIntent.putExtra(PHOTOPATH, currentPhotoPath);
                 confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
                 confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
                 confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
@@ -98,6 +85,9 @@ public class PhotoGPSActivity extends AppCompatActivity {
                 startActivity(confirmPictureIntent);
             }
         });
+        if (prefs.getString(CURRENT_PHOTO_PATH, "").length() > 0) {
+            showPictureOnReturn();
+        }
     }
 
     private void showPictureOnReturn(){
@@ -108,6 +98,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
                 prefs.getInt(IMAGEVIEW_WIDTH, 0), prefs.getInt(IMAGEVIEW_HEIGHT, 0));
         imageView.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(bitmap);
+        TextView tempText = findViewById(R.id.take_pic_text);
+        tempText.setVisibility(View.GONE);
     }
 
     private void dispatchTakePictureIntent() {
@@ -139,6 +131,7 @@ public class PhotoGPSActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
             confirmPictureButton.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
             Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(bitmap);
@@ -148,6 +141,8 @@ public class PhotoGPSActivity extends AppCompatActivity {
             editor.putInt(IMAGEVIEW_HEIGHT, imageView.getHeight());
             editor.putInt(IMAGEVIEW_WIDTH, imageView.getWidth());
             editor.apply();
+            TextView tempText = findViewById(R.id.take_pic_text);
+            tempText.setVisibility(View.GONE);
         } else {
             recreate();
         }
@@ -185,7 +180,6 @@ public class PhotoGPSActivity extends AppCompatActivity {
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
                             Toast.makeText(getApplicationContext(), getString(R.string.alle_rettigheter_er_godtatt), Toast.LENGTH_SHORT).show();
                             dispatchTakePictureIntent();
                         }

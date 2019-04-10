@@ -1,50 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.PhotoGPSActivity"
-    android:weightSum="4">
-    <TextView
-        android:layout_height="0dp"
+    android:orientation="vertical"
+    tools:context=".registration.RegistrationCompleteActivity">
+
+    <ImageView
+        android:id="@+id/home_bg"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        />
-    <TextView
-        android:id="@+id/confirmCat"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:text="Takk for din registrering!"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:gravity="center"
-        />
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:weightSum="2">
-        <Button
-            android:id="@+id/doneHomeButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Hjem"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/doneNewRegister"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Ny registrering"
-            android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/confirmCat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Takk for din registrering!"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/doneHomeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Hjem"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_selector"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"/>
+
+            <Button
+                android:id="@+id/doneNewRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Ny registrering"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_selector"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/confirmSize"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/confirmSize"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        />
-</LinearLayout>
+</FrameLayout>
