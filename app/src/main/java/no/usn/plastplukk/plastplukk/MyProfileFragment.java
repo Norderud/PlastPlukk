@@ -1,6 +1,7 @@
-package no.usn.plastplukk.plastplukk.registration;
+package no.usn.plastplukk.plastplukk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -28,8 +30,9 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
 
-public class MyProfileFragment extends Fragment {
+public class MyProfileFragment extends Fragment implements View.OnClickListener {
     private RequestQueue rQueue;
+    Button changePasswordButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,7 +87,19 @@ public class MyProfileFragment extends Fragment {
         rQueue = Volley.newRequestQueue(getActivity());
         rQueue.add(jsonObjectRequest);
 
+        changePasswordButton = v.findViewById(R.id.change_password_button);
+        changePasswordButton.setOnClickListener(this);
 
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == changePasswordButton.getId()){
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new ChangePasswordFragment())
+                    .commit();
+        }
     }
 }

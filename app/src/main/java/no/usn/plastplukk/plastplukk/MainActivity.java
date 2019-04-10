@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.login.LoginActivity;
 import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
-import no.usn.plastplukk.plastplukk.registration.MyProfileFragment;
 import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
@@ -46,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        clearPreferences();
 
         //Resetter lagret verdier
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -76,11 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void registrerPlast(View view){
+        clearPreferences();
         Intent messageIntent = new Intent(this, CategoryActivity.class);
-        startActivity(messageIntent);
-    }
-    public void openCamera(View view){
-        Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
         startActivity(messageIntent);
     }
 
