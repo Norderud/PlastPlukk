@@ -149,9 +149,9 @@ public class AttributesActivity extends AppCompatActivity {
                         dropdownSize.setSelection(adapterStr.getCount());
                 }
                 else if (valget.equals("Plastflaske")) {
-                    str[1] = "0,5 Liter";
-                    str[2] = "Mellom 0,5 og 1,5 Liter";
-                    str[3] = "1,5 Liter eller større";
+                    str[0] = "0,5 Liter";
+                    str[1] = "Mellom 0,5 og 1,5 Liter";
+                    str[2] = "1,5 Liter eller større";
                     layout.setVisibility(View.VISIBLE);
                     visible = true;
 
