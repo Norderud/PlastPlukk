@@ -155,7 +155,7 @@ public class AttributesActivity extends AppCompatActivity {
                     layout.setVisibility(View.VISIBLE);
                     visible = true;
 
-                    if (!strTemp.equals("Tom"))
+                    if (strTemp.length() > 0)
                         dropdownSize.setSelection(((ArrayAdapter) dropdownSize.getAdapter()).getPosition(strTemp));
                     else
                         dropdownSize.setSelection(adapterStr.getCount());
@@ -192,14 +192,7 @@ public class AttributesActivity extends AppCompatActivity {
     // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
         String typeTemp = prefs.getString(TYPE, "Tom");
-        boolean exists = false;
-        for (int i=1; i<typer.length; i++) {
-            if (typeTemp.equals(typer[i]))
-                exists = true;
-        }
         if (typeTemp.equals("Tom"))
-            return;
-        if (!exists)
             return;
 
         dropdownSecondCategory.setSelection(((ArrayAdapter) dropdownSecondCategory.getAdapter()).getPosition(typeTemp));
