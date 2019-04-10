@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="@string/velg_plasttype"
             android:textColor="#FFF"
-            android:gravity="center|bottom"
+            android:layout_gravity="center"
             android:textSize="18dp"/>
         <RelativeLayout
             android:layout_width="0dp"
@@ -56,7 +56,7 @@
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinnerType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 style="@style/CustomSpinner"
                 android:spinnerMode="dropdown"
                 android:popupBackground="#80000000"
@@ -93,7 +93,7 @@
             android:text="@string/velg_storrelse"
             android:textColor="#FFF"
             android:textSize="18sp"
-            android:gravity="center|bottom"/>
+            android:layout_gravity="center"/>
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinnerStr"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 style="@style/CustomSpinner"
                 android:spinnerMode="dropdown"
                 android:popupBackground="#80000000"
@@ -137,7 +137,7 @@
             android:layout_height="0dp"
             android:layout_gravity="bottom"
             android:layout_weight=".10"
-            android:background="@drawable/login_buttons_selector"
+            android:background="@drawable/button_selector"
             android:onClick="openArea"
             android:padding="10dp"
             android:text="@string/ga_videre"
