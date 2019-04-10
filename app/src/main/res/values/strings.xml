@@ -56,7 +56,7 @@
     <string name="bilde_lastet_opp">Lastet opp vellykket!</string>
     <string name="alle_rettigheter_er_godtatt">Alle rettighether er godtatt fra bruker</string>
     <string name="pose">Pose</string>
-    <string name="velg_type_">Velg type..</string>
+    <string name="velg_type_">Velg type</string>
     <string name="stor_plastpose">Stor plastpose</string>
     <string name="middels_plastpose">Middels plastpose</string>
     <string name="liten_plastpose">Liten plastpose</string>
@@ -106,6 +106,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="picked_plastic">Du har plukket</string>
     <string name="username">Brukernavn:</string>
-    <string name="kun_velge_3">Du kan maks velge 3 omåder</string>
+    <string name="kun_velge_3">Du kan maks velge 3 områder</string>
     <string name="pick_more_button">Plukk mer</string>
 </resources>
