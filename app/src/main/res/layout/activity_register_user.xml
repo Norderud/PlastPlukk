@@ -40,7 +40,8 @@
                     android:background="@drawable/edit_text_border"
                     android:hint="@string/brukernavn"
                     android:paddingStart="10dp"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite"
+                    android:inputType="textShortMessage" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -81,7 +82,8 @@
                     android:hint="@string/gjenta_passord"
                     android:inputType="textPassword"
                     android:textColor="@color/colorWhite"
-                    android:paddingStart="10dp" />
+                    android:paddingStart="10dp"
+                    android:imeOptions="actionGo"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button

@@ -143,6 +143,11 @@ public class PhotoGPSActivity extends AppCompatActivity {
             editor.apply();
             TextView tempText = findViewById(R.id.take_pic_text);
             tempText.setVisibility(View.GONE);
+            Intent confirmPictureIntent = new Intent(getApplicationContext(), ConfirmRegistrationActivity.class);
+            confirmPictureIntent.putExtra(IMAGEFILENAME, imageFileName);
+            confirmPictureIntent.putExtra(IMAGE_WIDTH, imageView.getWidth());
+            confirmPictureIntent.putExtra(IMAGE_HEIGHT, imageView.getHeight());
+            startActivity(confirmPictureIntent);
         } else {
             recreate();
         }
