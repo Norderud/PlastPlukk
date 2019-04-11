@@ -4,13 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -33,7 +38,6 @@ public class RegisterUserActivity extends AppCompatActivity {
     EditText etUser;
     EditText etPassword1;
     EditText etPassword2;
-
     Button bRegister;
 
     @Override
@@ -46,6 +50,17 @@ public class RegisterUserActivity extends AppCompatActivity {
         etPassword2 = findViewById(R.id.etPassword2);
 
         bRegister = findViewById(R.id.bRegister);
+        etPassword2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    registerUser(getCurrentFocus());
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
