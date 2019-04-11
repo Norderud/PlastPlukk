@@ -134,6 +134,7 @@
                     android:layout_height="0dp"
                     android:layout_weight=".33"
                     android:background="@drawable/button_selector"
+                    android:drawableTop="@drawable/diverse_icon"
                     android:fontFamily="@font/quicksand_light"
                     android:onClick="velgEgenskaper"
                     android:tag="Diverse"
