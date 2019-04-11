@@ -2,6 +2,7 @@ package no.usn.plastplukk.plastplukk.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,12 @@ import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
+import no.usn.plastplukk.plastplukk.MainActivity;
 import no.usn.plastplukk.plastplukk.R;
+
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERID;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.USERNAME;
 
 public class RegisterUserActivity extends AppCompatActivity {
     EditText etUser;
@@ -74,8 +80,12 @@ public class RegisterUserActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
                     String error = jsonResponse.getString("error");
                     if(success){
+                        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                        editor.putString(USERNAME, user);
+                        editor.putInt(USERID, jsonResponse.getInt("user_id"));
+                        editor.apply();
                         Toast.makeText(RegisterUserActivity.this, getString(R.string.registrering_vellykket), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
                         RegisterUserActivity.this.startActivity(intent);
                     } else{
                         alertDialog(getString(R.string.registrering_feilet) + "\n"+ error);
