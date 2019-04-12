@@ -110,12 +110,12 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
 
         //Find picture and place in imageview
-        imageFileName = bundle.getString(PhotoGPSActivity.IMAGEFILENAME);
+        imageFileName = bundle.getString(PhotoActivity.IMAGEFILENAME);
         imageView = findViewById(R.id.photoConfirmDisplay);
         photoPath = sharedPreferences.getString(SharedPreferencesValues.CURRENT_PHOTO_PATH,"");
         bitmap = HelpFunctions.loadImageFromFile(imageView, photoPath,
-                bundle.getInt(PhotoGPSActivity.IMAGE_WIDTH),
-                bundle.getInt(PhotoGPSActivity.IMAGE_HEIGHT));
+                bundle.getInt(PhotoActivity.IMAGE_WIDTH),
+                bundle.getInt(PhotoActivity.IMAGE_HEIGHT));
         imageView.setImageBitmap(bitmap);
         //Upload the data to server with onlick on button.
         Button uploadButton = (Button) findViewById(R.id.confirmButton);

@@ -3,6 +3,7 @@ package no.usn.plastplukk.plastplukk.registration;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
@@ -51,6 +52,11 @@ public class AttributesActivity extends AppCompatActivity {
 
         lagDropDown();
         selectOnReturn();
+    }
+
+    @Override
+    public void onBackPressed(){
+        NavUtils.navigateUpFromSameTask(this);
     }
 
     // Åpner neste aktivitet - area
