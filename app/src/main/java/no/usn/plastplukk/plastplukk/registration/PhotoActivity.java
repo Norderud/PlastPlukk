@@ -43,7 +43,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMA
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 
-public class PhotoGPSActivity extends AppCompatActivity {
+public class PhotoActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -88,6 +88,11 @@ public class PhotoGPSActivity extends AppCompatActivity {
         if (prefs.getString(CURRENT_PHOTO_PATH, "").length() > 0) {
             showPictureOnReturn();
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        
     }
 
     private void showPictureOnReturn(){

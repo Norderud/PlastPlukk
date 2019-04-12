@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -52,7 +51,7 @@ public class AreaActivity extends AppCompatActivity {
     // Åpner neste intent
     public void openKamera(View view) {
         boolean anyAreaChosen = false;
-        Intent messageIntent = new Intent(this, PhotoGPSActivity.class);
+        Intent messageIntent = new Intent(this, PhotoActivity.class);
         for (int i = 0; i < checkSvar.length; i++) {
             if (checkSvar[i])
                 anyAreaChosen = true;

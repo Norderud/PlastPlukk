@@ -80,7 +80,7 @@
                 android:value="no.usn.plastplukk.plastplukk.registration.AttributesActivity" />
         </activity>
         <activity
-            android:name=".registration.PhotoGPSActivity"
+            android:name=".registration.PhotoActivity"
             android:parentActivityName=".registration.AreaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -90,12 +90,12 @@
         </activity>
         <activity
             android:name=".registration.ConfirmRegistrationActivity"
-            android:parentActivityName=".registration.PhotoGPSActivity"
+            android:parentActivityName=".registration.PhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity" />
+                android:value="no.usn.plastplukk.plastplukk.registration.PhotoActivity" />
         </activity>
 
         <provider

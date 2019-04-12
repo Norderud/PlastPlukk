@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import no.usn.plastplukk.plastplukk.login.LoginActivity;
 import no.usn.plastplukk.plastplukk.registration.CategoryActivity;
-import no.usn.plastplukk.plastplukk.registration.PhotoGPSActivity;
 
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.CURRENT_PHOTO_PATH;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGEVIEW_HEIGHT;

@@ -22,7 +22,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="100"
-        tools:context=".registration.PhotoGPSActivity"
+        tools:context=".registration.PhotoActivity"
         android:background="@color/blackOpacity">
 
         <TextView
