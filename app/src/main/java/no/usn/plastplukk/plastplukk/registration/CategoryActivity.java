@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import no.usn.plastplukk.plastplukk.R;
@@ -15,9 +16,12 @@ import no.usn.plastplukk.plastplukk.R;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MOBILDATAVARSEL;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.SIZE;
+import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
 
 public class CategoryActivity extends AppCompatActivity {
 
+    SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
     @Override
@@ -25,8 +29,9 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         getSupportActionBar().setTitle("");
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager.getActiveNetworkInfo() != null) {
             if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_MOBILE
@@ -51,9 +56,12 @@ public class CategoryActivity extends AppCompatActivity {
         String kategori = view.getTag().toString();
         Intent nyIntent = new Intent(this.getBaseContext(), AttributesActivity.class);
 
-        // Shared preferences
-        editor.putString(MAIN_CATEGORY, kategori);
-        editor.apply();
+        if (!prefs.getString(MAIN_CATEGORY, "Ingen").equals(kategori)){
+            editor.putString(MAIN_CATEGORY, kategori);
+            editor.remove(TYPE);
+            editor.remove(SIZE);
+            editor.apply();
+        }
 
         this.startActivity(nyIntent);
     }

@@ -3,6 +3,7 @@ package no.usn.plastplukk.plastplukk.registration;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +44,11 @@ public class AreaActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed(){
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         checkOnReturn();
@@ -53,9 +59,10 @@ public class AreaActivity extends AppCompatActivity {
         boolean anyAreaChosen = false;
         Intent messageIntent = new Intent(this, PhotoActivity.class);
         for (int i = 0; i < checkSvar.length; i++) {
-            if (checkSvar[i])
+            if (checkSvar[i]) {
                 anyAreaChosen = true;
                 startActivity(messageIntent);
+            }
         }
         if (!anyAreaChosen)
             toastError(getString(R.string.velg_minst_en_område));

@@ -3,6 +3,7 @@ package no.usn.plastplukk.plastplukk.registration;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
@@ -51,6 +52,11 @@ public class AttributesActivity extends AppCompatActivity {
 
         lagDropDown();
         selectOnReturn();
+    }
+
+    @Override
+    public void onBackPressed(){
+        NavUtils.navigateUpFromSameTask(this);
     }
 
     // Åpner neste aktivitet - area
@@ -149,13 +155,13 @@ public class AttributesActivity extends AppCompatActivity {
                         dropdownSize.setSelection(adapterStr.getCount());
                 }
                 else if (valget.equals("Plastflaske")) {
-                    str[1] = "0,5 Liter";
-                    str[2] = "Mellom 0,5 og 1,5 Liter";
-                    str[3] = "1,5 Liter eller større";
+                    str[0] = "0,5 Liter";
+                    str[1] = "Mellom 0,5 og 1,5 Liter";
+                    str[2] = "1,5 Liter eller større";
                     layout.setVisibility(View.VISIBLE);
                     visible = true;
 
-                    if (!strTemp.equals("Tom"))
+                    if (strTemp.length() > 0)
                         dropdownSize.setSelection(((ArrayAdapter) dropdownSize.getAdapter()).getPosition(strTemp));
                     else
                         dropdownSize.setSelection(adapterStr.getCount());
@@ -192,14 +198,7 @@ public class AttributesActivity extends AppCompatActivity {
     // Velger de valgene som tidligere var valgt
     public void selectOnReturn(){
         String typeTemp = prefs.getString(TYPE, "Tom");
-        boolean exists = false;
-        for (int i=1; i<typer.length; i++) {
-            if (typeTemp.equals(typer[i]))
-                exists = true;
-        }
         if (typeTemp.equals("Tom"))
-            return;
-        if (!exists)
             return;
 
         dropdownSecondCategory.setSelection(((ArrayAdapter) dropdownSecondCategory.getAdapter()).getPosition(typeTemp));
