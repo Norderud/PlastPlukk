@@ -22,7 +22,8 @@
             android:layout_weight=".15"
             android:gravity="center"
             android:text="@string/velg_omrade"
-            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/comfortaa_bold"
+            style="@style/my_title_style"
             android:textSize="@dimen/VelgPlastTekst" />
 
         <LinearLayout

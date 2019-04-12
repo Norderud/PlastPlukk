@@ -30,7 +30,7 @@
             android:fontFamily="@font/comfortaa_bold"
             android:gravity="center_horizontal"
             android:text="@string/velg_plasttype"
-            android:textColor="#FFF"
+            style="@style/my_title_style"
             android:textSize="@dimen/VelgPlastTekst" />
 
         <LinearLayout

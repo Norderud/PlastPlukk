@@ -38,6 +38,8 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/comfortaa_bold"
+            style="@style/my_title_style"
             android:textColor="@color/colorWhite"/>
 
         <ImageView
