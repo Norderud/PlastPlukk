@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background4"/>
+        android:src="@drawable/background5"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="@color/blackLowOpacity">
 
         <TextView
             android:id="@+id/tekst"
