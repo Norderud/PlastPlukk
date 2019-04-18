@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.PhotoGPSActivity">
+    tools:context=".registration.PhotoActivity">
 
     <ImageView
         android:id="@+id/category_bg"
@@ -38,6 +38,8 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/comfortaa_bold"
+            style="@style/my_title_style"
             android:textColor="@color/colorWhite"/>
 
         <ImageView

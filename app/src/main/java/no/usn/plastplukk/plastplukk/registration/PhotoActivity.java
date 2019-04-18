@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,7 @@ import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMA
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.IMAGE_FILE_NAME;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MY_PREFS_NAME;
 
-public class PhotoGPSActivity extends AppCompatActivity {
+public class PhotoActivity extends AppCompatActivity {
 
     final static int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -88,6 +89,11 @@ public class PhotoGPSActivity extends AppCompatActivity {
         if (prefs.getString(CURRENT_PHOTO_PATH, "").length() > 0) {
             showPictureOnReturn();
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        NavUtils.navigateUpFromSameTask(this);
     }
 
     private void showPictureOnReturn(){

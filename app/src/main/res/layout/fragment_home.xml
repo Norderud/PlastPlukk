@@ -29,6 +29,7 @@
             android:layout_weight="0.36"
             android:fontFamily="@font/comfortaa_bold"
             android:text="Plast\nplukk"
+            android:textSize="60sp"
             style="@style/my_title_style"/>
 
         <TextView
