@@ -206,7 +206,7 @@
             android:layout_weight="10"
             android:background="@drawable/button_selector"
             android:gravity="center"
-            android:text="Endre passord"
+            android:text="@string/endre_passord"
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
 
