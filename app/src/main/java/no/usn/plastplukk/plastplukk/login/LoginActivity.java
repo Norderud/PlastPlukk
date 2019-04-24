@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -99,7 +100,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
-        LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+        Response.ErrorListener errorListener = new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG);
+            }
+        };
+        LoginRequest loginRequest = new LoginRequest(username, password, responseListener, errorListener);
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
     }
