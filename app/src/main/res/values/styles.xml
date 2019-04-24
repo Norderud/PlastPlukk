@@ -22,7 +22,7 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
     <style name="CustomSpinner" parent="@android:style/Widget.Holo.Light.Spinner">
-        <item name="android:background">@color/blackOpacity</item>
+        <item name="android:background">#202020</item>
     </style>
 
     <style name="MyCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
