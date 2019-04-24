@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.AreaActivity">
+    tools:context=".registration.AreaActivity"
+    android:background="@color/colorBlack">
 
     <ImageView
         android:id="@+id/category_bg"
@@ -13,7 +14,9 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background5" />
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout
         android:layout_width="match_parent"

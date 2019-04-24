@@ -5,34 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.RegistrationCompleteActivity">
+    tools:context=".registration.RegistrationCompleteActivity"
+    android:background="@color/colorBlack">
 
     <ImageView
-        android:id="@+id/home_bg"
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background5" />
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:gravity="center">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="0.5" />
 
         <TextView
             android:id="@+id/confirmCat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:gravity="center"
-            android:text="Takk for din registrering!"
+            android:text="Takk for din registrering :)"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            style="@style/my_title_style"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:text="Husk å kaste plasten!"
+            style="@style/my_title_style"
             android:textAlignment="center"
             android:textSize="24dp"
             android:textStyle="bold"
@@ -73,10 +89,10 @@
                 android:textColor="@color/colorWhite"/>
         </LinearLayout>
 
+
         <TextView
-            android:id="@+id/confirmSize"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="0.2" />
     </LinearLayout>
 </FrameLayout>
