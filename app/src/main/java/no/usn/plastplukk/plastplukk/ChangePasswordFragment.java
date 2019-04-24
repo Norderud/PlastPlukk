@@ -80,6 +80,9 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
+                        etOldPassword.setText("");
+                        etNew1.setText("");
+                        etNew2.setText("");
                         Toast.makeText(getActivity(), getString(R.string.endring_vellykket), Toast.LENGTH_LONG).show();
                     } else{
                         String error = jsonResponse.getString("error");
