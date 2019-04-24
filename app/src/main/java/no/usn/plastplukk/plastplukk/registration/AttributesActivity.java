@@ -41,7 +41,6 @@ public class AttributesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attributes);
         getSupportActionBar().setTitle("");
-        Intent intent = getIntent();
 
         // Shared preferences
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
