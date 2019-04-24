@@ -66,14 +66,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logIn(View view) {
+        final String username = etUser.getText().toString();
+        String password = etPassword1.getText().toString();
+
+        if(username.isEmpty() || password.isEmpty()){
+            alertDialog(getString(R.string.fyll_ut_alle_felt));
+            return;
+        }
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager.getActiveNetwork() == null) {
             Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
             return;
         }
-
-        final String username = etUser.getText().toString();
-        String password = etPassword1.getText().toString();
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
