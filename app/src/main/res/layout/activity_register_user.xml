@@ -85,7 +85,12 @@
                     android:paddingStart="10dp"
                     android:imeOptions="actionGo"/>
             </android.support.design.widget.TextInputLayout>
-
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:backgroundTint="@color/colorBlack"
+                android:text="Jeg har lest og aksepter vilkårene"/>
             <Button
                 android:layout_marginTop="10dp"
                 android:id="@+id/bRegister"

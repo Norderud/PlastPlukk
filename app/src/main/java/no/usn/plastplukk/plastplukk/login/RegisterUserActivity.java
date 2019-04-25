@@ -61,7 +61,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     public void registerUser(View view) {
