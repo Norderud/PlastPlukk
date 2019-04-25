@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void goToWeb(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://itfag.usn.no/grupper/v19gr2/plast/web/index"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://itfag.usn.no/grupper/v19gr2/plast/web/index.php"));
         startActivity(browserIntent);
     }
 }

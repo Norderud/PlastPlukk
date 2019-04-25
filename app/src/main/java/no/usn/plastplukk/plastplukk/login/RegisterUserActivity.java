@@ -77,12 +77,12 @@ public class RegisterUserActivity extends AppCompatActivity {
             alertDialog(getString(R.string.fyll_ut_alle_felt));
             return;
         }
-        if(!isValidPassword(password1)){
-            alertDialog(getString(R.string.passord_sjekk));
-            return;
-        }
         if(!password1.equals(password2)){
             alertDialog(getString(R.string.passord_match));
+            return;
+        }
+        if(!isValidPassword(password1)){
+            alertDialog(getString(R.string.passord_sjekk));
             return;
         }
 

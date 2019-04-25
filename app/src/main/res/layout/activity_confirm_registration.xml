@@ -6,15 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.ConfirmRegistrationActivity">
+    tools:context=".registration.ConfirmRegistrationActivity"
+    android:background="@color/colorBlack">
 
     <ImageView
-        android:id="@+id/home_bg"
+        android:id="@+id/category_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background4" />
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -23,7 +26,7 @@
         android:orientation="vertical"
         android:weightSum="100"
         tools:context=".registration.PhotoActivity"
-        android:background="@color/blackOpacity">
+        android:background="@color/blackLowOpacity">
 
         <TextView
             android:layout_width="match_parent"
@@ -40,7 +43,7 @@
             android:id="@+id/photoConfirmDisplay"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="45" />
+            android:layout_weight="45"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,6 +179,12 @@
                 android:text="@string/confirm_registration"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </LinearLayout>

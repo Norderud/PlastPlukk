@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -65,14 +66,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logIn(View view) {
+        final String username = etUser.getText().toString();
+        String password = etPassword1.getText().toString();
+
+        if(username.isEmpty() || password.isEmpty()){
+            alertDialog(getString(R.string.fyll_ut_alle_felt));
+            return;
+        }
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager.getActiveNetwork() == null) {
             Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
             return;
         }
-
-        final String username = etUser.getText().toString();
-        String password = etPassword1.getText().toString();
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -99,7 +104,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
-        LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+        Response.ErrorListener errorListener = new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG);
+            }
+        };
+        LoginRequest loginRequest = new LoginRequest(username, password, responseListener, errorListener);
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
     }
