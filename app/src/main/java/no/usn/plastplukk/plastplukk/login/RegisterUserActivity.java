@@ -59,7 +59,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         etPassword2 = findViewById(R.id.etPassword2);
 
         tvTermstext = findViewById(R.id.terms_textview);
-        String termsText = "Jeg har lest og aksepter vilkårene";
+        String termsText = "Jeg har lest og akseptert vilkårene";
         SpannableString ss = new SpannableString(termsText);
         ClickableSpan cs = new ClickableSpan() {
             @Override
@@ -68,7 +68,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         };
-        ss.setSpan(cs, 25, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(cs, 26, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvTermstext.setText(ss);
         tvTermstext.setMovementMethod(LinkMovementMethod.getInstance());
         bRegister = findViewById(R.id.bRegister);
