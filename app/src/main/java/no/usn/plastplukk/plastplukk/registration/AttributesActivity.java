@@ -120,13 +120,11 @@ public class AttributesActivity extends AppCompatActivity {
         final ArrayAdapter<String> adapterStr = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_item, str){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-
                 View v = super.getView(position, convertView, parent);
                 if (position == getCount()) {
                     ((TextView)v.findViewById(android.R.id.text1)).setText(getItem(getCount()));
                     ((TextView)v.findViewById(android.R.id.text1)).setHint(""); //"Hint to be displayed"
                 }
-
                 return v;
             }
             @Override

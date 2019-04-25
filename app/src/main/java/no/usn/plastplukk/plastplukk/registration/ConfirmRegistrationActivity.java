@@ -40,6 +40,7 @@ import no.usn.plastplukk.plastplukk.functions.HelpFunctions;
 import no.usn.plastplukk.plastplukk.R;
 import no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues;
 
+import static android.view.View.GONE;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.AREA_ARRAY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.MAIN_CATEGORY;
 import static no.usn.plastplukk.plastplukk.functions.SharedPreferencesValues.TYPE;
@@ -61,7 +62,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
     Bitmap bitmap;
     private LocationListener locationListener;
     private LocationManager locationManager;
-    private boolean newLocationRecieved;
+    private boolean newLocationRecieved, submitButtonPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                 editor.putString(LATITUDE, ""+location.getLatitude());
                 editor.putString(LONGITUDE, ""+location.getLongitude());
                 newLocationRecieved = true;
+                if (submitButtonPressed) findViewById(R.id.confirmButton).performClick();
             }
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) { }
@@ -133,6 +135,9 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
                         return;
                     }
                     if (!newLocationRecieved) {
+                        findViewById(R.id.confirmButton).setVisibility(View.GONE);
+                        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+                        submitButtonPressed = true;
                         Toast.makeText(getApplicationContext(), getString(R.string.venter_gps), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -145,7 +150,7 @@ public class ConfirmRegistrationActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(ConfirmRegistrationActivity.this, R.string.feilet, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ConfirmRegistrationActivity.this, R.string.feilet, Toast.LENGTH_SHORT).show();
                 }
             }
         });
