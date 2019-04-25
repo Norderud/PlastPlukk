@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.PhotoActivity">
+    tools:context=".registration.PhotoActivity"
+    android:background="@color/colorBlack">
 
     <ImageView
         android:id="@+id/category_bg"
@@ -14,13 +15,16 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background4" />
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:background="@color/blackLowOpacity">
 
         <TextView
             android:id="@+id/placeholder_tv"
@@ -38,6 +42,8 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/comfortaa_bold"
+            style="@style/my_title_style"
             android:textColor="@color/colorWhite"/>
 
         <ImageView

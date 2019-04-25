@@ -1,227 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background4"
     android:orientation="vertical"
-    android:weightSum="1"
-    tools:context=".registration.AreaActivity">
+    tools:context=".registration.AreaActivity"
+    android:background="@color/colorBlack">
+
+    <ImageView
+        android:id="@+id/category_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout
-        android:id="@+id/checkBoxes"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".72"
+        android:layout_height="match_parent"
+        android:background="@color/blackLowOpacity"
         android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:weightSum="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".15"
-            android:gravity="center"
-            android:text="@string/velg_omrade"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/VelgPlastTekst" />
-
         <LinearLayout
+            android:id="@+id/checkBoxes"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".17"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
+            android:layout_weight=".72"
+            android:orientation="vertical"
             android:weightSum="1">
 
-            <CheckBox
-                android:id="@+id/fjellCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/fjell"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
+            <TextView
+                style="@style/my_title_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".15"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="@string/velg_omrade"
+                android:textSize="@dimen/VelgPlastTekst" />
 
-            <CheckBox
-                android:id="@+id/skogCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/skog"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".17"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/fjellCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/fjell"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+                <CheckBox
+                    android:id="@+id/skogCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/skog"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".17"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/elvCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/elv"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+                <CheckBox
+                    android:id="@+id/kystCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/kyst"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".17"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/innsjøCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/innsjo"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+                <CheckBox
+                    android:id="@+id/veiCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/vei"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".17"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/industriHandelCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/industri_handel"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+                <CheckBox
+                    android:id="@+id/skoleFritidCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/skole_fritid"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".17"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/dyrketMarkLandbrukCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/dyrket_mark_landbruk"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+                <CheckBox
+                    android:id="@+id/boligCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".4"
+                    android:background="@drawable/checkbox_selector"
+                    android:onClick="checkBoxes"
+                    android:text="@string/boligområde"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ButtonTextSize"
+                    android:theme="@style/MyCheckbox" />
+
+            </LinearLayout>
         </LinearLayout>
+            <TextView
+                android:id="@+id/Feilmelding"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".10"
+                android:gravity="center_horizontal"
+                android:textColor="#D32F2F"
+                android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".17"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:textColor="@color/colorWhite"
-            android:weightSum="1">
-
-            <CheckBox
-                android:id="@+id/elvCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/elv"
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight=".10"
+                android:background="@drawable/button_selector"
+                android:drawableRight="@drawable/next_arrow"
+                android:onClick="openKamera"
+                android:padding="10dp"
+                android:text="@string/ga_videre"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
+                android:textSize="@dimen/ButtonTextSize" />
 
-            <CheckBox
-                android:id="@+id/kystCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/kyst"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".17"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <CheckBox
-                android:id="@+id/innsjøCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/innsjo"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-
-            <CheckBox
-                android:id="@+id/veiCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/vei"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".17"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <CheckBox
-                android:id="@+id/industriHandelCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/industri_handel"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-
-            <CheckBox
-                android:id="@+id/skoleFritidCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/skole_fritid"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".17"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <CheckBox
-                android:id="@+id/dyrketMarkLandbrukCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/dyrket_mark_landbruk"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-
-            <CheckBox
-                android:id="@+id/boligCheck"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight=".4"
-                android:background="@drawable/checkbox_selector"
-                android:onClick="checkBoxes"
-                android:text="@string/boligområde"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ButtonTextSize"
-                android:theme="@style/MyCheckbox" />
-
-        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/Feilmelding"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".10"
-        android:gravity="center_horizontal"
-        android:textColor="#D32F2F"
-        android:textSize="16sp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:layout_weight=".10"
-        android:background="@drawable/button_selector"
-        android:drawableRight="@drawable/next_arrow"
-        android:onClick="openKamera"
-        android:padding="10dp"
-        android:text="@string/ga_videre"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/ButtonTextSize" />
-</LinearLayout>
+</FrameLayout>

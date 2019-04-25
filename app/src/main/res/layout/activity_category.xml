@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registration.CategoryActivity">
+    tools:context=".registration.CategoryActivity"
+    android:background="@color/colorBlack">
 
     <ImageView
         android:id="@+id/category_bg"
@@ -13,14 +14,17 @@
         android:layout_height="match_parent"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/background4"/>
+        android:src="@drawable/main_background_blurred"
+        android:scaleX="-1"
+        android:alpha="0.8"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1"
-        tools:context=".registration.CategoryActivity">
+        tools:context=".registration.CategoryActivity"
+        android:background="@color/blackLowOpacity">
 
         <TextView
             android:layout_width="match_parent"
@@ -30,7 +34,7 @@
             android:fontFamily="@font/comfortaa_bold"
             android:gravity="center_horizontal"
             android:text="@string/velg_plasttype"
-            android:textColor="#FFF"
+            style="@style/my_title_style"
             android:textSize="@dimen/VelgPlastTekst" />
 
         <LinearLayout
