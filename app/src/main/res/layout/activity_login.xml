@@ -98,7 +98,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:gravity="bottom"
         android:onClick="sendToRegister"
         android:text="@string/registrer_her"
         android:textColor="@color/colorWhite"
