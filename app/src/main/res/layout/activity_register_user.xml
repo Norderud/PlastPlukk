@@ -49,7 +49,7 @@
                     android:layout_weight="0.2"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
-                    android:text="@string/endre_passord"
+                    android:text="Registrer bruker"
                     android:textSize="@dimen/VelgPlastTekst" />
 
                 <android.support.design.widget.TextInputLayout
