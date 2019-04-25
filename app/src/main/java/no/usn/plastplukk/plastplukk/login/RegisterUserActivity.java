@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +44,8 @@ public class RegisterUserActivity extends AppCompatActivity {
     EditText etUser;
     EditText etPassword1;
     EditText etPassword2;
+    CheckBox termsCheckBox;
+    TextView tvTermstext;
     Button bRegister;
 
     @Override
@@ -45,10 +53,24 @@ public class RegisterUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
+        termsCheckBox = findViewById(R.id.termsCheckbox);
         etUser = findViewById(R.id.etUser);
         etPassword1 = findViewById(R.id.etPassword1);
         etPassword2 = findViewById(R.id.etPassword2);
 
+        tvTermstext = findViewById(R.id.terms_textview);
+        String termsText = "Jeg har lest og aksepter vilkårene";
+        SpannableString ss = new SpannableString(termsText);
+        ClickableSpan cs = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://itfag.usn.no/grupper/v19gr2/plast/web/index.php"));
+                startActivity(browserIntent);
+            }
+        };
+        ss.setSpan(cs, 25, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvTermstext.setText(ss);
+        tvTermstext.setMovementMethod(LinkMovementMethod.getInstance());
         bRegister = findViewById(R.id.bRegister);
         etPassword2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -61,7 +83,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     public void registerUser(View view) {
@@ -80,6 +101,10 @@ public class RegisterUserActivity extends AppCompatActivity {
         }
         if(!password1.equals(password2)){
             alertDialog(getString(R.string.passord_match));
+            return;
+        }
+        if(!termsCheckBox.isChecked()){
+            alertDialog("Du må lese og godta vilkår for å fortsette");
             return;
         }
         if(!isValidPassword(password1)){
@@ -131,5 +156,4 @@ public class RegisterUserActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
-
 }
