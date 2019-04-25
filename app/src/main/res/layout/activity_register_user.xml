@@ -114,7 +114,8 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
 
                     <CheckBox
                         android:id="@+id/termsCheckbox"
@@ -126,7 +127,7 @@
                         style="@style/my_title_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jeg har lest og aksepter vilkårene"
+                        android:text="@string/jeg_har_lest_og_akseptert_vilk_rene"
                         android:textColor="@color/colorWhite"
                         android:textSize="15sp"
                         android:textStyle="bold" />

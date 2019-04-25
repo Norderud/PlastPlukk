@@ -46,7 +46,7 @@
     <string name="feil_ved_innlogging">Feil ved innlogging</string>
     <string name="fyll_ut_alle_felt">Vennligst fyll ut alle feltene</string>
     <string name="ikke_gyldig_mail">Ikke gyldig email</string>
-    <string name="passord_sjekk">Passordet må minst være 6 symboler, ha minst 1 tall og minst 1 bokstav. Symboler er ikke tillatt</string>
+    <string name="passord_sjekk">Passordet må minst være 6 tegn, ha minst 1 tall og minst 1 bokstav. Symboler er ikke tillatt.</string>
     <string name="passord_match">Passordene matcher ikke</string>
     <string name="registrering_feilet">Registrering feilet:</string>
     <string name="prov_igjen">Prøv igjen</string>
@@ -110,4 +110,5 @@
     <string name="pick_more_button">Plukk mer</string>
     <string name="endre_passord">Endre passord</string>
     <string name="endring_vellykket">Endring vellykket</string>
+    <string name="jeg_har_lest_og_akseptert_vilk_rene">Jeg har lest og akseptert vilkårene</string>
 </resources>

@@ -111,7 +111,8 @@
             android:onClick="sendToRegister"
             android:text="@string/registrer_her"
             android:textColor="@color/colorWhite"
-            android:textSize="15dp" />
+            android:textSize="15sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </FrameLayout>
 
