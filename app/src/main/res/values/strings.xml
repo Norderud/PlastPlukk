@@ -28,7 +28,7 @@
     <string name="passord">Passord</string>
     <string name="login">Login</string>
     <string name="registrer_her">Ikke bruker? Registrer her!</string>
-    <string name="log_out">Log out</string>
+    <string name="log_out">Logg ut</string>
     <string name="gjenta_passord">Gjenta passord</string>
     <string name="registrer">Registrer</string>
     <string name="poser">Poser</string>
@@ -110,4 +110,5 @@
     <string name="pick_more_button">Plukk mer</string>
     <string name="endre_passord">Endre passord</string>
     <string name="endring_vellykket">Endring vellykket</string>
+    <string name="jeg_har_lest_og_akseptert_vilk_rene">Jeg har lest og akseptert vilkårene</string>
 </resources>
