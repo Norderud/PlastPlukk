@@ -43,16 +43,16 @@
                     style="@style/my_title_style"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.36"
+                    android:layout_weight="0.44"
                     android:fontFamily="@font/comfortaa_bold"
                     android:text="Plast\nplukk"
-                    android:textSize="60sp" />
+                    android:textSize="50sp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/etUserLayout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight=".11"
+                    android:layout_weight=".13"
                     android:textColorHint="@color/colorWhiteOpacity">
 
                     <android.support.design.widget.TextInputEditText
@@ -70,7 +70,7 @@
                     android:id="@+id/etPasswordLayout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight=".11"
+                    android:layout_weight=".13"
                     android:textColorHint="@color/colorWhiteOpacity"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/colorWhite">
