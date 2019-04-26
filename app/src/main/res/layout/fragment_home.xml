@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/colorBlack">
+    android:background="@color/colorBlack"
+    android:id="@+id/fragment_home">
 
     <ImageView
         android:id="@+id/home_bg"

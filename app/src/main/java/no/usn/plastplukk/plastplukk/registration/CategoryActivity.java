@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,6 +53,11 @@ public class CategoryActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
     public void velgEgenskaper(View view) {
         String kategori = view.getTag().toString();
         Intent nyIntent = new Intent(this.getBaseContext(), AttributesActivity.class);
@@ -65,4 +71,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         this.startActivity(nyIntent);
     }
+
+
 }
