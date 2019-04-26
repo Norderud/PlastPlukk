@@ -38,8 +38,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.27" />
-
+            android:layout_weight="0.40" />
+        <!-- knapp
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_circle"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+-->
         <Button
             android:layout_margin="5dp"
             android:layout_width="match_parent"
@@ -54,7 +60,6 @@
             android:paddingLeft="20dp"
             android:textSize="24sp"
             android:background="@drawable/button_selector"/>
-
     </LinearLayout>
 
 </FrameLayout>
