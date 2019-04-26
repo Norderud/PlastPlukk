@@ -45,7 +45,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="50dp"
                     android:layout_weight="0.2"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
@@ -56,7 +55,7 @@
                     android:id="@+id/etUserLayout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight=".14"
+                    android:layout_weight=".13"
                     android:textColorHint="@color/colorWhiteOpacity">
 
                     <android.support.design.widget.TextInputEditText
@@ -75,7 +74,7 @@
                     android:id="@+id/etPasswordLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight=".14"
+                    android:layout_weight=".13"
                     android:textColorHint="@color/colorWhiteOpacity"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/colorWhite">
@@ -95,7 +94,7 @@
                     android:id="@+id/etPasswordLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight=".14"
+                    android:layout_weight=".13"
                     android:textColorHint="@color/colorWhiteOpacity"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/colorWhite">
@@ -114,7 +113,8 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
 
                     <CheckBox
                         android:id="@+id/termsCheckbox"
@@ -126,7 +126,7 @@
                         style="@style/my_title_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jeg har lest og aksepter vilkårene"
+                        android:text="@string/jeg_har_lest_og_akseptert_vilk_rene"
                         android:textColor="@color/colorWhite"
                         android:textSize="15sp"
                         android:textStyle="bold" />
