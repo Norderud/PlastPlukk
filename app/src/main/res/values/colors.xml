@@ -10,5 +10,6 @@
     <color name="blackOpacity">#80000000</color>
     <color name="blackLowOpacity">#40000000</color>
     <color name="colorBlack">#000000</color>
+    <color name="trans">#00000000</color>
 
 </resources>
