@@ -38,7 +38,7 @@
             android:layout_weight="0.13"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text="PLASTPLUKK"
+            android:text="PlastPlukk"
             android:textSize="55sp"
             android:fontFamily="@font/hammersmith_one"
             android:textAlignment="center"
