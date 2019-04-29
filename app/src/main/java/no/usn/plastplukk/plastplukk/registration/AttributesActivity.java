@@ -46,7 +46,6 @@ public class AttributesActivity extends AppCompatActivity {
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         kategori = prefs.getString(MAIN_CATEGORY, "Ingen");
-
         feilMelding = findViewById(R.id.Feilmelding);
 
         lagDropDown();
@@ -125,6 +124,14 @@ public class AttributesActivity extends AppCompatActivity {
                     ((TextView)v.findViewById(android.R.id.text1)).setText(getItem(getCount()));
                     ((TextView)v.findViewById(android.R.id.text1)).setHint(""); //"Hint to be displayed"
                 }
+                // Fremviste ikke posisjon 0 ved returnering så jeg lagde denne løsningen
+                else if (position == 0){
+                    String underKat = dropdownSecondCategory.getSelectedItem().toString();
+                    if (underKat.equals("Plastfilm"))
+                        ((TextView)v.findViewById(android.R.id.text1)).setText("Mindre enn knyttneve");
+                    else if (underKat.equals("Plastflaske"))
+                        ((TextView)v.findViewById(android.R.id.text1)).setText("0,5 liter");
+                }
                 return v;
             }
             @Override
@@ -181,7 +188,7 @@ public class AttributesActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 størrelse = dropdownSize.getSelectedItem().toString();
-                if (størrelse.equals("Velg størrelse.."))
+                if (størrelse.equals("Velg størrelse"))
                     return;
                 editor.putString(SIZE, størrelse);
                 editor.apply();
