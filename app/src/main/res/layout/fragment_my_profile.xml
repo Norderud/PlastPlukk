@@ -185,6 +185,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="6"
                 android:background="@drawable/button_selector"
+                android:backgroundTint="@color/colorWhite"
                 android:gravity="center"
                 android:onClick="registrerPlast"
                 android:text="@string/pick_more_button"
