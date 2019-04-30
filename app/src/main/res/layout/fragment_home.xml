@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/colorBlack">
+    android:background="@color/colorBlack"
+    android:id="@+id/fragment_home">
 
     <ImageView
         android:id="@+id/home_bg"
@@ -17,7 +18,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/main_background"
         android:scaleX="-1"
-        android:alpha="0.8"/>
+        android:alpha="0.85"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,39 +28,38 @@
         android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.36"
-            android:fontFamily="@font/comfortaa_bold"
-            android:text="Plast\nplukk"
-            android:textSize="60sp"
-            style="@style/my_title_style"/>
+            android:layout_weight="0.1"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.40" />
-        <!-- knapp
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add_circle"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
--->
-        <Button
-            android:layout_margin="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:drawableLeft="@drawable/ic_add_circle"
-            android:fontFamily="@font/comfortaa_bold"
-            android:onClick="registrerPlast"
-            android:text="@string/ny_plast"
-            android:textColor="@color/colorWhite"
-            android:paddingRight="10dp"
-            android:paddingLeft="20dp"
-            android:textSize="24sp"
-            android:background="@drawable/button_selector"/>
-    </LinearLayout>
+            android:layout_weight="0.13"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="PlastPlukk"
+            android:textSize="55sp"
+            android:fontFamily="@font/hammersmith_one"
+            android:textAlignment="center"
+            style="@style/my_title_style"
+            android:paddingTop="-10dp"
+            />
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.60" />
+
+
+        <ImageButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_add_circle_black_24dp"
+            android:onClick="registrerPlast"
+            android:background="@drawable/start_pluss_selector"
+            />
+
+            </LinearLayout>
+
+        </FrameLayout>

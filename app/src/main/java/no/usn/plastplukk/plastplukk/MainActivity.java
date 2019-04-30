@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.remove(IMAGEVIEW_WIDTH);
         editor.remove(IMAGE_FILE_NAME);
         editor.remove(CURRENT_PHOTO_PATH);
-
         int size = prefs.getInt("Checksvar" + "_size", 0);
         for (int i = 0; i < size; i++)
             editor.remove("Checksvar" + "_" + i);
