@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBlack"
     android:orientation="vertical"
-    tools:context=".registration.PhotoActivity"
-    android:background="@color/colorBlack">
+    tools:context=".registration.PhotoActivity">
 
     <ImageView
         android:id="@+id/category_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.8"
         android:contentDescription="background"
         android:scaleType="centerCrop"
-        android:src="@drawable/main_background_blurred"
         android:scaleX="-1"
-        android:alpha="0.8"/>
+        android:src="@drawable/main_background_blurred" />
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/blackLowOpacity"
         android:orientation="vertical"
-        android:weightSum="10"
-        android:background="@color/blackLowOpacity">
+        android:weightSum="10">
 
         <TextView
             android:id="@+id/placeholder_tv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/take_pic_text"
+            style="@style/my_title_style"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:fontFamily="@font/comfortaa_bold"
             android:gravity="center"
             android:text="Ta bilde nå"
             android:textAlignment="center"
+            android:textColor="@color/colorWhite"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/comfortaa_bold"
-            style="@style/my_title_style"
-            android:textColor="@color/colorWhite"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/photoDisplay"
@@ -59,28 +58,28 @@
             android:gravity="center"
             android:weightSum="2">
 
-            <Button
+            <ImageButton
                 android:id="@+id/kameraKnapp"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_photo_camera_black_24dp"
-                android:background="@drawable/button_selector"
-                android:text="@string/ta_bilde"
-                android:textSize="20sp"
-                android:textColor="@color/colorWhite"
-                />
+                android:background="@drawable/camera_buttons"
+                android:padding="10dp"
+                android:src="@drawable/ic_photo_camera_black_24dp" />
 
             <Button
+                android:layout_marginStart="10dp"
                 android:id="@+id/videreFraKamera"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/last_opp_bilde"
-                android:background="@drawable/button_selector"
-                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:background="@drawable/ga_videre_photo"
+                android:drawableRight="@drawable/next_arrow"
+                android:text="@string/ga_videre"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp"
-                android:textColor="@color/colorWhite"/>
+                android:padding="10dp"
+                android:visibility="gone"
+                 />
         </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

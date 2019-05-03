@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,8 @@ public class PhotoActivity extends AppCompatActivity {
     ImageView imageView;
     String imageFileName;
     static String currentPhotoPath;
-    Button taBildeKnapp, confirmPictureButton;
+    Button confirmPictureButton;
+    ImageButton taBildeKnapp;
     public static String PHOTOPATH = "photoPath", IMAGEFILENAME = "imageFileName",
             IMAGE_WIDTH = "imageWidth", IMAGE_HEIGHT = "imageHeigth";
     private SharedPreferences prefs;
@@ -61,7 +63,7 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gps);
         getSupportActionBar().setTitle("");
-        taBildeKnapp = (Button) findViewById(R.id.kameraKnapp);
+        taBildeKnapp = (ImageButton) findViewById(R.id.kameraKnapp);
         confirmPictureButton = (Button) findViewById(R.id.videreFraKamera);
         imageView = findViewById(R.id.photoDisplay);
         prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -98,7 +100,6 @@ public class PhotoActivity extends AppCompatActivity {
 
     private void showPictureOnReturn(){
         imageFileName = prefs.getString(IMAGE_FILE_NAME, imageFileName);
-        taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
         confirmPictureButton.setVisibility(View.VISIBLE);
         Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, prefs.getString(CURRENT_PHOTO_PATH, ""),
                 prefs.getInt(IMAGEVIEW_WIDTH, 0), prefs.getInt(IMAGEVIEW_HEIGHT, 0));
@@ -135,7 +136,7 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            taBildeKnapp.setText(getString(R.string.ta_nytt_bilde));
+
             confirmPictureButton.setVisibility(View.VISIBLE);
             imageView.setVisibility(View.VISIBLE);
             Bitmap bitmap = HelpFunctions.loadImageFromFile(imageView, currentPhotoPath, imageView.getWidth(), imageView.getHeight());
